@@ -1,26 +1,1014 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
+/* Brand tokens - BizzGrow Design System with Contrast Optimization */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Core brand colors */
+  --brand-primary: #004c80; /* Deep blue - primary actions */
+  --brand-secondary: #66b266; /* Green - secondary actions */
+  --brand-accent: #2ea3b7; /* Teal - accents and highlights */
+  --background-light: #f3f7fb; /* Light background - better contrast */
+  --background-dark: #0f1b25; /* Dark background */
+  --surface: #ffffff; /* Pure white for cards */
+  --neutral-text: #0f172a; /* Primary text on light backgrounds */
+  --muted-text: #475569; /* Secondary text on light backgrounds */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Gradients with contrast optimization */
+  --brand-gradient: linear-gradient(
+    135deg,
+    #004c80 0%,
+    #2ea3b7 50%,
+    #66b266 100%
+  );
+  --brand-gradient-card: linear-gradient(180deg, #ffffff 0%, #f3f7fb 100%);
+  --brand-gradient-overlay: linear-gradient(
+    135deg,
+    rgba(15, 27, 37, 0.8) 0%,
+    rgba(0, 76, 128, 0.9) 100%
+  );
+
+  /* Semantic colors with proper contrast */
+  --background: var(--background-light);
+  --foreground: var(--neutral-text);
+  --text-primary: var(--neutral-text); /* 4.5:1 contrast */
+  --text-secondary: var(--muted-text); /* 4.5:1 contrast */
+  --text-inverse: #ffffff; /* For dark backgrounds only */
+  --text-accent: var(--brand-accent);
+
+  /* Compatibility tokens */
+  --brand-500: var(--brand-primary);
+  --brand-600: #003a66; /* darker primary for hovers */
+
+  /* Spacing and layout */
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
+  --container-max: 1280px;
+  --section-padding: 6rem;
+
+  /* Typography scale */
+  --font-heading: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-body: "Manrope", system-ui, -apple-system, sans-serif;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b1220;
+    --surface: #071026;
+    --foreground: #e6eef8;
+    --neutral-text: #e6eef8;
+    --muted-text: #9aa6b2;
+    --text-primary: var(--neutral-text);
+    --text-secondary: var(--muted-text);
   }
+}
+
+/* Layout */
+html,
+body,
+#__next {
+  height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Typography system with contrast optimization */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text-primary); /* High contrast */
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.125rem); /* 16-18px base */
+  line-height: 1.6;
+  color: var(--text-secondary); /* 4.5:1 contrast */
+}
+
+/* Text utility classes */
+.text-primary {
+  color: var(--text-primary);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-inverse {
+  color: var(--text-inverse);
+}
+.text-accent {
+  color: var(--text-accent);
+}
+
+/* Muted class override for better contrast */
+.muted {
+  color: var(--text-secondary);
+}
+
+/* Container utility (complements Tailwind's container) */
+.site-container {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Card system - High contrast, solid backgrounds */
+.card {
+  background: var(--surface) !important; /* Force white background */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(76, 85, 96, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--brand-gradient);
+}
+
+.card-premium {
+  background: var(--surface) !important; /* Force white background */
+  border: 1px solid rgba(76, 85, 96, 0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-hover {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  border-color: var(--brand-accent);
+}
+
+/* FORCE proper text contrast in cards - override any other styles */
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+  color: var(--text-primary) !important;
+}
+
+.card p,
+.card .muted,
+.card span,
+.card div {
+  color: var(--text-secondary) !important;
+}
+
+/* Specific overrides for card content */
+.card .text-primary {
+  color: var(--text-primary) !important;
+}
+
+.card .text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+/* White background sections should have dark text */
+section {
+  background: var(--background);
+}
+
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
+  color: var(--text-primary) !important;
+}
+
+section p,
+section .text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+/* Button system */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-base);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--brand-gradient);
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-secondary {
+  background: var(--brand-secondary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+  background: #5a9e5a;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline:hover {
+  background: var(--brand-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foreground);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--foreground);
+}
+
+/* Small helpers */
+.muted {
+  color: var(--muted);
+}
+
+/* Premium design helpers */
+.gradient-accent {
+  background: linear-gradient(
+    90deg,
+    var(--brand-primary) 0%,
+    var(--brand-light) 50%,
+    var(--brand-secondary) 100%
+  );
+}
+
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.35)
+  );
+  backdrop-filter: blur(6px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Enhanced animations */
+.card-animate {
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-animate:hover {
+  transform: translateY(-12px) rotateX(5deg);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Section backgrounds with proper text contrast */
+.hero {
+  background: var(--brand-gradient-dark);
+  color: var(--text-inverse); /* White text on dark backgrounds */
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(42, 163, 183, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(102, 178, 102, 0.3) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+/* Ensure white text on hero section */
+.hero h1,
+.hero h2,
+.hero h3,
+.hero h4,
+.hero h5,
+.hero h6 {
+  color: var(--text-inverse) !important;
+}
+
+.hero p,
+.hero .text-secondary {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.cta {
+  background: var(--brand-gradient);
+  color: var(--text-inverse);
+  position: relative;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Ensure white text on CTA section */
+.cta h1,
+.cta h2,
+.cta h3,
+.cta h4,
+.cta h5,
+.cta h6 {
+  color: var(--text-inverse) !important;
+}
+
+.cta p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  background: var(--brand-gradient-dark);
+  color: var(--text-inverse);
+}
+
+/* Ensure white text on footer */
+.footer h1,
+.footer h2,
+.footer h3,
+.footer h4,
+.footer h5,
+.footer h6 {
+  color: var(--text-inverse) !important;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Logo */
+.brand-logo {
+  color: var(--brand-primary);
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: var(--brand-secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: color-mix(in srgb, var(--brand-secondary) 85%, black);
+}
+
+/* Advanced animations */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(-0.5deg);
+  }
+}
+
+.float {
+  animation: floaty 8s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reveal {
+  animation: fadeInUp 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 500ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Stagger animation delays */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+.stagger-6 {
+  animation-delay: 0.6s;
+}
+
+/* responsive utilities */
+@media (max-width: 640px) {
+  .site-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Utility classes */
+.text-gradient {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-padding {
+  padding: var(--section-padding) 0;
+}
+
+.asymmetric-section {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  padding-bottom: calc(var(--section-padding) + 4rem);
+}
+
+.brand-logo {
+  color: var(--brand-primary);
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+/* Premium shapes and decorative elements */
+.shape-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.shape-blob-1 {
+  width: 200px;
+  height: 200px;
+  background: var(--brand-accent);
+  top: 10%;
+  right: 10%;
+  animation: floaty 8s ease-in-out infinite;
+}
+
+.shape-blob-2 {
+  width: 150px;
+  height: 150px;
+  background: var(--brand-secondary);
+  bottom: 10%;
+  left: 5%;
+  animation: floaty 6s ease-in-out infinite reverse;
+}
+
+/* Mobile-first responsive design system */
+
+/* Base mobile styles (0-767px) */
+.section-padding {
+  padding: 2.5rem 0; /* 40px mobile */
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem; /* 16px mobile */
+}
+
+/* 12-column grid system */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.5rem; /* 8px base spacing */
+}
+
+/* Touch-friendly targets */
+.btn,
+button,
+a[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+.btn {
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem; /* 16px minimum */
+}
+
+.card {
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Mobile navigation */
+.navbar {
+  padding: 1rem 1.5rem;
+}
+
+/* Mobile typography */
+h1 {
+  font-size: clamp(2rem, 8vw, 3rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+}
+
+p {
+  font-size: 1rem; /* 16px minimum for readability */
+  line-height: 1.6;
+}
+
+/* Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: revert;
+  margin: revert;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus indicators */
+:focus {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid var(--text-primary);
+  }
+
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion for performance and accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .float,
+  .card-hover,
+  .reveal,
+  .scale-in,
+  .slide-in-left,
+  .slide-in-right {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Tablet styles (768-1023px) */
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 3.5rem 0; /* 56px tablet */
+  }
+
+  .container {
+    padding: 0 2rem; /* 32px tablet */
+  }
+
+  .grid-12 {
+    gap: 1rem; /* 16px tablet */
+  }
+
+  .btn {
+    width: auto;
+    padding: 1rem 2rem;
+  }
+
+  .card {
+    padding: 2rem;
+  }
+}
+
+/* Desktop styles (1024px+) */
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 5rem 0; /* 80px desktop */
+  }
+
+  .container {
+    max-width: 1280px;
+    padding: 0 2rem;
+  }
+
+  .grid-12 {
+    gap: 1.5rem; /* 24px desktop */
+  }
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+    font-size: 1rem;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+
+  .card-hover:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Sticky mobile CTA */
+.mobile-sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  z-index: 50;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .mobile-sticky-cta {
+    display: none;
+  }
+}
+
+/* CRITICAL CONTRAST FIXES - Section-specific styling */
+
+/* Dark sections (hero, cta, footer) - WHITE text on DARK backgrounds */
+.hero-section {
+  background: var(--background-dark) !important;
+}
+.hero-section,
+.hero-section *,
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section h4,
+.hero-section h5,
+.hero-section h6,
+.hero-section p,
+.hero-section span,
+.hero-section div {
+  color: var(--text-inverse) !important;
+}
+
+.cta-section {
+  background: var(--background-dark) !important;
+}
+.cta-section,
+.cta-section *,
+.cta-section h1,
+.cta-section h2,
+.cta-section h3,
+.cta-section h4,
+.cta-section h5,
+.cta-section h6,
+.cta-section p,
+.cta-section span,
+.cta-section div {
+  color: var(--text-inverse) !important;
+}
+
+.footer-section {
+  background: var(--background-dark) !important;
+}
+.footer-section,
+.footer-section *,
+.footer-section h1,
+.footer-section h2,
+.footer-section h3,
+.footer-section h4,
+.footer-section h5,
+.footer-section h6,
+.footer-section p,
+.footer-section span,
+.footer-section div {
+  color: var(--text-inverse) !important;
+}
+
+/* Light sections (services, features, etc) - DARK text on WHITE backgrounds */
+.services-section,
+.features-section,
+.process-section,
+.portfolio-section,
+.testimonials-section {
+  background: var(--surface) !important;
+}
+
+.services-section *,
+.features-section *,
+.process-section *,
+.portfolio-section *,
+.testimonials-section * {
+  color: var(--text-primary) !important;
+}
+
+.services-section h1,
+.services-section h2,
+.services-section h3,
+.services-section h4,
+.services-section h5,
+.services-section h6,
+.features-section h1,
+.features-section h2,
+.features-section h3,
+.features-section h4,
+.features-section h5,
+.features-section h6,
+.process-section h1,
+.process-section h2,
+.process-section h3,
+.process-section h4,
+.process-section h5,
+.process-section h6,
+.portfolio-section h1,
+.portfolio-section h2,
+.portfolio-section h3,
+.portfolio-section h4,
+.portfolio-section h5,
+.portfolio-section h6,
+.testimonials-section h1,
+.testimonials-section h2,
+.testimonials-section h3,
+.testimonials-section h4,
+.testimonials-section h5,
+.testimonials-section h6 {
+  color: var(--text-primary) !important;
+}
+
+.services-section p,
+.features-section p,
+.process-section p,
+.portfolio-section p,
+.testimonials-section p {
+  color: var(--text-secondary) !important;
+}
+
+/* Override any blue or dark backgrounds in cards to ensure readability */
+.bg-blue-900,
+.bg-blue-800,
+.bg-blue-700,
+.bg-slate-900,
+.bg-slate-800,
+.bg-gray-900,
+.bg-gray-800 {
+  background: var(--surface) !important;
+}
+
+.bg-blue-900 *,
+.bg-blue-800 *,
+.bg-blue-700 *,
+.bg-slate-900 *,
+.bg-slate-800 *,
+.bg-gray-900 *,
+.bg-gray-800 * {
+  color: var(--text-primary) !important;
+}
+
+/* Mobile Navbar - Hide Get Started button on mobile */
+.mobile-hidden {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .mobile-hidden {
+    display: inline-flex !important;
+  }
 }
