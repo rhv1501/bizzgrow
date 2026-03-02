@@ -68,11 +68,11 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="/case-studies"
+                href="/portfolio"
                 className="text-sm font-medium transition-colors duration-200 relative group"
                 style={{ color: "var(--text-secondary)" }}
               >
-                Case Studies
+                Portfolio
                 <span
                   className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full"
                   style={{ backgroundColor: "var(--brand-primary)" }}

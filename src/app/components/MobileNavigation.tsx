@@ -22,7 +22,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
     { href: "/", label: "Home", icon: Home },
     { href: "/about", label: "About", icon: User },
     { href: "/services", label: "Services", icon: Briefcase },
-    { href: "/case-studies", label: "Case Studies", icon: FileText },
+    { href: "/portfolio", label: "Portfolio", icon: FileText },
     { href: "/blog", label: "Blog", icon: BookOpen },
     { href: "/contact", label: "Contact", icon: Mail },
   ];

@@ -49,10 +49,10 @@ const Cta = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </a>
                 <a
-                  href="/case-studies"
+                  href="/portfolio"
                   className="btn btn-outline px-8 py-4 text-lg font-semibold border-white/30 text-white hover:bg-white hover:text-gray-900"
                 >
-                  View Success Stories
+                  View Portfolio
                 </a>
               </div>
 

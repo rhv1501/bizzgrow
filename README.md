@@ -9,7 +9,7 @@ A production-ready, agency-level website built with Next.js for BizzGrow, a digi
 - **Homepage** - Hero, features, process, services, portfolio, team, testimonials, newsletter, FAQ, CTA
 - **About** - Mission, team, approach, value proposition
 - **Services** - Comprehensive service offerings with detailed descriptions
-- **Case Studies** - Real client success stories with metrics and results
+- **Portfolio** - Real client success stories with metrics and results
 - **Pricing** - Transparent pricing packages and add-on services
 - **Blog** - SEO-optimized content hub with expert insights
 - **Contact** - Lead generation form with validation and spam protection
@@ -105,7 +105,7 @@ npm run lint
 
 - Target keywords: "digital transformation", "web design", "digital marketing", "SMB"
 - Blog categories: SEO, Development, Marketing, Branding, E-commerce, Design
-- Case studies optimized for conversion with clear metrics
+- Portfolio entries optimized for conversion with clear metrics
 
 ## 🎯 Lead Generation & Conversion
 
@@ -119,7 +119,7 @@ npm run lint
 ### CTAs and Conversion Points
 
 - Primary CTA: "Get Started" / "Free Consultation"
-- Secondary CTAs: Case studies, newsletter, pricing
+- Secondary CTAs: Portfolio, newsletter, pricing
 - Trust signals: Client testimonials, success metrics
 - Social proof: Team credentials, company information
 
@@ -171,7 +171,7 @@ NEXT_PUBLIC_SITE_URL=https://bizzgrow.com
 
 - **Static content**: Edit React components directly
 - **Blog posts**: Add new pages in `src/app/blog/[slug]/page.tsx`
-- **Case studies**: Update `src/app/case-studies/page.tsx`
+- **Portfolio**: Update `src/app/portfolio/page.tsx`
 - **Team information**: Modify `src/app/components/Team.tsx`
 
 ### Adding New Services
