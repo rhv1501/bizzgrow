@@ -87,9 +87,9 @@ export default function PrivacyPage() {
               If you have any questions about this Privacy Policy, please
               contact us at:
               <br />
-              Email: privacy@bizzgrow.com
+              Email: bizzgrowlabs@gmail.com
               <br />
-              Phone: +1 (XXX) XXX-XXXX
+              Phone: +91 8939036141
             </p>
           </section>
         </div>

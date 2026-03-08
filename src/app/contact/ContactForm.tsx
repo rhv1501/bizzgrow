@@ -110,7 +110,7 @@ export default function ContactForm() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="mt-1 block w-full border rounded px-3 py-2"
-              placeholder="+1 (234) 567-8900"
+              placeholder="+91 8939036141"
             />
           </label>
 

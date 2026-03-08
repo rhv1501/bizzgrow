@@ -7,6 +7,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -79,20 +80,23 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white">Services</h4>
             <ul className="space-y-3">
               {[
-                "Web Design & Development",
-                "Digital Marketing",
-                "Branding & Creative",
-                "SEO & Analytics",
-                "Business Automation",
-                "Custom Development",
+                {
+                  label: "Web Design & Development",
+                  href: "/services/website",
+                },
+                { label: "Digital Marketing", href: "/services/marketing" },
+                { label: "Branding & Creative", href: "/services/branding" },
+                { label: "SEO & Analytics", href: "/services/seo" },
+                { label: "Business Automation", href: "/services/automation" },
+                { label: "Custom Development", href: "/services/development" },
               ].map((service, index) => (
                 <li key={index}>
-                  <a
-                    href="/services"
+                  <Link
+                    href={service.href}
                     className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
                   >
-                    {service}
-                  </a>
+                    {service.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -129,10 +133,10 @@ const Footer = () => {
                 <Mail className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
                 <div>
                   <a
-                    href="mailto:hello@bizzgrow.com"
+                    href="mailto:bizzgrowlabs@gmail.com"
                     className="text-white/80 hover:text-white transition-colors duration-200 text-sm"
                   >
-                    hello@bizzgrow.com
+                    bizzgrowlabs@gmail.com
                   </a>
                 </div>
               </div>
@@ -141,10 +145,10 @@ const Footer = () => {
                 <Phone className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
                 <div>
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+918939036141"
                     className="text-white/80 hover:text-white transition-colors duration-200 text-sm"
                   >
-                    +1 (234) 567-8900
+                    +91 8939036141
                   </a>
                 </div>
               </div>
@@ -153,11 +157,11 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-white/80 text-sm">
-                    123 Business Ave
+                    106, A Proad, Choolai
                     <br />
-                    Suite 100
+                    Chennai-112
                     <br />
-                    City, State 12345
+                    India
                   </p>
                 </div>
               </div>

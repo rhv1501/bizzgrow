@@ -180,10 +180,10 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
 
                   <div className="text-center">
                     <a
-                      href="tel:+1234567890"
+                      href="tel:+918939036141"
                       className="text-white/70 hover:text-white text-sm transition-colors duration-200"
                     >
-                      +1 (234) 567-8900
+                      +91 8939036141
                     </a>
                   </div>
                 </motion.div>

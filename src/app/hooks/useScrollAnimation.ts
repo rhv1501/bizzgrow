@@ -8,8 +8,8 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export const useScrollAnimation = () => {
-  const ref = useRef<HTMLElement>(null);
+export const useScrollAnimation = <T extends HTMLElement = HTMLElement>() => {
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -51,8 +51,10 @@ export const useScrollAnimation = () => {
   return ref;
 };
 
-export const useStaggerAnimation = (selector: string) => {
-  const containerRef = useRef<HTMLElement>(null);
+export const useStaggerAnimation = <T extends HTMLElement = HTMLElement>(
+  selector: string,
+) => {
+  const containerRef = useRef<T>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;

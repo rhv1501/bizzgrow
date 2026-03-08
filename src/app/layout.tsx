@@ -86,9 +86,9 @@ export default function RootLayout({
               logo: "https://bizzgrow.com/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+1-XXX-XXX-XXXX",
+                telephone: "+918939036141",
                 contactType: "customer service",
-                email: "contact@bizzgrow.com",
+                email: "bizzgrowlabs@gmail.com",
               },
               sameAs: [
                 "https://linkedin.com/company/bizzgrow",
@@ -96,7 +96,9 @@ export default function RootLayout({
               ],
               address: {
                 "@type": "PostalAddress",
-                addressCountry: "US",
+                streetAddress: "106, A Proad, Choolai",
+                addressLocality: "Chennai-112",
+                addressCountry: "IN",
               },
               foundingDate: "2024",
               numberOfEmployees: "2-10",

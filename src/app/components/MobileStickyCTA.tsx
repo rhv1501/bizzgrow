@@ -38,7 +38,7 @@ const MobileStickyCTA = () => {
           </a>
 
           <a
-            href="tel:+1234567890"
+            href="tel:+918939036141"
             className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white p-3 rounded-xl transition-colors duration-200"
             aria-label="Call us"
           >

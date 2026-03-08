@@ -1,4 +1,5 @@
-import { ExternalLink, TrendingUp, Users, DollarSign } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { portfolioProjects } from "../portfolio/projects";
 
 const Portfolio = () => {
@@ -101,13 +102,13 @@ const Portfolio = () => {
                 </div>
 
                 <div className="pt-4 border-t border-gray-100">
-                  <a
-                    href="/portfolio"
+                  <Link
+                    href={`/project/${project.slug}`}
                     className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:gap-3"
                   >
                     View Project
                     <ExternalLink className="w-4 h-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

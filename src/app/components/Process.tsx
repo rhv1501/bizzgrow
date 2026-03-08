@@ -1,61 +1,61 @@
-import { Search, Palette, Rocket, CheckCircle } from "lucide-react";
+import { Search, ClipboardList, Wrench, LineChart, Rocket } from "lucide-react";
 
 const Process = () => {
   const steps = [
     {
       number: "01",
       icon: Search,
-      title: "Discovery & Strategy",
+      title: "Discovery & Audit",
       description:
-        "We dive deep into your business, analyze your market, and identify opportunities for growth through comprehensive research and strategic planning.",
-      duration: "1-2 weeks",
+        "We start by understanding your goals and auditing what you already have — website, marketing, brand, SEO, and internal workflows — to find the fastest path to impact.",
+      duration: "3-7 days",
       deliverables: [
-        "Market Analysis",
-        "User Research",
-        "Strategic Roadmap",
-        "Project Timeline",
+        "Goals + Success Metrics",
+        "Current-State Audit",
+        "Opportunity Shortlist",
+        "Scope + Priorities",
       ],
     },
     {
       number: "02",
-      icon: Palette,
-      title: "Design & Prototype",
+      icon: ClipboardList,
+      title: "Plan & Align",
       description:
-        "Our creative team crafts stunning visual designs and interactive prototypes that align with your brand and optimize for user experience.",
-      duration: "2-3 weeks",
+        "We turn the audit into a clear plan tailored to your service — from messaging and creative direction to technical requirements, timelines, and responsibilities.",
+      duration: "1 week",
       deliverables: [
-        "Wireframes",
-        "Visual Designs",
-        "Interactive Prototype",
-        "Brand Guidelines",
+        "Strategy + Roadmap",
+        "Milestones + Timeline",
+        "Creative/Technical Brief",
+        "Reporting Plan",
       ],
     },
     {
       number: "03",
-      icon: Rocket,
-      title: "Development & Launch",
+      icon: Wrench,
+      title: "Execute & Deliver",
       description:
-        "We build your solution using cutting-edge technologies, conduct thorough testing, and deploy with comprehensive monitoring and analytics.",
-      duration: "4-8 weeks",
+        "We execute the work end-to-end — design/build, campaigns, SEO improvements, automations, or integrations — with reviews, QA, and a smooth rollout.",
+      duration: "2-8 weeks",
       deliverables: [
-        "Custom Development",
-        "Quality Testing",
-        "Performance Optimization",
-        "Launch & Monitoring",
+        "Implementation + QA",
+        "Launch/Rollout",
+        "Tracking + Dashboards",
+        "Documentation/Handover",
       ],
     },
     {
       number: "04",
-      icon: CheckCircle,
-      title: "Growth & Optimization",
+      icon: LineChart,
+      title: "Measure & Improve",
       description:
-        "Post-launch, we continuously monitor performance, gather user feedback, and implement improvements to maximize your ROI.",
+        "After delivery, we measure results against KPIs, identify what's working, and iterate to keep improving performance and ROI over time.",
       duration: "Ongoing",
       deliverables: [
-        "Performance Analytics",
-        "A/B Testing",
-        "Continuous Updates",
-        "Growth Optimization",
+        "Performance Review",
+        "Optimization Backlog",
+        "Iteration Cycles",
+        "Support + Enhancements",
       ],
     },
   ];
@@ -78,24 +78,25 @@ const Process = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-20">
           <div className="inline-flex items-center gap-2 bg-blue-100 !text-blue-700 rounded-full px-4 py-2 text-sm font-medium mb-6 reveal">
-            <Rocket className="w-4 h-4" color="blue"/>
-            Our Proven Process
+            <Rocket className="w-4 h-4" color="blue" />
+            How We Work
           </div>
 
           <h2
             className="text-4xl lg:text-5xl font-bold mb-6 reveal stagger-1"
             style={{ color: "var(--text-primary)" }}
           >
-            From Concept to <span className="text-gradient">Success</span>
+            A streamlined process for{" "}
+            <span className="text-gradient">every service</span>
           </h2>
 
           <p
             className="text-xl max-w-3xl mx-auto leading-relaxed reveal stagger-2"
             style={{ color: "var(--text-secondary)" }}
           >
-            Our streamlined 4-step process ensures transparent communication,
-            predictable timelines, and exceptional results that drive your
-            business forward.
+            Whether you need a new website, marketing campaigns, branding, SEO,
+            custom development, or automation — we follow the same clear 4-step
+            system to deliver predictable outcomes.
           </p>
         </div>
 
@@ -182,7 +183,7 @@ const Process = () => {
                                   <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                                   {deliverable}
                                 </div>
-                              )
+                              ),
                             )}
                           </div>
                         </div>

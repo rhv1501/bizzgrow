@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { portfolioProjects } from "./projects";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function PortfolioPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {portfolioProjects.map((project, index) => (
             <article
-              key={index}
+              key={project.slug}
               className="card card-premium card-hover reveal group overflow-hidden"
               style={{ animationDelay: `${index * 80}ms` }}
             >
@@ -86,13 +87,22 @@ export default function PortfolioPage() {
                 </div>
 
                 <div className="pt-4 border-t border-gray-100">
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:gap-3"
-                  >
-                    Start a similar project
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                  <div className="flex items-center justify-between gap-4">
+                    <Link
+                      href={`/project/${project.slug}`}
+                      className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:gap-3"
+                    >
+                      View project
+                      <ExternalLink className="w-4 h-4" />
+                    </Link>
+
+                    <Link
+                      href={`/contact?project=${encodeURIComponent(project.title)}`}
+                      className="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      Start a similar project
+                    </Link>
+                  </div>
                 </div>
               </div>
             </article>

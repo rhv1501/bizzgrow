@@ -94,9 +94,9 @@ export default function TermsPage() {
             <p className="muted">
               For questions regarding these terms, contact us at:
               <br />
-              Email: legal@bizzgrow.com
+              Email: bizzgrowlabs@gmail.com
               <br />
-              Phone: +1 (XXX) XXX-XXXX
+              Phone: +91 8939036141
             </p>
           </section>
         </div>
