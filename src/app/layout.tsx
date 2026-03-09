@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Analytics from "./components/Analytics";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://bizzgrow.com",
+    url: "https://bizzgrowlabs.com",
     title: "BizzGrow - Digital Transformation for Small & Medium Businesses",
     description:
       "End-to-end digital transformation services for SMBs. Web design, development, digital marketing, branding & automation.",
@@ -105,6 +106,20 @@ export default function RootLayout({
             }),
           }}
         />
+        <Script id="matomo" strategy="afterInteractive">
+          {`
+var _paq = window._paq = window._paq || [];
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+(function() {
+  var u="https://matomo.bizzgrowlabs.com/";
+  _paq.push(['setTrackerUrl', u+'matomo.php']);
+  _paq.push(['setSiteId', '1']);
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+})();
+`}
+        </Script>
       </head>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
