@@ -62,11 +62,11 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/20 reveal stagger-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">50+</div>
+                <div className="text-3xl font-bold text-white">20+</div>
                 <div className="text-sm text-white/70">Happy Clients</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">95%</div>
+                <div className="text-3xl font-bold text-white">99%</div>
                 <div className="text-sm text-white/70">Success Rate</div>
               </div>
               <div className="text-center">

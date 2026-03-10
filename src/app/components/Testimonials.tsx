@@ -30,14 +30,15 @@ const Testimonials = () => {
                   className="text-lg font-bold"
                   style={{ color: "var(--text-primary)" }}
                 >
-                  John Doe
+                  Kamlesh Marlecha
                 </h4>
                 <p style={{ color: "var(--text-secondary)" }}>CEO, Company</p>
               </div>
             </div>
             <p style={{ color: "var(--text-secondary)" }}>
-              &ldquo;BizzGrow helped us transform our business and achieve our
-              goals. We are very happy with the results.&rdquo;
+              One stop solution for all ur needs and pocket friendly 👌 Has
+              quite good knowledge about the subjects and gives ears and
+              implements best of required for business 😇
             </p>
           </div>
           <div className="card card-hover">

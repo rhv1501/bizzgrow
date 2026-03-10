@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   X,
   Home,
@@ -104,22 +105,6 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-white/15">
                 <div className="flex items-center gap-3">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ background: "var(--brand-gradient)" }}
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      className="text-white"
-                    >
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg>
-                  </div>
                   <h2 className="text-xl font-bold text-white">BizzGrow</h2>
                 </div>
 

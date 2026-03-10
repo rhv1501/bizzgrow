@@ -148,21 +148,21 @@ const Features = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               <StatCard
-                number={150}
+                number={50}
                 suffix="+"
                 label="Projects Completed"
                 icon="🚀"
                 color="bg-blue-600"
               />
               <StatCard
-                number={98}
+                number={99}
                 suffix="%"
                 label="Client Satisfaction"
                 icon="⭐"
                 color="bg-green-600"
               />
               <StatCard
-                number={50}
+                number={20}
                 suffix="+"
                 label="Happy Clients"
                 icon="🤝"

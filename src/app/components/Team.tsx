@@ -1,8 +1,6 @@
 const Team = () => {
   const people = [
-    { name: "Aisha Khan", role: "Founder & CEO" },
-    { name: "Ravi Patel", role: "Head of Design" },
-    { name: "Nina Gomez", role: "Growth Lead" },
+    { name: "Rudresh H Vyas", role: "Founder & CEO" },
   ];
 
   return (
@@ -15,10 +13,11 @@ const Team = () => {
     >
       <div className="site-container mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl font-bold">Meet the team</h2>
+          <h2 className="text-3xl font-bold">The Mind Behind the Mission</h2>
           <p className="muted mt-2">
-            Small team, big impact — experts across design, engineering and
-            marketing.
+            Every great company begins with a bold vision. Our founder combines
+            technical expertise, creative thinking, and strategic insight to
+            build solutions that help businesses grow in the digital age.
           </p>
         </div>
 

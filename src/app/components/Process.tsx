@@ -199,8 +199,7 @@ const Process = () => {
         <div className="text-center mt-16 reveal">
           <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
             <h3
-              className="text-2xl font-bold mb-4"
-              style={{ color: "black !important" }}
+              className="text-2xl font-bold mb-4 !text-gray-500"
             >
               Ready to Start Your Journey?
             </h3>

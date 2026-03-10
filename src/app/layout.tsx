@@ -84,7 +84,7 @@ export default function RootLayout({
               description:
                 "Digital transformation services for small and medium businesses",
               url: "https://bizzgrow.com",
-              logo: "https://bizzgrow.com/logo.png",
+              logo: "/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+918939036141",
