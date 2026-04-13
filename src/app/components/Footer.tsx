@@ -128,10 +128,11 @@ const Footer = () => {
                 <Mail className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
                 <div>
                   <a
+                    id="phone"
                     href="mailto:bizzgrowlabs@gmail.com"
                     className="text-white/80 hover:text-white transition-colors duration-200 text-sm"
                   >
-                    bizzgrowlabs@gmail.com
+                    info@bizzgrowlabs.com
                   </a>
                 </div>
               </div>
@@ -140,6 +141,7 @@ const Footer = () => {
                 <Phone className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
                 <div>
                   <a
+                    id="phone"
                     href="tel:+918939036141"
                     onClick={() =>
                       trackCallNowClick({
