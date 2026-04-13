@@ -40,6 +40,7 @@ const MobileStickyCTA = () => {
 
           <a
             href="tel:+918939036141"
+            id="phone"
             onClick={() =>
               trackCallNowClick({
                 location: "mobile_sticky_cta_phone_button",
