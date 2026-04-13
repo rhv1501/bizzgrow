@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Mail,
   Phone,
@@ -9,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { trackCallNowClick } from "../utils/gtm";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -138,6 +141,12 @@ const Footer = () => {
                 <div>
                   <a
                     href="tel:+918939036141"
+                    onClick={() =>
+                      trackCallNowClick({
+                        location: "footer_phone_link",
+                        pagePath: window.location.pathname,
+                      })
+                    }
                     className="text-white/80 hover:text-white transition-colors duration-200 text-sm"
                   >
                     +91 8939036141

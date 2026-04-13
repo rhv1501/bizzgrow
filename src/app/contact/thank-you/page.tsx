@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { consumeContactSuccessFlag } from "../../utils/gtm";
+import { useRouter } from "next/navigation";
 
 const ThankYouPage = () => {
+  const router = useRouter();
   const [showContent, setShowContent] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(false);
 
   // Generate fixed particle positions to avoid hydration issues
   const particles = [
@@ -20,13 +24,24 @@ const ThankYouPage = () => {
   ];
 
   useEffect(() => {
+    if (!consumeContactSuccessFlag()) {
+      router.replace("/contact");
+      return;
+    }
+
+    setIsAllowed(true);
+
     // Trigger animations with delays
     setTimeout(() => setShowContent(true), 300);
     setTimeout(() => setShowDetails(true), 1000);
-  }, []);
+  }, [router]);
+
+  if (!isAllowed) {
+    return null;
+  }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center relative overflow-hidden -mt-4">
+    <main className="min-h-screen bg-linear-to-br from-blue-50 via-white to-green-50 flex items-center justify-center relative overflow-hidden -mt-4">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div
@@ -69,7 +84,7 @@ const ThankYouPage = () => {
           }`}
         >
           <div className="relative mb-8 mt-8">
-            <div className="w-32 h-32 mx-auto bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+            <div className="w-32 h-32 mx-auto bg-linear-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
               <svg
                 className="w-16 h-16 text-white animate-bounce"
                 fill="none"
@@ -95,12 +110,12 @@ const ThankYouPage = () => {
           </div>
 
           {/* Main message */}
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text !text-transparent animate-pulse">
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent! animate-pulse">
             Thank You! 🎉
           </h1>
 
           <div className="animate-bounce" style={{ animationDelay: "1s" }}>
-            <h2 className="text-2xl lg:text-3xl font-semibold !text-gray-800 mb-4">
+            <h2 className="text-2xl lg:text-3xl font-semibold text-gray-800! mb-4">
               Your Message Has Been Sent Successfully!
             </h2>
           </div>
@@ -117,7 +132,7 @@ const ThankYouPage = () => {
           <div className="max-w-2xl mx-auto mb-12">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
               <div className="space-y-6">
-                <div className="flex items-center justify-center gap-3 !text-green-600">
+                <div className="flex items-center justify-center gap-3 text-green-600!">
                   <svg
                     className="w-6 h-6 animate-spin"
                     fill="none"
@@ -153,10 +168,10 @@ const ThankYouPage = () => {
                         ></path>
                       </svg>
                     </div>
-                    <h3 className="font-semibold !text-gray-800 mb-2">
+                    <h3 className="font-semibold text-gray-800! mb-2">
                       Email Confirmation
                     </h3>
-                    <p className="!text-gray-600 text-center">
+                    <p className="text-gray-600! text-center">
                       Check your inbox for a confirmation email
                     </p>
                   </div>
@@ -167,7 +182,7 @@ const ThankYouPage = () => {
                       style={{ animationDelay: "0.2s" }}
                     >
                       <svg
-                        className="w-6 h-6 !text-white"
+                        className="w-6 h-6 text-white!"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -180,10 +195,10 @@ const ThankYouPage = () => {
                         ></path>
                       </svg>
                     </div>
-                    <h3 className="font-semibold !text-gray-800 mb-2">
+                    <h3 className="font-semibold text-gray-800! mb-2">
                       Quick Response
                     </h3>
-                    <p className="!text-gray-600 text-center">
+                    <p className="text-gray-600! text-center">
                       Our team will respond within 24 hours
                     </p>
                   </div>
@@ -194,7 +209,7 @@ const ThankYouPage = () => {
                       style={{ animationDelay: "0.4s" }}
                     >
                       <svg
-                        className="w-6 h-6 !text-white"
+                        className="w-6 h-6 text-white!"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -207,10 +222,10 @@ const ThankYouPage = () => {
                         ></path>
                       </svg>
                     </div>
-                    <h3 className="font-semibold !text-gray-800 mb-2">
+                    <h3 className="font-semibold text-gray-800! mb-2">
                       Let&apos;s Build
                     </h3>
-                    <p className="!text-gray-600 text-center">
+                    <p className="text-gray-600! text-center">
                       Ready to start your digital transformation
                     </p>
                   </div>
@@ -251,15 +266,15 @@ const ThankYouPage = () => {
 
           {/* Social proof */}
           <div className="mt-12 text-center mb-4">
-            <p className="!text-gray-600 mb-4">
+            <p className="text-gray-600! mb-4">
               Join 150+ businesses that trust BizzGrow
             </p>
             <div className="flex justify-center items-center gap-8 opacity-60">
-              <div className="text-2xl font-bold !text-blue-600">150+</div>
-              <div className="text-2xl font-bold !text-green-600">98%</div>
-              <div className="text-2xl font-bold !text-purple-600">24/7</div>
+              <div className="text-2xl font-bold text-blue-600!">150+</div>
+              <div className="text-2xl font-bold text-green-600!">98%</div>
+              <div className="text-2xl font-bold text-purple-600!">24/7</div>
             </div>
-            <div className="flex justify-center items-center gap-8 text-sm !text-gray-500 mt-2">
+            <div className="flex justify-center items-center gap-8 text-sm text-gray-500! mt-2">
               <span>Projects</span>
               <span>Satisfaction</span>
               <span>Support</span>

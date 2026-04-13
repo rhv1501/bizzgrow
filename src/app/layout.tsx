@@ -4,7 +4,6 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Analytics from "./components/Analytics";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -74,6 +73,14 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TLNGPF3D');
+`}
+        </Script>
+        <Script id="google-ads-tag" strategy="beforeInteractive">
+          {`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18058135486');
 `}
         </Script>
         <meta
@@ -148,7 +155,6 @@ _paq.push(['enableLinkTracking']);
           Skip to main content
         </a>
 
-        <Analytics />
         <Navbar />
 
         <main id="main-content" role="main">

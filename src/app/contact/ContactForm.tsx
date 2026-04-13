@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { markContactSuccess, trackLeadFormSuccess } from "../utils/gtm";
 
 export default function ContactForm() {
   const searchParams = useSearchParams();
@@ -51,6 +52,12 @@ export default function ContactForm() {
 
       if (res.ok) {
         setStatus("sent");
+        markContactSuccess();
+        trackLeadFormSuccess({
+          formName: "contact_form",
+          pagePath: "/contact",
+          service: searchParams.get("sub") || searchParams.get("service"),
+        });
 
         setTimeout(() => {
           window.location.replace("/contact/thank-you");

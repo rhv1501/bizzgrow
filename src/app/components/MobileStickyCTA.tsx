@@ -2,6 +2,7 @@
 
 import { Phone, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
+import { trackCallNowClick } from "../utils/gtm";
 
 const MobileStickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,6 +40,12 @@ const MobileStickyCTA = () => {
 
           <a
             href="tel:+918939036141"
+            onClick={() =>
+              trackCallNowClick({
+                location: "mobile_sticky_cta_phone_button",
+                pagePath: window.location.pathname,
+              })
+            }
             className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white p-3 rounded-xl transition-colors duration-200"
             aria-label="Call us"
           >

@@ -12,6 +12,7 @@ import {
   BookOpen,
   Mail,
 } from "lucide-react";
+import { trackCallNowClick } from "../utils/gtm";
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -166,6 +167,12 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                   <div className="text-center">
                     <a
                       href="tel:+918939036141"
+                      onClick={() =>
+                        trackCallNowClick({
+                          location: "mobile_navigation_phone_link",
+                          pagePath: window.location.pathname,
+                        })
+                      }
                       className="text-white/70 hover:text-white text-sm transition-colors duration-200"
                     >
                       +91 8939036141
