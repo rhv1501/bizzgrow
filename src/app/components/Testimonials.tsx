@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
@@ -8,29 +7,26 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Kamlesh Marlecha",
-      role: "CEO, Company",
-      image: "/user1.png",
+      role: "Client",
       content: "One stop solution for all ur needs and pocket friendly. Has quite good knowledge about the subjects and gives ears and implements best of required for business.",
       color: "bg-brand-mint"
     },
     {
-      name: "Jane Smith",
-      role: "Founder, Startup",
-      image: "/user2.png",
-      content: "The team at BizzGrow is amazing. We used to have a website that looked like a potato. Now it looks like a very expensive, high-converting potato.",
+      name: "Krish",
+      role: "Client",
+      content: "A professional organization with strong expertise in digital marketing and web solutions. Their structured workflow and result-driven mindset make them a valuable growth partner for any business.",
       color: "bg-brand-primary"
     },
     {
-      name: "Sam Wilson",
-      role: "Marketing Manager",
-      image: "/user3.png",
-      content: "We hired them because we had no idea what we were doing. Now we look like we know exactly what we are doing. 10/10 would hire again.",
+      name: "HAKASH R",
+      role: "Client",
+      content: "Knowledgeable and provides best suitable service for your requirements. Great experience, best place for growing your business.",
       color: "bg-brand-accent"
     }
   ];
 
   return (
-    <section id="testimonials" className="py-32 relative bg-white overflow-hidden border-y-2 border-gray-900">
+    <section id="testimonials" className="py-16 md:py-32 relative bg-white overflow-hidden border-y-2 border-gray-900">
       <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -50,7 +46,7 @@ const Testimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-black mb-6 text-gray-900 tracking-tight leading-tight"
+            className="text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-6 text-gray-900 tracking-tight leading-tight"
           >
             Don't Just <span className="text-white bg-brand-secondary px-4 py-1 rounded-2xl rotate-2 inline-block">Take Our Word</span> For It
           </motion.h2>
@@ -89,17 +85,8 @@ const Testimonials = () => {
               </div>
 
               <div className="flex items-center gap-4 bg-white/50 backdrop-blur-sm p-4 rounded-3xl border-2 border-gray-900">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-900 flex-shrink-0 bg-white">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
+                <div className="w-14 h-14 rounded-full border-2 border-gray-900 flex-shrink-0 bg-white flex items-center justify-center text-gray-900 font-black text-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  {testimonial.name.charAt(0)}
                 </div>
                 <div>
                   <h4 className="text-xl font-black text-gray-900">

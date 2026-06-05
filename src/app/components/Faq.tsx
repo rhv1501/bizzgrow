@@ -23,7 +23,7 @@ const Faq = () => {
   ];
 
   return (
-    <section className="py-32 bg-white relative z-10 border-y-2 border-gray-900">
+    <section className="py-16 md:py-32 bg-white relative z-10 border-y-2 border-gray-900">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-20">
           <motion.div 
@@ -39,7 +39,7 @@ const Faq = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.1]"
           >
             Questions You're <br/><span className="bg-brand-primary text-white px-4 py-1 rotate-[-2deg] inline-block shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-gray-900 mt-2">Probably Thinking</span>
           </motion.h2>

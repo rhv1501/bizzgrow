@@ -1,95 +1,95 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Rocket, ShieldCheck, Layers, Star } from "lucide-react";
 
 const Stats = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Parallax effects for the floating stickers
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [50, -150]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const stats = [
+    {
+      value: "50+",
+      label: "Projects Shipped",
+      icon: Rocket,
+      bgColor: "bg-[#FF3366]",
+      textColor: "text-white",
+      iconBg: "bg-white",
+      iconColor: "text-[#FF3366]",
+    },
+    {
+      value: "100%",
+      label: "In-House Team",
+      icon: ShieldCheck,
+      bgColor: "bg-[#00E5FF]",
+      textColor: "text-gray-900",
+      iconBg: "bg-gray-900",
+      iconColor: "text-[#00E5FF]",
+    },
+    {
+      value: "360°",
+      label: "Full-Service",
+      icon: Layers,
+      bgColor: "bg-[#FFD500]",
+      textColor: "text-gray-900",
+      iconBg: "bg-gray-900",
+      iconColor: "text-[#FFD500]",
+    },
+    {
+      value: "4.5",
+      label: "Star Average",
+      icon: Star,
+      bgColor: "bg-brand-primary",
+      textColor: "text-white",
+      iconBg: "bg-white",
+      iconColor: "text-brand-primary",
+    },
+  ];
 
   return (
-    <section ref={containerRef} className="py-16 md:py-32 bg-white relative border-y-4 border-gray-900 overflow-hidden">
+    <section className="py-20 md:py-32 bg-gray-50 relative border-y-4 border-gray-900 overflow-hidden">
       {/* Brutalist Grid Background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#111827 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
       
-      {/* Massive Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none overflow-hidden">
-        <span className="text-[15rem] md:text-[30rem] font-black text-gray-900 leading-none whitespace-nowrap -rotate-6">NUMBERS</span>
-      </div>
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center mb-16 md:mb-32">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-block bg-[#FFD500] px-6 md:px-8 py-2 md:py-3 rounded-full border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rotate-[-3deg] hover:rotate-0 transition-transform"
-          >
-            <h2 className="text-3xl md:text-6xl font-black text-gray-900 uppercase tracking-widest">
-              Bragging Rights
+      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-24 gap-6 md:gap-8">
+          <div>
+            <div className="inline-block bg-white border-2 border-gray-900 px-4 py-2 rounded-full font-black text-xs md:text-sm uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4 md:mb-6 transform -rotate-2">
+              The Proof
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 tracking-tight leading-[1] uppercase">
+              Numbers <br className="hidden sm:block"/> Don't Lie
             </h2>
-          </motion.div>
+          </div>
+          <div className="md:max-w-md">
+            <p className="text-lg md:text-2xl font-bold text-gray-700 leading-relaxed border-l-4 border-brand-primary pl-4 md:pl-6 py-2">
+              We focus on one thing: measurable growth. Everything else is just noise.
+            </p>
+          </div>
         </div>
 
-        {/* Scattered Collage of Stats */}
-        <div className="grid grid-cols-2 gap-4 md:block relative max-w-6xl mx-auto md:h-[500px] items-center justify-items-center">
-          
-          {/* Stat 1: Circle */}
-          <motion.div 
-            style={{ y: y1 }}
-            className="relative md:absolute md:top-0 md:left-10 z-20 group w-full"
-          >
-            <div className="w-full aspect-square md:w-64 md:h-64 bg-[#FF3366] rounded-[2rem] md:rounded-full border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center text-center p-2 md:p-6 group-hover:scale-110 transition-transform duration-300 mx-auto">
-              <span className="text-4xl md:text-7xl font-black text-white drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] mb-1 md:mb-2">50+</span>
-              <span className="text-white font-bold text-[10px] md:text-base uppercase tracking-widest leading-tight">Projects Launched</span>
-            </div>
-          </motion.div>
-
-          {/* Stat 2: Pill */}
-          <motion.div 
-            style={{ y: y2 }}
-            className="relative md:absolute md:top-20 md:right-10 z-30 group w-full mx-auto"
-          >
-            <div className="w-full aspect-square md:aspect-auto bg-[#00E5FF] rounded-[2rem] md:rounded-[4rem] border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center text-center p-2 md:px-12 md:py-10 rotate-[2deg] md:rotate-[5deg] group-hover:rotate-0 transition-transform duration-300">
-              <span className="text-4xl md:text-8xl font-black text-gray-900 mb-1 md:mb-2">99%</span>
-              <span className="text-gray-900 font-black text-[10px] md:text-sm uppercase tracking-widest bg-white px-2 md:px-4 py-1 rounded-full border-2 border-gray-900 whitespace-nowrap">Happiness</span>
-            </div>
-          </motion.div>
-
-          {/* Stat 3: Star-ish Polygon */}
-          <motion.div 
-            style={{ y: y3 }}
-            className="relative md:absolute md:bottom-0 md:left-[30%] z-10 group w-full mx-auto"
-          >
-            <div className="w-full aspect-square bg-brand-primary border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center text-center p-2 md:p-10 rotate-[-5deg] md:rotate-[-10deg] group-hover:rotate-[5deg] transition-transform duration-300 rounded-[2rem] md:rounded-none" style={{ clipPath: 'none' }}>
-              <div className="mt-2 md:mt-4">
-                <span className="text-4xl md:text-7xl font-black text-white drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">ZERO</span>
-              </div>
-              <span className="text-white font-bold text-[10px] md:text-sm uppercase tracking-widest mt-1 md:mt-2">Broken Promises</span>
-            </div>
-          </motion.div>
-
-          {/* Stat 4: Wavy rectangle */}
-          <motion.div 
-            style={{ y: y4 }}
-            className="relative md:absolute md:bottom-20 md:right-[30%] z-40 group w-full mx-auto"
-          >
-            <div className="w-full aspect-square bg-white border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center text-center p-2 md:p-8 rounded-[2rem] md:rounded-2xl rotate-[3deg] md:rotate-[-5deg] group-hover:scale-110 transition-transform duration-300 overflow-hidden md:overflow-visible">
-              <span className="text-4xl md:text-6xl font-black text-[#FF3366] mb-1 md:mb-2 underline decoration-2 md:decoration-4 underline-offset-4">24/7</span>
-              <span className="text-gray-900 font-black text-[10px] md:text-sm uppercase tracking-widest">Caffeine Intake</span>
-              {/* Decorative tape */}
-              <div className="hidden md:block absolute -top-4 -right-4 w-16 h-8 bg-[#FFD500] border-2 border-gray-900 rotate-12 opacity-80"></div>
-            </div>
-          </motion.div>
-          
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`${stat.bgColor} rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] p-4 sm:p-6 md:p-10 border-2 md:border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 group flex flex-col items-center text-center md:items-start md:text-left`}
+              >
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full ${stat.iconBg} border-2 md:border-4 border-gray-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center mb-3 sm:mb-6 md:mb-8 group-hover:scale-110 transition-transform`}>
+                  <Icon className={`w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 ${stat.iconColor} stroke-[3]`} />
+                </div>
+                
+                <h3 className={`text-3xl sm:text-5xl md:text-7xl font-black ${stat.textColor} mb-1 sm:mb-2 md:mb-4 tracking-tighter drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] md:drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]`}>
+                  {stat.value}
+                </h3>
+                
+                <p className={`text-[10px] sm:text-xs md:text-xl font-black uppercase tracking-widest ${stat.textColor} opacity-90 leading-tight`}>
+                  {stat.label}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 "use client";
+import Image from "next/image";
 
-import { Monitor, TrendingUp, Palette, Code, Search, Zap, ArrowRight } from "lucide-react";
+import { Monitor, TrendingUp, Palette, MousePointerClick, Search, Zap, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -13,7 +14,7 @@ const Services = () => {
     website: Monitor,
     marketing: TrendingUp,
     branding: Palette,
-    development: Code,
+    performance: MousePointerClick,
     seo: Search,
     automation: Zap,
   } as const;
@@ -37,7 +38,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-32 relative bg-white border-y-2 border-gray-900 overflow-hidden">
+    <section id="services" className="py-16 md:py-32 relative bg-white border-y-2 border-gray-900 overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 bg-pattern opacity-50 pointer-events-none"></div>
 
@@ -58,7 +59,7 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-black mb-8 text-gray-900 tracking-tight leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-7xl font-black mb-6 md:mb-8 text-gray-900 tracking-tight leading-[1.1]"
           >
             Stuff We're <span className="text-white px-4 py-1 bg-brand-secondary rounded-2xl rotate-2 inline-block">Unreasonably Good</span> At
           </motion.h2>
@@ -88,25 +89,34 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 onClick={() => router.push(`/services/${service.slug}`)}
-                className={`group relative ${bgColor} p-8 rounded-[2rem] cursor-pointer border-2 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between min-h-[380px]`}
+                className={`group relative ${bgColor} p-6 md:p-8 rounded-[2rem] cursor-pointer border-2 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 flex flex-col h-full`}
               >
-                <div>
-                  <div className="w-16 h-16 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center mb-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-12 transition-transform">
-                    <IconComponent className="w-8 h-8 text-gray-900" />
+                <div className="w-full aspect-[4/3] rounded-[1.5rem] border-2 border-gray-900 overflow-hidden relative mb-6 md:mb-8 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1 transition-transform">
+                  <Image 
+                    src={`/services/${service.slug}.png`}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    unoptimized
+                  />
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 group-hover:rotate-12 transition-transform">
+                    <IconComponent className="w-6 h-6 text-gray-900" />
                   </div>
+                </div>
 
-                  <h3 className={`text-3xl font-black mb-4 ${textColor}`}>
+                <div className="flex-1 flex flex-col">
+                  <h3 className={`text-2xl md:text-3xl font-black mb-3 md:mb-4 ${textColor} leading-tight`}>
                     {service.title}
                   </h3>
 
-                  <p className={`font-semibold text-lg opacity-90 ${textColor}`}>
+                  <p className={`font-semibold text-base md:text-lg opacity-90 mb-8 ${textColor}`}>
                     {service.headline}
                   </p>
-                </div>
 
-                <div className={`mt-8 flex items-center gap-2 font-bold ${textColor} text-lg group-hover:underline underline-offset-4`}>
-                  Let's dive in
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                  <div className={`mt-auto flex items-center gap-2 font-bold ${textColor} text-lg group-hover:underline underline-offset-4`}>
+                    Let's dive in
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                  </div>
                 </div>
               </motion.div>
             );

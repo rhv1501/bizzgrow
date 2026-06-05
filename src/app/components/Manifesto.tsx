@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Manifesto = () => {
   return (
-    <section className="py-32 bg-brand-primary border-y-2 border-gray-900 overflow-hidden relative">
+    <section className="py-16 md:py-32 bg-brand-primary border-y-2 border-gray-900 overflow-hidden relative">
       <div className="absolute inset-0 bg-pattern opacity-20 pointer-events-none"></div>
       
       <div className="container mx-auto px-6 relative z-10">
@@ -19,7 +19,7 @@ const Manifesto = () => {
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-5xl lg:text-8xl font-black text-white leading-[1.1] tracking-tighter uppercase">
             We believe that <br/>
             <span className="text-brand-accent drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">boring</span> is the <br/>
             enemy of <span className="bg-brand-mint text-gray-900 px-4 py-0 rotate-2 inline-block border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-2">Profit.</span>

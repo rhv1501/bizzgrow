@@ -38,7 +38,7 @@ const Hero = () => {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.4 }} className="blob-shape bg-brand-accent/30 w-[300px] h-[300px] top-[20%] right-[10%]" style={{ animationDelay: '4s' }}></motion.div>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.6 }} className="blob-shape bg-brand-mint/30 w-[350px] h-[350px] bottom-[20%] left-[20%]" style={{ animationDelay: '1s' }}></motion.div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div 
           className="max-w-5xl mx-auto text-center"
           variants={containerVariants}
@@ -46,31 +46,31 @@ const Hero = () => {
           animate="show"
         >
           
-          <motion.div variants={itemVariants} className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] hover:rotate-0 transition-transform cursor-crosshair">
-              <Sparkles className="w-5 h-5 text-brand-primary" />
-              <span className="font-bold text-gray-900 tracking-wider uppercase text-sm">Say goodbye to boring</span>
+          <motion.div variants={itemVariants} className="flex justify-center mb-4 md:mb-8">
+            <div className="inline-flex items-center gap-2 bg-white px-4 md:px-5 py-2 md:py-2.5 rounded-full border-2 border-gray-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] hover:rotate-0 transition-transform cursor-crosshair">
+              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-brand-primary" />
+              <span className="font-bold text-gray-900 tracking-wider uppercase text-xs md:text-sm">Say goodbye to boring</span>
             </div>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-[7.5rem] font-black leading-[0.95] tracking-tighter text-gray-900 mb-8">
+          <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black leading-[0.95] tracking-tighter text-gray-900 mb-4 md:mb-8">
             We Make Brands <br/>
-            <span className="relative inline-block mt-4 md:mt-2">
-              <span className="relative z-10 text-white px-4 py-2 bg-gray-900 rounded-[2rem] rotate-[-2deg] inline-block">Unignorable.</span>
-              <span className="absolute inset-0 bg-brand-primary rounded-[2rem] rotate-[2deg] z-0 translate-y-2 translate-x-2"></span>
+            <span className="relative inline-block mt-2 md:mt-4">
+              <span className="relative z-10 text-white px-3 md:px-4 py-1 md:py-2 bg-gray-900 rounded-2xl md:rounded-[2rem] rotate-[-2deg] inline-block">Unignorable.</span>
+              <span className="absolute inset-0 bg-brand-primary rounded-2xl md:rounded-[2rem] rotate-[2deg] z-0 translate-y-1 translate-x-1 md:translate-y-2 md:translate-x-2"></span>
             </span>
           </motion.h1>
           
-          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-bold mb-12">
+          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-bold mb-6 md:mb-12 px-2 md:px-0">
             We're a creative studio that builds eye-catching websites, scroll-stopping brands, and digital experiences that actually make people want to buy your stuff.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="btn-primary text-lg w-full sm:w-auto hover:-translate-y-1 transition-transform">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center">
+            <button className="btn-primary text-base md:text-lg w-full sm:w-auto hover:-translate-y-1 transition-transform py-3 md:py-4">
               Start A Project
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
             </button>
-            <button className="btn-secondary text-lg w-full sm:w-auto bg-white hover:-translate-y-1 transition-transform">
+            <button className="btn-secondary text-base md:text-lg w-full sm:w-auto bg-white hover:-translate-y-1 transition-transform py-3 md:py-4">
               See Our Magic
             </button>
           </motion.div>
@@ -85,7 +85,7 @@ const Hero = () => {
         >
           <div className="col-span-2 row-span-2 rounded-[2rem] overflow-hidden border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative aspect-square md:aspect-auto group">
             <div className="absolute inset-0 bg-brand-primary/20 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-            <Image src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop" alt="Creative Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
+            <Image src="/hero1.png" alt="Creative Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
             <div className="absolute bottom-6 left-6 z-20">
               <span className="bg-white text-gray-900 font-black px-6 py-3 rounded-full border-2 border-gray-900 text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase tracking-widest">Bold Design</span>
             </div>
@@ -97,7 +97,7 @@ const Hero = () => {
           </div>
 
           <div className="rounded-[2rem] overflow-hidden border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative aspect-square group">
-            <Image src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500&auto=format&fit=crop" alt="Retro Tech" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+            <Image src="/hero2.png" alt="Modern Technology" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
           </div>
 
           <div className="col-span-2 rounded-[2rem] bg-brand-mint p-8 border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 relative overflow-hidden group">

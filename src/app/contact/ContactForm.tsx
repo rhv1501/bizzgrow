@@ -79,155 +79,159 @@ export default function ContactForm() {
   }
 
   return (
-    <main className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-8">
-          <h1 className="text-3xl font-bold">Contact Us</h1>
-          <p className="muted">
-            Have a project or question? Send us a message.
+    <main className="py-20 md:py-32 bg-background relative selection:bg-brand-primary selection:text-white">
+      <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+          <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight leading-[1] mb-6">
+            Let's Talk <span className="text-brand-primary">Business</span>
+          </h1>
+          <p className="text-xl md:text-2xl font-bold text-gray-600 max-w-2xl mx-auto">
+            Have a project or question? Send us a message and we'll get back to you faster than your current agency.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto card">
-          <label className="block mb-4">
-            <span className="muted">Name</span>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full border rounded px-3 py-2"
-              required
-            />
-          </label>
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 lg:p-16 border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <label className="block">
+              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Name</span>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                required
+                placeholder="John Doe"
+              />
+            </label>
 
-          <label className="block mb-4">
-            <span className="muted">Email</span>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full border rounded px-3 py-2"
-              required
-            />
-          </label>
+            <label className="block">
+              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Email</span>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                required
+                placeholder="john@company.com"
+              />
+            </label>
+          </div>
 
-          <label className="block mb-4">
-            <span className="muted">Phone (Optional)</span>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="mt-1 block w-full border rounded px-3 py-2"
-              placeholder="+91 8939036141"
-            />
-          </label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <label className="block">
+              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Phone <span className="text-gray-400 font-bold">(Optional)</span></span>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                placeholder="+1 234 567 8900"
+              />
+            </label>
 
-          <label className="block mb-4">
-            <span className="muted">Company (Optional)</span>
-            <input
-              type="text"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              className="mt-1 block w-full border rounded px-3 py-2"
-              placeholder="Your company name"
-            />
-          </label>
+            <label className="block">
+              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Company <span className="text-gray-400 font-bold">(Optional)</span></span>
+              <input
+                type="text"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                placeholder="Acme Corp"
+              />
+            </label>
+          </div>
 
-          <label className="block mb-4">
-            <span className="muted">Message</span>
+          <label className="block mb-10">
+            <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Message</span>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="mt-1 block w-full border rounded px-3 py-2"
-              rows={6}
+              className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all resize-y min-h-[200px]"
               required
+              placeholder="Tell us about your project..."
             />
           </label>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
             <button
               type="submit"
               disabled={isDisabled}
-              className={`btn ${
+              className={`w-full md:w-auto md:mx-auto ${
                 status === "sent"
-                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  ? "bg-[#00E5FF] text-gray-900"
                   : status === "error"
-                    ? "bg-red-600 hover:bg-red-700 text-white"
-                    : "btn-primary"
-              } ${isDisabled ? "opacity-50 cursor-not-allowed" : ""} transition-all duration-300`}
+                    ? "bg-[#FF3366] text-white"
+                    : "bg-[#FFD500] text-gray-900 hover:bg-brand-primary hover:text-white"
+              } border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 font-black text-xl px-12 py-5 rounded-full flex items-center justify-center gap-3 uppercase tracking-wider ${isDisabled && status !== "sent" ? "opacity-50 hover:translate-y-0 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-not-allowed bg-gray-200 text-gray-500" : ""}`}
             >
               {status === "sending" && (
-                <>
-                  <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Sending...
-                </>
+                <svg
+                  className="animate-spin h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
               )}
               {status === "sent" && (
-                <>
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    ></path>
-                  </svg>
-                  Message Sent!
-                </>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
               )}
               {status === "error" && (
-                <>
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    ></path>
-                  </svg>
-                  Try Again
-                </>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
               )}
+              {status === "sending" && "Sending..."}
+              {status === "sent" && "Message Sent!"}
+              {status === "error" && "Try Again"}
               {!status && "Send Message"}
             </button>
 
             {status === "sent" && (
-              <p className="text-sm text-green-600 text-center">
-                Thank you! We&apos;ll get back to you soon.
+              <p className="text-lg font-bold text-gray-900 text-center bg-brand-mint border-2 border-gray-900 p-4 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                Thank you! We'll get back to you soon.
               </p>
             )}
             {status === "error" && (
-              <p className="text-sm text-red-600 text-center">
-                Something went wrong. Please check your information and try
-                again.
+              <p className="text-lg font-bold text-white text-center bg-[#FF3366] border-2 border-gray-900 p-4 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                Something went wrong. Please check your information and try again.
               </p>
             )}
           </div>

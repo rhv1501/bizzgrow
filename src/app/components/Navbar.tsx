@@ -22,7 +22,7 @@ const Navbar = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-white/80 backdrop-blur-xl shadow-sm py-4" 
+          ? "bg-white border-b-4 border-gray-900 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)] py-4" 
           : "bg-transparent py-6"
       }`}
     >
@@ -41,12 +41,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 bg-white/50 backdrop-blur-md px-8 py-3 rounded-full border border-gray-200 shadow-sm">
-          {["About", "Services", "Portfolio", "Blog"].map((item) => (
+        <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 bg-white border-4 border-gray-900 px-8 py-3 rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          {["About", "Services", "Portfolio", "Careers", "Blog"].map((item) => (
             <Link
               key={item}
               href={`/${item.toLowerCase()}`}
-              className="text-sm font-bold text-gray-700 hover:text-brand-primary transition-colors relative group uppercase tracking-widest"
+              className="text-sm font-black text-gray-900 hover:text-brand-primary transition-colors relative group uppercase tracking-widest"
             >
               {item}
             </Link>
@@ -64,7 +64,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden relative w-12 h-12 bg-white rounded-full flex flex-col justify-center items-center group z-10 shadow-sm border border-gray-100"
+          className="lg:hidden relative w-12 h-12 bg-[#FFD500] rounded-xl flex flex-col justify-center items-center group z-10 border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >

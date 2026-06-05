@@ -29,10 +29,10 @@ export default function PortfolioPage() {
             <span className="font-bold text-white uppercase tracking-widest text-sm">Case Studies</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-black text-gray-900 tracking-tight leading-[1] mb-8">
-            Stuff We're <br/> <span className="bg-brand-accent px-4 py-1 inline-block border-2 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mt-4 rotate-1">Proud Of</span>
+          <h1 className="text-5xl md:text-6xl lg:text-8xl font-black text-gray-900 tracking-tight leading-[1] mb-8">
+            Stuff We're <br/> <span className="bg-brand-accent px-4 py-1 md:py-2 inline-block border-2 md:border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mt-4 rotate-1">Proud Of</span>
           </h1>
-          <p className="text-2xl text-gray-600 font-bold max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-600 font-bold max-w-3xl mx-auto leading-relaxed">
             Real transformations, measurable results, and websites that actually look like they were built in this decade.
           </p>
         </div>
@@ -135,16 +135,16 @@ export default function PortfolioPage() {
           })}
         </div>
 
-        <div className="max-w-5xl mx-auto bg-brand-mint rounded-[3rem] p-12 lg:p-20 text-center border-4 border-gray-900 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+        <div className="max-w-5xl mx-auto bg-brand-mint rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 lg:p-20 text-center border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
           <div className="absolute inset-0 bg-pattern opacity-30"></div>
           <div className="relative z-10">
-            <h2 className="text-5xl lg:text-7xl font-black text-gray-900 mb-8">
-              Ready to be our next <br/> success story?
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-gray-900 mb-6 md:mb-8 leading-tight">
+              Ready to be our next <br className="hidden md:block"/> success story?
             </h2>
-            <p className="text-2xl font-bold text-gray-800 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg md:text-2xl font-bold text-gray-800 mb-8 md:mb-12 max-w-2xl mx-auto">
               Stop settling for average. Let's build something that actually makes your competitors jealous.
             </p>
-            <Link href="/contact" className="inline-block bg-white text-gray-900 font-black text-2xl px-12 py-6 rounded-full border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+            <Link href="/contact" className="inline-block bg-white text-gray-900 font-black text-xl md:text-2xl px-8 py-4 md:px-12 md:py-6 rounded-full border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
               Start Your Project
             </Link>
           </div>

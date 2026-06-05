@@ -10,6 +10,7 @@ import {
   FileText,
   BookOpen,
   Mail,
+  Rocket,
 } from "lucide-react";
 import { trackCallNowClick } from "../utils/gtm";
 
@@ -24,6 +25,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
     { href: "/about", label: "About", icon: User },
     { href: "/services", label: "Services", icon: Briefcase },
     { href: "/portfolio", label: "Portfolio", icon: FileText },
+    { href: "/careers", label: "Careers", icon: Rocket },
     { href: "/blog", label: "Blog", icon: BookOpen },
     { href: "/contact", label: "Contact", icon: Mail },
   ];

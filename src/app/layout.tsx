@@ -87,7 +87,8 @@ gtag('config', 'AW-18058135486');
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
-        <meta name="theme-color" content="#004C80" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="color-scheme" content="light" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <script

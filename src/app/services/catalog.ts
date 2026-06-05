@@ -88,38 +88,38 @@ export const services: Service[] = [
   },
   {
     slug: "marketing",
-    title: "Digital Marketing",
+    title: "Social Media & Content Marketing",
     description:
-      "Data-driven marketing strategies to increase your online presence and drive qualified leads to your business.",
+      "Consistent, high-quality content that builds your audience, establishes authority, and engages your target market.",
     features: [
-      "Social Media Marketing",
-      "PPC Campaigns",
-      "Analytics & Reporting",
+      "Social Media Management",
+      "Content Strategy",
+      "Brand Voice & Storytelling",
     ],
-    headline: "Create predictable lead flow with a focused growth system.",
+    headline: "Build an audience that actually cares about what you sell.",
     outcomes: [
-      "More inbound leads from the right channels",
-      "Lower cost per lead by improving targeting + landing pages",
-      "Clear reporting that ties marketing to revenue outcomes",
-      "Consistent messaging across ads, content, and website",
+      "Higher brand awareness and engagement",
+      "Consistent posting without taking up your time",
+      "Clear brand voice that resonates with your ideal customer",
+      "Organic growth that compounds over time",
     ],
     alignment: [
-      "We align campaigns to your best offers and margins",
-      "We align targeting to your ideal customer profile",
-      "We align creatives and landing pages to the same promise",
-      "We align reporting to real business KPIs (calls, bookings, purchases)",
+      "We align your content to what your audience wants to see",
+      "We align your posting schedule to platform best practices",
+      "We align visuals and copy to your overarching brand identity",
+      "We align organic reach with your sales funnel",
     ],
     deliverables: [
-      "Campaign plan (channels, budget, goals)",
-      "Ad creative + landing page recommendations",
-      "Tracking (pixels, events) and dashboards",
-      "Optimization cycle (tests, learnings, iterations)",
+      "Content strategy and calendar",
+      "High-quality graphics, reels, and copy",
+      "Community management and engagement",
+      "Monthly performance reporting",
     ],
     howItWorks: [
-      "Audit: what works, what leaks, what to fix first",
-      "Launch: campaigns + tracking + baseline reporting",
-      "Optimize: weekly improvements and experiments",
-      "Scale: double down on winners, expand channels",
+      "Audit: current presence and competitor analysis",
+      "Plan: strategy and 30-day calendar",
+      "Create: batch production of assets",
+      "Publish: scheduling and community interaction",
     ],
     subServices: [
       {
@@ -129,34 +129,28 @@ export const services: Service[] = [
         keywords: ["social media management", "content calendar", "engagement"],
       },
       {
-        name: "Google Ads Management",
+        name: "Content Strategy",
         description:
-          "Search and Performance Max campaigns that capture high-intent leads and purchases with structured targeting, keywords, and landing page alignment.",
-        keywords: ["Google Ads", "PPC", "search ads"],
-      },
-      {
-        name: "Meta Ads (Facebook & Instagram) Management",
-        description:
-          "Full-funnel ad campaigns with creative testing, audience targeting, and retargeting to generate leads and sales predictably.",
-        keywords: ["Meta ads", "Facebook ads", "Instagram ads"],
-      },
-      {
-        name: "Content Marketing Strategy",
-        description:
-          "A content plan that answers customer questions, builds authority, and supports your funnel across web and social.",
+          "A strategic plan that answers customer questions, builds authority, and supports your funnel across all social platforms.",
         keywords: ["content marketing", "content strategy", "lead nurturing"],
+      },
+      {
+        name: "Video & Reel Production",
+        description:
+          "Engaging short-form video content designed for TikTok, Instagram Reels, and YouTube Shorts to maximize organic reach.",
+        keywords: ["reels", "tiktok", "video production"],
       },
       {
         name: "Email Marketing & Lead Nurturing",
         description:
-          "Automated sequences and campaigns that follow up, educate, and convert leads into booked calls and purchases.",
+          "Automated sequences and newsletters that follow up, educate, and convert leads into booked calls and purchases.",
         keywords: ["email marketing", "automation", "lead nurturing"],
       },
       {
-        name: "Conversion Funnel Optimization",
+        name: "Influencer Marketing",
         description:
-          "Improve results by aligning ads, landing pages, offers, and tracking — reducing drop-off and increasing conversion rates.",
-        keywords: ["funnel", "conversion optimization", "landing pages"],
+          "Strategic partnerships with relevant creators to expand your reach, build authentic trust, and drive targeted traffic to your brand.",
+        keywords: ["influencer marketing", "creator partnerships", "brand awareness"],
       },
     ],
   },
@@ -225,66 +219,60 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "development",
-    title: "Custom Development",
+    slug: "performance",
+    title: "Performance Marketing",
     description:
-      "Tailored software solutions and integrations to streamline your business processes and boost efficiency.",
-    features: ["API Integration", "Database Design", "Custom Applications"],
-    headline: "Build tools that remove bottlenecks and scale with you.",
+      "Data-driven paid advertising campaigns designed to generate predictable leads, sales, and ROI.",
+    features: ["Google Ads", "Meta Ads", "Conversion Optimization"],
+    headline: "Create predictable lead flow with a focused growth system.",
     outcomes: [
-      "Less manual work through automations and integrations",
-      "Fewer errors with reliable data flows",
-      "Faster operations with internal dashboards and workflows",
-      "Scalable systems that support growth",
+      "More inbound leads from the right channels",
+      "Lower cost per lead by improving targeting + landing pages",
+      "Clear reporting that ties marketing to revenue outcomes",
+      "Scalable campaigns that grow with your budget",
     ],
     alignment: [
-      "We align the build to your process (not the other way around)",
-      "We align data models to how your team actually operates",
-      "We align integrations to reduce double-entry and inconsistencies",
-      "We align security and access to real-world roles",
+      "We align campaigns to your best offers and margins",
+      "We align targeting to your ideal customer profile",
+      "We align creatives and landing pages to the same promise",
+      "We align reporting to real business KPIs (calls, bookings, purchases)",
     ],
     deliverables: [
-      "Technical plan + architecture",
-      "Custom app or module (web-based)",
-      "Integrations (CRM, email, payments, etc.)",
-      "Documentation + handover",
+      "Campaign plan (channels, budget, goals)",
+      "Ad creative + landing page recommendations",
+      "Tracking (pixels, events) and dashboards",
+      "Optimization cycle (tests, learnings, iterations)",
     ],
     howItWorks: [
-      "Scope: requirements and success criteria",
-      "Build: iterative delivery with demos",
-      "Integrate: connect systems and validate data",
-      "Launch: training + support",
+      "Audit: what works, what leaks, what to fix first",
+      "Launch: campaigns + tracking + baseline reporting",
+      "Optimize: weekly improvements and experiments",
+      "Scale: double down on winners, expand channels",
     ],
     subServices: [
       {
-        name: "Custom Web Applications",
+        name: "Google Ads Management",
         description:
-          "Purpose-built web apps for your operations — dashboards, portals, internal tools, and customer experiences that scale.",
-        keywords: ["web app", "dashboard", "internal tools"],
+          "Search and Performance Max campaigns that capture high-intent leads and purchases with structured targeting, keywords, and landing page alignment.",
+        keywords: ["Google Ads", "PPC", "search ads"],
       },
       {
-        name: "API Integrations",
+        name: "Meta Ads (Facebook & Instagram)",
         description:
-          "Connect your tools so data flows automatically between systems — reducing double entry and improving reliability.",
-        keywords: ["API integration", "systems integration", "automation"],
+          "Full-funnel ad campaigns with creative testing, audience targeting, and retargeting to generate leads and sales predictably.",
+        keywords: ["Meta ads", "Facebook ads", "Instagram ads"],
       },
       {
-        name: "CRM Integrations",
+        name: "Conversion Funnel Optimization",
         description:
-          "Sync leads, contacts, deals, and events so your sales team always has clean, usable information.",
-        keywords: ["CRM integration", "lead sync", "pipeline"],
+          "Improve results by aligning ads, landing pages, offers, and tracking — reducing drop-off and increasing conversion rates.",
+        keywords: ["funnel", "conversion optimization", "landing pages"],
       },
       {
-        name: "Payments & Checkout Integration",
+        name: "Analytics & ROI Tracking",
         description:
-          "Enable secure payments and streamlined checkout experiences to reduce friction and increase conversions.",
-        keywords: ["payments", "checkout", "Stripe"],
-      },
-      {
-        name: "Database & Data Modeling",
-        description:
-          "Strong data foundations that keep your product fast and reliable as you grow — with clear structure and long-term maintainability.",
-        keywords: ["database design", "data modeling", "architecture"],
+          "Advanced tracking setups to ensure every dollar spent is accounted for, tying campaigns directly to booked revenue.",
+        keywords: ["tracking", "ROI", "analytics"],
       },
     ],
   },

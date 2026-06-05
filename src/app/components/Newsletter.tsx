@@ -29,7 +29,7 @@ const Newsletter = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-5xl lg:text-7xl font-black mb-6 text-gray-900 tracking-tight leading-[1.1]">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-6 text-gray-900 tracking-tight leading-[1.1]">
             Stay Ahead of <span className="bg-white text-gray-900 px-4 py-1 rotate-[-2deg] inline-block shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-gray-900 mt-2">Digital Trends</span>
           </h2>
           <p className="text-gray-800 font-bold mb-10 text-2xl max-w-2xl mx-auto">

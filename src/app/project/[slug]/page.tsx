@@ -53,12 +53,32 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = portfolioProjects.find((p) => p.slug === slug);
   if (!project) {
-    return { title: "Project" };
+    return { title: "Project Not Found | BizzGrow" };
   }
 
   return {
-    title: `${project.title} | Project`,
+    title: `${project.title} | BizzGrow Portfolio`,
     description: project.description,
+    openGraph: {
+      title: `${project.title} | BizzGrow Portfolio`,
+      description: project.description,
+      url: `https://bizzgrowlabs.com/project/${slug}`,
+      images: [
+        {
+          url: project.image,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | BizzGrow Portfolio`,
+      description: project.description,
+      images: [project.image],
+    },
   };
 }
 

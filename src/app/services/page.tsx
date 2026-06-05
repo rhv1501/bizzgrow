@@ -11,11 +11,11 @@ export default function ServicesPage() {
             <span className="font-bold text-gray-900 uppercase tracking-widest text-sm">Everything We Do</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-black text-gray-900 tracking-tight leading-[1] mb-8">
-            Services Designed To <br/>
-            <span className="bg-brand-primary text-white px-6 py-2 inline-block border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-4 -rotate-1">Destroy Competitors</span>
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6 md:mb-8">
+            Services Designed To <br className="hidden md:block"/>
+            <span className="bg-brand-primary text-white px-4 md:px-6 py-1 md:py-2 inline-block border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-4 -rotate-1">Destroy Competitors</span>
           </h1>
-          <p className="text-2xl text-gray-600 font-bold max-w-3xl mx-auto">
+          <p className="text-lg md:text-2xl text-gray-600 font-bold max-w-3xl mx-auto leading-relaxed">
             We don't do "cookie-cutter". We build comprehensive, attention-grabbing digital experiences that make your business impossible to ignore.
           </p>
         </div>

@@ -40,7 +40,7 @@ const Process = () => {
   ];
 
   return (
-    <section className="py-32 relative bg-brand-primary overflow-hidden border-y-2 border-gray-900">
+    <section className="py-16 md:py-32 relative bg-brand-primary overflow-hidden border-y-2 border-gray-900">
       <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-20">
@@ -59,7 +59,7 @@ const Process = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-black mb-6 text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] tracking-tight leading-tight"
+            className="text-4xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-6 text-white drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] tracking-tight leading-tight"
           >
             How We Make The <br/><span className="text-brand-accent">Magic Happen</span>
           </motion.h2>

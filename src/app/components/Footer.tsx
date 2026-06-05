@@ -15,11 +15,11 @@ const Footer = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Massive Footer CTA */}
-        <div className="text-center mb-24 border-b-4 border-gray-900 pb-20">
-          <h2 className="text-6xl md:text-[8rem] lg:text-[12rem] font-black text-gray-900 tracking-tighter leading-none mb-8">
+        <div className="flex flex-col items-center justify-center text-center mb-24 border-b-4 border-gray-900 pb-20 w-full overflow-hidden">
+          <h2 className="text-5xl sm:text-7xl md:text-[8rem] lg:text-[12rem] font-black text-gray-900 tracking-tighter leading-none mb-6 md:mb-8 text-center w-full">
             SAY HELLO.
           </h2>
-          <a href="mailto:info@bizzgrowlabs.com" className="inline-block bg-white text-gray-900 font-black text-2xl md:text-4xl px-12 py-6 rounded-full border-4 border-gray-900 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all">
+          <a href="mailto:info@bizzgrowlabs.com" className="inline-flex items-center justify-center bg-white text-gray-900 font-black text-lg sm:text-2xl md:text-4xl px-6 py-4 md:px-12 md:py-6 rounded-full border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all max-w-[95%] mx-auto break-all sm:break-normal text-center">
             info@bizzgrowlabs.com
           </a>
         </div>
