@@ -1,183 +1,155 @@
-import {
-  Target,
-  Lightbulb,
-  Rocket,
-  Users,
-  BarChart3,
-  Shield,
-} from "lucide-react";
-import StatCard from "./AnimatedCounter";
+"use client";
+
+import { Target, Lightbulb, Rocket, Users, BarChart3, Shield } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Features = () => {
   const features = [
     {
       icon: Target,
-      title: "Strategic Planning",
-      description:
-        "Data-driven market research and strategic planning that identifies opportunities and creates actionable growth roadmaps for your business.",
-      color: "from-blue-500 to-purple-500",
+      title: "Master Plans",
+      description: "We don't just guess. We use actual data to figure out how to make you more money. Revolutionary concept, we know.",
+      color: "bg-[#FF3366]",
+      textColor: "text-white"
     },
     {
       icon: Lightbulb,
-      title: "Creative Design",
-      description:
-        "Award-winning design systems and user experiences that not only look stunning but drive conversions and engagement.",
-      color: "from-orange-500 to-red-500",
+      title: "Prettify Things",
+      description: "We make things look so good your competitors will weep. Seriously, it's almost unfair.",
+      color: "bg-[#FFD500]",
+      textColor: "text-gray-900"
     },
     {
       icon: Rocket,
-      title: "Technical Excellence",
-      description:
-        "Cutting-edge development with modern technologies, automated workflows, and performance optimization for maximum results.",
-      color: "from-green-500 to-teal-500",
+      title: "Nerd Stuff",
+      description: "Our code is so clean you could eat off it. We build fast, scalable, and secure digital assets.",
+      color: "bg-[#00E5FF]",
+      textColor: "text-gray-900"
     },
     {
       icon: Users,
-      title: "Customer Focus",
-      description:
-        "Deep understanding of your audience through research, testing, and continuous optimization to improve user satisfaction.",
-      color: "from-purple-500 to-pink-500",
+      title: "Human Empathy",
+      description: "We actually care about the humans using your product. Crazy, right? User experience is our middle name.",
+      color: "bg-[#7000FF]",
+      textColor: "text-white"
     },
     {
       icon: BarChart3,
-      title: "Growth Analytics",
-      description:
-        "Comprehensive tracking and analytics setup to measure success, identify bottlenecks, and optimize for better ROI.",
-      color: "from-cyan-500 to-blue-500",
+      title: "Data Obsession",
+      description: "If it can be tracked, we track it. Numbers go up, charts look green, everyone's happy.",
+      color: "bg-[#FF9E80]",
+      textColor: "text-gray-900"
     },
     {
       icon: Shield,
-      title: "Reliable Support",
-      description:
-        "Ongoing maintenance, security updates, and dedicated support to ensure your digital assets perform at their best.",
-      color: "from-teal-500 to-green-500",
+      title: "Got Your Back",
+      description: "We don't just launch and disappear into the night. We stick around to make sure everything keeps running perfectly.",
+      color: "bg-white",
+      textColor: "text-gray-900"
     },
   ];
 
   return (
-    <section className="features-section section-padding relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-20 right-20 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div
-          className="absolute bottom-20 left-20 w-64 h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"
-          style={{ animationDelay: "3s" }}
-        ></div>
-      </div>
-
+    <section className="py-32 relative bg-background overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-20">
-          <div
-            className="inline-flex items-center gap-2 bg-blue-100 text-blue-600 rounded-full px-4 py-2 text-sm font-medium mb-6 reveal"
-            style={{ color: "var(--text-secondary) !important" }}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 border-2 border-gray-900 bg-white rounded-full px-5 py-2.5 text-sm font-bold text-gray-900 mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
           >
-            <Target className="w-4 h-4" color="black" />
-            Why Choose BizzGrow
-          </div>
+            <Target className="w-5 h-5 text-brand-primary" />
+            <span className="uppercase tracking-widest">Why We Don't Suck</span>
+          </motion.div>
 
-          <h2
-            className="text-4xl lg:text-5xl font-bold mb-6 reveal stagger-1"
-            style={{ color: "var(--text-primary)" }}
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl lg:text-7xl font-black mb-6 text-gray-900 leading-tight tracking-tight"
           >
-            Comprehensive Solutions for{" "}
-            <span className="text-gradient">Digital Excellence</span>
-          </h2>
+            Capabilities for <br/><span className="text-brand-primary underline decoration-8 underline-offset-4">Digital Domination</span>
+          </motion.h2>
 
-          <p
-            className="text-xl max-w-3xl mx-auto leading-relaxed reveal stagger-2"
-            style={{ color: "var(--text-secondary)" }}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-2xl max-w-3xl mx-auto font-medium text-gray-600"
           >
-            We combine strategic thinking, creative excellence, and technical
-            expertise to deliver end-to-end digital solutions that drive real
-            business results.
-          </p>
+            We combine strategic thinking with actual results. No fluff, no jargon, just things that make your business noticeably better.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div
+              <motion.div
                 key={index}
-                className={`card card-hover card-premium reveal stagger-${
-                  (index % 6) + 1
-                } group relative`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`group ${feature.color} p-8 rounded-[2rem] border-2 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden`}
               >
-                {/* Icon with gradient background */}
-                <div
-                  className={`w-16 h-16 rounded-2xl bg-linear-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                >
-                  <IconComponent className="w-8 h-8 text-white" />
+                <div className="relative z-10">
+                  <div className={`w-16 h-16 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform group-hover:rotate-12 transition-transform duration-300`}>
+                    <IconComponent className="w-8 h-8 text-gray-900" />
+                  </div>
+
+                  <h3 className={`text-3xl font-black mb-4 ${feature.textColor}`}>
+                    {feature.title}
+                  </h3>
+
+                  <p className={`font-semibold text-lg opacity-90 ${feature.textColor}`}>
+                    {feature.description}
+                  </p>
                 </div>
-
-                <h3
-                  className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors duration-300"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  {feature.title}
-                </h3>
-
-                <p
-                  className="leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {feature.description}
-                </p>
-
-                {/* Decorative gradient line */}
-                <div className="absolute bottom-0 left-8 right-8 h-1 bg-linear-to-r from-blue-500 to-purple-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Stats section */}
-        <div className="mt-20 reveal">
-          <div className="bg-slate-900 rounded-3xl p-8 lg:p-12 shadow-xl">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                Trusted by Industry Leaders
-              </h3>
-              <p className="text-white/80 text-lg max-w-2xl mx-auto">
-                Our track record speaks for itself. Here&apos;s what we&apos;ve
-                achieved together with our amazing clients.
-              </p>
-            </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-24 max-w-7xl mx-auto"
+        >
+          <div className="bg-brand-secondary rounded-[3rem] p-10 lg:p-16 border-4 border-gray-900 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div className="absolute inset-0 bg-pattern opacity-30"></div>
+            
+            <div className="relative z-10">
+              <div className="text-center mb-16">
+                <h3 className="text-4xl lg:text-5xl font-black text-white mb-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                  By the Numbers
+                </h3>
+                <p className="text-white text-xl font-bold max-w-2xl mx-auto">
+                  We like to let the numbers do the talking. Here's a totally unbiased look at how great we are.
+                </p>
+              </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              <StatCard
-                number={50}
-                suffix="+"
-                label="Projects Completed"
-                icon="🚀"
-                color="bg-blue-600"
-              />
-              <StatCard
-                number={99}
-                suffix="%"
-                label="Client Satisfaction"
-                icon="⭐"
-                color="bg-green-600"
-              />
-              <StatCard
-                number={20}
-                suffix="+"
-                label="Happy Clients"
-                icon="🤝"
-                color="bg-purple-600"
-              />
-              <StatCard
-                number={24}
-                suffix="/7"
-                label="Support Available"
-                icon="🛟"
-                color="bg-yellow-400"
-              />
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { num: "50+", label: "Projects Launched", bg: "bg-brand-accent", text: "text-gray-900" },
+                  { num: "99%", label: "Client Happiness", bg: "bg-brand-mint", text: "text-gray-900" },
+                  { num: "0", label: "Broken Promises", bg: "bg-brand-primary", text: "text-white" },
+                  { num: "24/7", label: "Caffeine Intake", bg: "bg-white", text: "text-gray-900" }
+                ].map((stat, i) => (
+                  <div key={i} className={`${stat.bg} ${stat.text} rounded-3xl p-6 border-2 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center hover:scale-105 transition-transform`}>
+                    <div className="text-4xl md:text-5xl font-black mb-2">{stat.num}</div>
+                    <div className="font-bold text-sm uppercase tracking-wider">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

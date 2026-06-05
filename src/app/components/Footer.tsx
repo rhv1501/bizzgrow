@@ -1,51 +1,47 @@
 "use client";
 
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { trackCallNowClick } from "../utils/gtm";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer pt-20 pb-8 relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0 bg-repeat"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
-      </div>
+    <footer className="bg-brand-accent pt-24 pb-8 relative overflow-hidden border-t-4 border-gray-900">
+      <div className="absolute inset-0 bg-pattern opacity-10 pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/logo.png"
-                alt="BizzGrow Logo"
-                width={40}
-                height={40}
-                unoptimized
-              />
-              <h3 className="text-2xl font-bold text-white">BizzGrow</h3>
-            </div>
+        {/* Massive Footer CTA */}
+        <div className="text-center mb-24 border-b-4 border-gray-900 pb-20">
+          <h2 className="text-6xl md:text-[8rem] lg:text-[12rem] font-black text-gray-900 tracking-tighter leading-none mb-8">
+            SAY HELLO.
+          </h2>
+          <a href="mailto:info@bizzgrowlabs.com" className="inline-block bg-white text-gray-900 font-black text-2xl md:text-4xl px-12 py-6 rounded-full border-4 border-gray-900 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all">
+            info@bizzgrowlabs.com
+          </a>
+        </div>
 
-            <p className="text-white/80 leading-relaxed">
-              Empowering small and medium businesses with cutting-edge digital
-              solutions to scale and thrive in the modern marketplace.
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-16">
+          {/* Company Info */}
+          <div className="lg:col-span-5 space-y-8">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="bg-white p-2 rounded-xl border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <Image
+                  src="/logo.png"
+                  alt="BizzGrow Logo"
+                  width={40}
+                  height={40}
+                  unoptimized
+                />
+              </div>
+              <h3 className="text-4xl font-black text-gray-900 tracking-tight">BizzGrow</h3>
+            </Link>
+
+            <p className="text-gray-800 text-xl font-bold pr-8">
+              We make brands unignorable. No fluff, just results.
             </p>
 
             <div className="flex gap-4">
@@ -61,160 +57,76 @@ const Footer = () => {
                     key={index}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                    className="w-14 h-14 rounded-2xl bg-white border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-gray-900 transition-transform hover:-translate-y-2 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
                   >
-                    <IconComponent className="w-5 h-5" />
+                    <IconComponent className="w-6 h-6" />
                   </a>
                 );
               })}
             </div>
           </div>
 
-          {/* Services */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Services</h4>
-            <ul className="space-y-3">
+          {/* Navigation */}
+          <div className="lg:col-span-3 space-y-8">
+            <h4 className="text-2xl font-black text-gray-900 border-b-4 border-gray-900 inline-block pb-2">Menu</h4>
+            <ul className="space-y-4">
               {[
-                {
-                  label: "Web Design & Development",
-                  href: "/services/website",
-                },
-                { label: "Digital Marketing", href: "/services/marketing" },
-                { label: "Branding & Creative", href: "/services/branding" },
-                { label: "SEO & Analytics", href: "/services/seo" },
-                { label: "Business Automation", href: "/services/automation" },
-                { label: "Custom Development", href: "/services/development" },
-              ].map((service, index) => (
+                { label: "Home", href: "/" },
+                { label: "Services", href: "/services" },
+                { label: "Our Work", href: "/portfolio" },
+                { label: "Insights", href: "/blog" },
+                { label: "Contact", href: "/contact" },
+              ].map((link, index) => (
                 <li key={index}>
                   <Link
-                    href={service.href}
-                    className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
+                    href={link.href}
+                    className="text-gray-800 font-black text-xl hover:text-brand-primary transition-colors flex items-center gap-2 group"
                   >
-                    {service.label}
+                    <ArrowRight className="w-5 h-5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Company</h4>
-            <ul className="space-y-3">
-              {[
-                { label: "About Us", href: "/about" },
-                { label: "Portfolio", href: "/portfolio" },
-                { label: "Blog", href: "/blog" },
-                { label: "Careers", href: "/careers" },
-                { label: "Contact", href: "/contact" },
-              ].map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-white/70 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact Info */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Get in Touch</h4>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
-                <div>
-                  <a
-                    id="phone"
-                    href="mailto:bizzgrowlabs@gmail.com"
-                    className="text-white/80 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    info@bizzgrowlabs.com
-                  </a>
+          <div className="lg:col-span-4 space-y-8">
+            <h4 className="text-2xl font-black text-gray-900 border-b-4 border-gray-900 inline-block pb-2">Location</h4>
+            <div className="space-y-6">
+              <a href="tel:+918939036141" className="flex items-center gap-4 group" onClick={() => trackCallNowClick({location: "footer", pagePath: "/"})}>
+                <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <Phone className="w-5 h-5 text-gray-900" />
                 </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
-                <div>
-                  <a
-                    id="phone"
-                    href="tel:+918939036141"
-                    onClick={() =>
-                      trackCallNowClick({
-                        location: "footer_phone_link",
-                        pagePath: window.location.pathname,
-                      })
-                    }
-                    className="text-white/80 hover:text-white transition-colors duration-200 text-sm"
-                  >
-                    +91 8939036141
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-white/60 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-white/80 text-sm">
-                    106, A Proad, Choolai
-                    <br />
-                    Chennai-112
-                    <br />
-                    India
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20">
-              <p className="text-white/90 text-sm font-medium mb-2">
-                Ready to grow?
-              </p>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition-colors text-sm font-semibold"
-              >
-                Start Your Project
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                <span className="text-gray-900 font-black text-xl">+91 8939036141</span>
               </a>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <MapPin className="w-5 h-5 text-gray-900" />
+                </div>
+                <div className="text-gray-900 font-bold text-lg">
+                  <p>106, A Proad, Choolai</p>
+                  <p>Chennai-112, India</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom section */}
-        <div className="border-t border-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/60 text-sm">
-              &copy; {currentYear} BizzGrow. All rights reserved.
-            </p>
+        <div className="border-t-4 border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-gray-900 font-bold text-lg">
+            &copy; {currentYear} BizzGrow. Making things awesome.
+          </p>
 
-            <div className="flex gap-6">
-              <a
-                href="/privacy"
-                className="text-white/60 hover:text-white text-sm transition-colors duration-200"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-white/60 hover:text-white text-sm transition-colors duration-200"
-              >
-                Terms of Service
-              </a>
-            </div>
+          <div className="flex gap-8">
+            <Link href="/privacy" className="text-gray-900 hover:text-brand-primary font-black text-lg transition-colors underline decoration-2 underline-offset-4">
+              Privacy
+            </Link>
+            <Link href="/terms" className="text-gray-900 hover:text-brand-primary font-black text-lg transition-colors underline decoration-2 underline-offset-4">
+              Terms
+            </Link>
           </div>
         </div>
       </div>

@@ -1,125 +1,153 @@
 import { Metadata } from "next";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { portfolioProjects } from "./projects";
+import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "Explore BizzGrow's portfolio of client success stories—real transformations and measurable results across web, marketing, branding, and automation.",
+  title: "Our Work | BizzGrow",
+  description: "Explore our latest projects. We build websites, brands, and digital experiences that don't suck.",
 };
 
 export default function PortfolioPage() {
+  const bgColors = [
+    "bg-[#FF3366]", // Vibrant Pink
+    "bg-[#00E5FF]", // Cyan
+    "bg-[#FFD500]", // Yellow
+    "bg-[#7000FF]", // Purple
+    "bg-[#FF9E80]", // Peach
+  ];
+
   return (
-    <main className="py-20">
-      <div className="site-container mx-auto">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4">Portfolio</h1>
-          <p className="text-lg muted">
-            Real transformations, measurable results. Explore our client work
-            across strategy, design, development, and growth.
+    <main className="py-32 bg-background relative min-h-screen">
+      <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-5xl mx-auto text-center mb-24">
+          <div className="inline-flex items-center gap-2 bg-brand-primary px-6 py-2 rounded-full border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-8 transform -rotate-2">
+            <Star className="w-5 h-5 text-white" fill="currentColor" />
+            <span className="font-bold text-white uppercase tracking-widest text-sm">Case Studies</span>
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-black text-gray-900 tracking-tight leading-[1] mb-8">
+            Stuff We're <br/> <span className="bg-brand-accent px-4 py-1 inline-block border-2 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mt-4 rotate-1">Proud Of</span>
+          </h1>
+          <p className="text-2xl text-gray-600 font-bold max-w-3xl mx-auto leading-relaxed">
+            Real transformations, measurable results, and websites that actually look like they were built in this decade.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {portfolioProjects.map((project, index) => (
-            <article
-              key={project.slug}
-              className="card card-premium card-hover reveal group overflow-hidden"
-              style={{ animationDelay: `${index * 80}ms` }}
-            >
-              {/* Project visual */}
-              <div
-                className="w-full h-48 rounded-2xl mb-6 relative overflow-hidden"
-                style={{ background: project.image }}
+        <div className="space-y-16 lg:space-y-32 mb-32 max-w-7xl mx-auto">
+          {portfolioProjects.map((project, index) => {
+            const isEven = index % 2 === 0;
+            const bgColor = bgColors[index % bgColors.length];
+            const isDarkText = bgColor === "bg-[#FFD500]" || bgColor === "bg-[#00E5FF]" || bgColor === "bg-[#FF9E80]";
+            const textColor = isDarkText ? "text-gray-900" : "text-white";
+
+            return (
+              <article
+                key={project.slug}
+                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center group`}
               >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
-                <div className="absolute bottom-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
-                    {project.category}
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                    {project.title}
-                  </h2>
-                  <p className="text-gray-600 leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  {project.results.map((result, resultIndex) => {
-                    const IconComponent = result.icon;
-                    return (
-                      <div key={resultIndex} className="text-center">
-                        <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-                          <IconComponent className="w-5 h-5 text-blue-600" />
-                        </div>
-                        <div className="text-lg font-bold text-gray-900">
-                          {result.value}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {result.label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="text-sm font-semibold text-gray-900">
-                    Technologies Used:
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {tech}
+                {/* Project Visual side */}
+                <div className="w-full lg:w-1/2 relative">
+                  <div className={`${bgColor} rounded-[3rem] p-4 md:p-8 border-4 border-gray-900 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-2 group-hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 relative overflow-hidden aspect-[4/3]`}>
+                    <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
+                    <div 
+                      className="absolute inset-4 md:inset-8 rounded-[2rem] border-4 border-gray-900 overflow-hidden bg-gray-100 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:scale-105 transition-transform duration-500"
+                      style={{ background: project.image }}
+                    ></div>
+                    <div className="absolute bottom-10 left-10 z-20">
+                      <span className="bg-white text-gray-900 px-4 py-2 rounded-full border-2 border-gray-900 text-sm font-black uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        {project.category}
                       </span>
-                    ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="flex items-center justify-between gap-4">
-                    <Link
-                      href={`/project/${project.slug}`}
-                      className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:gap-3"
-                    >
-                      View project
-                      <ExternalLink className="w-4 h-4" />
-                    </Link>
+                {/* Project Info side */}
+                <div className="w-full lg:w-1/2 space-y-8">
+                  <div>
+                    <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
+                      {project.title}
+                    </h2>
+                    <p className="text-xl font-bold text-gray-600 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
 
-                    <Link
-                      href={`/contact?project=${encodeURIComponent(project.title)}`}
-                      className="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
-                    >
-                      Start a similar project
-                    </Link>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {project.results.map((result, resultIndex) => {
+                      const IconComponent = result.icon;
+                      return (
+                        <div key={resultIndex} className="bg-white p-6 rounded-2xl border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center">
+                          <div className={`w-12 h-12 mx-auto mb-4 rounded-full ${bgColor} border-2 border-gray-900 flex items-center justify-center`}>
+                            <IconComponent className={`w-6 h-6 ${textColor}`} />
+                          </div>
+                          <div className="text-xl font-black text-gray-900 mb-1">
+                            {result.value}
+                          </div>
+                          <div className="text-sm font-bold text-gray-500 uppercase tracking-wider">
+                            {result.label}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-black text-gray-900 uppercase tracking-widest">
+                      Tech Stack
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="bg-gray-100 border-2 border-gray-900 text-gray-900 px-4 py-2 rounded-full text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-8 border-t-4 border-gray-900">
+                    <div className="flex flex-wrap items-center gap-6">
+                      <Link
+                        href={`/project/${project.slug}`}
+                        className="btn-primary text-lg px-8 py-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                      >
+                        Read Case Study
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </Link>
+
+                      <Link
+                        href={`/contact?project=${encodeURIComponent(project.title)}`}
+                        className="text-lg font-black text-gray-900 hover:text-brand-primary transition-colors underline decoration-4 underline-offset-4"
+                      >
+                        I want something like this
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
-        <div className="text-center mt-16">
-          <h2 className="text-2xl font-bold mb-4">
-            Ready for your transformation?
-          </h2>
-          <p className="muted mb-6">
-            Let&apos;s discuss how we can help your business achieve similar
-            results.
-          </p>
-          <a href="/contact" className="btn btn-primary">
-            Start Your Project
-          </a>
+        <div className="max-w-5xl mx-auto bg-brand-mint rounded-[3rem] p-12 lg:p-20 text-center border-4 border-gray-900 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+          <div className="absolute inset-0 bg-pattern opacity-30"></div>
+          <div className="relative z-10">
+            <h2 className="text-5xl lg:text-7xl font-black text-gray-900 mb-8">
+              Ready to be our next <br/> success story?
+            </h2>
+            <p className="text-2xl font-bold text-gray-800 mb-12 max-w-2xl mx-auto">
+              Stop settling for average. Let's build something that actually makes your competitors jealous.
+            </p>
+            <Link href="/contact" className="inline-block bg-white text-gray-900 font-black text-2xl px-12 py-6 rounded-full border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
+              Start Your Project
+            </Link>
+          </div>
         </div>
       </div>
     </main>

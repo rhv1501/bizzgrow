@@ -1,140 +1,134 @@
-import { ExternalLink } from "lucide-react";
+"use client";
+
+import { ExternalLink, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { portfolioProjects } from "../portfolio/projects";
 
 const Portfolio = () => {
   const featuredProjects = portfolioProjects.slice(0, 4);
 
   return (
-    <section className="section-padding bg-gray-50 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-      <div
-        className="absolute bottom-20 left-10 w-72 h-72 bg-cyan-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"
-        style={{ animationDelay: "4s" }}
-      ></div>
-
+    <section className="py-32 bg-white relative overflow-hidden border-y-2 border-gray-900">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-600 rounded-full px-4 py-2 text-sm font-medium mb-6 reveal">
-            <ExternalLink className="w-4 h-4" />
-            Our Portfolio
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 border-2 border-gray-900 bg-brand-primary rounded-full px-5 py-2.5 text-sm font-bold text-white mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <ExternalLink className="w-5 h-5" />
+            <span className="uppercase tracking-widest">Our Work</span>
+          </motion.div>
 
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 reveal stagger-1">
-            Success Stories That{" "}
-            <span className="text-gradient">Speak Volumes</span>
-          </h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl lg:text-7xl font-black mb-6 text-gray-900 tracking-tight leading-tight"
+          >
+            Success Stories That <br/><span className="text-brand-secondary underline decoration-8 underline-offset-4">Speak Volumes</span>
+          </motion.h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed reveal stagger-2">
-            Discover how we&apos;ve helped businesses across industries achieve
-            remarkable growth through strategic digital transformation.
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-2xl font-medium text-gray-600 max-w-3xl mx-auto"
+          >
+            Discover how we've helped ambitious brands across industries achieve remarkable growth through strategic digital transformation.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-24 max-w-7xl mx-auto">
           {featuredProjects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`card card-premium card-hover reveal stagger-${
-                (index % 6) + 1
-              } group overflow-hidden`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group bg-background rounded-[3rem] overflow-hidden border-4 border-gray-900 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all duration-300"
             >
               {/* Project visual */}
               <div
-                className="w-full h-48 rounded-2xl mb-6 relative overflow-hidden"
+                className="w-full h-80 relative overflow-hidden border-b-4 border-gray-900"
                 style={{ background: project.image }}
               >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
-                <div className="absolute bottom-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute inset-0 bg-gray-900/10 group-hover:bg-transparent transition-colors duration-500 z-0"></div>
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="bg-white text-gray-900 border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-5 py-2 rounded-full text-sm font-black tracking-widest uppercase">
                     {project.category}
                   </span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <div className="p-8 lg:p-10">
+                <div className="mb-8">
+                  <h3 className="text-4xl font-black text-gray-900 mb-4 group-hover:text-brand-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-lg font-medium leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Results */}
-                <div className="grid grid-cols-3 gap-4">
-                  {project.results.map((result, resultIndex) => {
-                    const IconComponent = result.icon;
-                    return (
-                      <div key={resultIndex} className="text-center">
-                        <div className="w-8 h-8 mx-auto mb-2 flex items-center justify-center">
-                          <IconComponent className="w-5 h-5 text-blue-600" />
-                        </div>
-                        <div className="text-lg font-bold text-gray-900">
-                          {result.value}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {result.label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
                 {/* Technologies */}
-                <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-gray-900">
-                    Technologies Used:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-10">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="bg-white border-2 border-gray-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="pt-4 border-t border-gray-100">
+                <div className="pt-6 border-t-2 border-gray-200 flex justify-between items-center">
                   <Link
                     href={`/project/${project.slug}`}
-                    className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:gap-3"
+                    className="inline-flex items-center gap-2 text-gray-900 font-black hover:text-brand-primary transition-colors duration-200 group-hover:gap-4 text-lg uppercase tracking-wider"
                   >
-                    View Project
-                    <ExternalLink className="w-4 h-4" />
+                    View Project Details
+                    <ArrowRight className="w-6 h-6" />
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="text-center reveal">
-          <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900! mb-4">
-              Ready to Create Your Success Story?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Let&apos;s discuss how we can help you achieve similar results for
-              your business.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/portfolio" className="btn btn-outline px-6 py-3">
-                Explore more
-              </a>
-              <a href="/contact" className="btn btn-primary px-6 py-3">
-                Start Your Project
-                <ExternalLink className="w-4 h-4" />
-              </a>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-5xl mx-auto"
+        >
+          <div className="bg-brand-mint rounded-[3rem] p-12 lg:p-20 relative overflow-hidden border-4 border-gray-900 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]">
+            <div className="relative z-10">
+              <h3 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]">
+                Ready to Create Your Success Story?
+              </h3>
+              <p className="text-gray-800 text-2xl font-bold mb-10 max-w-2xl mx-auto">
+                Let's discuss how we can engineer a digital experience that transforms your business trajectory.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link href="/portfolio" className="btn-secondary bg-white text-xl">
+                  Explore full portfolio
+                </Link>
+                <Link href="/contact" className="btn-primary text-xl">
+                  Start Your Project
+                  <ArrowRight className="w-6 h-6" />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

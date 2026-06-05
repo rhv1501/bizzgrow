@@ -1,7 +1,12 @@
 import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
+import Manifesto from "./components/Manifesto";
+import VideoShowcase from "./components/VideoShowcase";
 import Features from "./components/Features";
 import Process from "./components/Process";
+import RealityCheck from "./components/RealityCheck";
 import Services from "./components/Services";
+import Clients from "./components/Clients";
 import Portfolio from "./components/Portfolio";
 import Team from "./components/Team";
 import Testimonials from "./components/Testimonials";
@@ -12,11 +17,16 @@ import MobileStickyCTA from "./components/MobileStickyCTA";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-background">
       <Hero />
+      <Marquee />
+      <Manifesto />
       <Features />
-      <Process />
+      <VideoShowcase />
+      <RealityCheck />
       <Services />
+      <Process />
+      <Clients />
       <Portfolio />
       <Team />
       <Testimonials />
