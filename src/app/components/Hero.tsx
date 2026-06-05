@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Hero = () => {
   // A premium, weighty spring configuration for that "agency" feel
-  const springConfig = { type: "spring", bounce: 0.2, duration: 1.2 };
+  const springConfig = { type: "spring" as const, bounce: 0.2, duration: 1.2 };
   
   // Staggering container
   const containerVariants = {

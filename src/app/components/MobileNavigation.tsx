@@ -32,7 +32,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
     closed: {
       x: "-100%",
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 40,
       },
@@ -40,7 +40,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
     open: {
       x: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 40,
       },
