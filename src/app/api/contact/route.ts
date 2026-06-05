@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 // Google Apps Script Web App URL
 const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
@@ -88,6 +89,55 @@ export async function POST(request: Request) {
 
     // Send to Google Apps Script
     await sendToGoogleScript(body);
+
+    // Send auto-responder via Nodemailer using SMTP
+    if (body.email) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT) || 465,
+          secure: true, // true for 465, false for other ports
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+          },
+        });
+
+        const mailOptions = {
+          from: `"BizzGrow Team" <${process.env.SMTP_USER}>`,
+          to: body.email,
+          subject: "Request Received - BizzGrow",
+          html: `
+          <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 4px solid #0A0A0A; padding: 40px; border-radius: 20px; background-color: #FAFAFA;">
+            <h2 style="font-weight: 900; font-size: 28px; color: #0A0A0A; text-transform: uppercase; margin-bottom: 20px;">
+              Hey ${body.name || 'there'}, <br/>
+              <span style="color: #FF3366;">We Got Your Request.</span>
+            </h2>
+            <p style="font-size: 16px; color: #0A0A0A; font-weight: bold; line-height: 1.6;">
+              Thanks for reaching out to BizzGrow. This is an automated confirmation to let you know your message hit our desks successfully.
+            </p>
+            <p style="font-size: 16px; color: #666666; line-height: 1.6;">
+              Our team is currently reviewing your details. We pride ourselves on executing with ruthless efficiency, so expect to hear back from us shortly with next steps.
+            </p>
+            <div style="background-color: #FFD500; padding: 20px; border-radius: 10px; border: 2px solid #0A0A0A; margin: 30px 0;">
+              <p style="margin: 0; font-weight: bold; color: #0A0A0A; font-size: 14px; text-transform: uppercase;">Your Message Summary:</p>
+              <p style="margin: 10px 0 0 0; color: #0A0A0A;"><em>"${body.message || 'No message provided'}"</em></p>
+            </div>
+            <p style="font-size: 16px; font-weight: bold; color: #0A0A0A; margin-top: 30px;">
+              Let's grow,<br/>
+              <strong>The BizzGrow Team</strong>
+            </p>
+          </div>
+          `
+        };
+
+        await transporter.sendMail(mailOptions);
+        console.log("Auto-responder sent to:", body.email);
+      } catch (emailError) {
+        console.error("Failed to send auto-responder:", emailError);
+        // We don't throw here because we still want to return success since the lead was saved.
+      }
+    }
 
     return NextResponse.json({ 
       ok: true, 

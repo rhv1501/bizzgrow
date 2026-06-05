@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -163,6 +164,7 @@ _paq.push(['enableLinkTracking']);
         </main>
 
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

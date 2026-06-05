@@ -35,8 +35,23 @@ export default function ContactForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isValidPhone = (phone: string) => {
+    // Strip everything except digits
+    const digitsOnly = phone.replace(/\D/g, "");
+    return digitsOnly.length >= 10;
+  };
+
   const isFormValid =
-    name.trim() !== "" && email.trim() !== "" && message.trim() !== "";
+    name.trim().length >= 2 && 
+    isValidEmail(email.trim()) && 
+    isValidPhone(phone) &&
+    company.trim().length >= 2 &&
+    message.trim().length >= 10;
+    
   const isDisabled = !isFormValid || status === "sending";
 
   async function handleSubmit(e: React.FormEvent) {
@@ -121,23 +136,25 @@ export default function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Phone <span className="text-gray-400 font-bold">(Optional)</span></span>
+              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Phone</span>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                required
                 placeholder="+1 234 567 8900"
               />
             </label>
 
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Company <span className="text-gray-400 font-bold">(Optional)</span></span>
+              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Company</span>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                required
                 placeholder="Acme Corp"
               />
             </label>

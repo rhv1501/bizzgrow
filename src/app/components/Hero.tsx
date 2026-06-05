@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   // A premium, weighty spring configuration for that "agency" feel
@@ -66,13 +67,13 @@ const Hero = () => {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center">
-            <button className="btn-primary text-base md:text-lg w-full sm:w-auto hover:-translate-y-1 transition-transform py-3 md:py-4">
+            <Link href="/contact" className="btn-primary text-base md:text-lg w-full sm:w-auto hover:-translate-y-1 transition-transform py-3 md:py-4 flex items-center justify-center gap-2">
               Start A Project
               <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
-            </button>
-            <button className="btn-secondary text-base md:text-lg w-full sm:w-auto bg-white hover:-translate-y-1 transition-transform py-3 md:py-4">
+            </Link>
+            <Link href="/portfolio" className="btn-secondary text-base md:text-lg w-full sm:w-auto bg-white hover:-translate-y-1 transition-transform py-3 md:py-4 flex items-center justify-center">
               See Our Magic
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
 
