@@ -3,6 +3,7 @@ import Marquee from "./components/Marquee";
 import Manifesto from "./components/Manifesto";
 import VideoShowcase from "./components/VideoShowcase";
 import Features from "./components/Features";
+import Stats from "./components/Stats";
 import Process from "./components/Process";
 import RealityCheck from "./components/RealityCheck";
 import Services from "./components/Services";
@@ -22,6 +23,7 @@ export default function Home() {
       <Marquee />
       <Manifesto />
       <Features />
+      <Stats />
       <VideoShowcase />
       <RealityCheck />
       <Services />

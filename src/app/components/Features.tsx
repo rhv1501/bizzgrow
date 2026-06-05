@@ -114,42 +114,6 @@ const Features = () => {
           })}
         </div>
 
-        {/* Stats section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-24 max-w-7xl mx-auto"
-        >
-          <div className="bg-brand-secondary rounded-[3rem] p-10 lg:p-16 border-4 border-gray-900 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            <div className="absolute inset-0 bg-pattern opacity-30"></div>
-            
-            <div className="relative z-10">
-              <div className="text-center mb-16">
-                <h3 className="text-4xl lg:text-5xl font-black text-white mb-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-                  By the Numbers
-                </h3>
-                <p className="text-white text-xl font-bold max-w-2xl mx-auto">
-                  We like to let the numbers do the talking. Here's a totally unbiased look at how great we are.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                {[
-                  { num: "50+", label: "Projects Launched", bg: "bg-brand-accent", text: "text-gray-900" },
-                  { num: "99%", label: "Client Happiness", bg: "bg-brand-mint", text: "text-gray-900" },
-                  { num: "0", label: "Broken Promises", bg: "bg-brand-primary", text: "text-white" },
-                  { num: "24/7", label: "Caffeine Intake", bg: "bg-white", text: "text-gray-900" }
-                ].map((stat, i) => (
-                  <div key={i} className={`${stat.bg} ${stat.text} rounded-3xl p-6 border-2 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center hover:scale-105 transition-transform`}>
-                    <div className="text-4xl md:text-5xl font-black mb-2">{stat.num}</div>
-                    <div className="font-bold text-sm uppercase tracking-wider">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
