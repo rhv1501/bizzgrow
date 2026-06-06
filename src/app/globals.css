@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --color-brand-primary: #FF3366; /* Vibrant Pink/Red */
@@ -38,6 +39,7 @@
 }
 
 :root {
+  color-scheme: light;
   --background: #FAFAFA;
   --foreground: #0A0A0A;
 }
