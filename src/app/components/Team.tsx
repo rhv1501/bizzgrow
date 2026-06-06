@@ -52,7 +52,7 @@ const Team = () => {
               {/* Fallback initials if image fails or isn't uploaded yet */}
               <span className="absolute z-0">RV</span>
               <img
-                src="/rudresh.jpg"
+                src="/rudresh.jpeg"
                 alt="Rudresh H Vyas"
                 className="w-full h-full object-cover relative z-10"
                 onError={(e) => {
