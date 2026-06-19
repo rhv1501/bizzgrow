@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import MobileNavigation from "./MobileNavigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -9,6 +10,19 @@ import Image from "next/image";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Close mobile menu on route change or when transition starts
+  useEffect(() => {
+    setOpen(false);
+
+    const handleTransitionStart = () => setOpen(false);
+    window.addEventListener("start-page-transition", handleTransitionStart);
+    
+    return () => {
+      window.removeEventListener("start-page-transition", handleTransitionStart);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { X, Home, User, Briefcase, FileText, Mail } from "lucide-react";
+import { X, Home, User, Briefcase, FileText, Mail, BookOpen } from "lucide-react";
 import { trackCallNowClick } from "../utils/gtm";
 
 interface MobileNavigationProps {
@@ -16,6 +16,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
     { href: "/services", label: "Services", icon: Briefcase },
     { href: "/portfolio", label: "Portfolio", icon: FileText },
     { href: "/about", label: "About", icon: User },
+    { href: "/blog", label: "Blog", icon: BookOpen },
     { href: "/contact", label: "Contact", icon: Mail },
   ];
 

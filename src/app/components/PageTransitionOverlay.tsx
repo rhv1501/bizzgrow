@@ -27,6 +27,9 @@ export default function PageTransitionOverlay() {
       e.preventDefault();
       e.stopPropagation();
 
+      // Dispatch event so other components (like Navbar) know to close immediately
+      window.dispatchEvent(new Event("start-page-transition"));
+
       // Trigger cover animation
       setIsAnimating(true);
 
