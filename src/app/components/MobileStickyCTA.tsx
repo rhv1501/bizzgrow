@@ -1,16 +1,15 @@
 "use client";
 
-import { Phone, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
-import { trackCallNowClick } from "../utils/gtm";
+import Link from "next/link";
 
 const MobileStickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show CTA after scrolling 200px
-      setIsVisible(window.scrollY > 200);
+      // Show CTA after scrolling 50px
+      setIsVisible(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -21,29 +20,13 @@ const MobileStickyCTA = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
-      <div className="bg-white border-t-4 border-gray-900 shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)] p-3 flex gap-3 items-center">
-        <a
+      <div className="border-t border-border bg-surface/95 p-3 shadow-[0_-20px_60px_-40px_rgba(33,48,58,0.5)] backdrop-blur">
+        <Link
           href="/contact"
-          className="flex-1 bg-brand-primary text-white border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black py-3 px-4 rounded-xl text-center transition-all duration-200 flex items-center justify-center gap-2 text-base active:translate-y-1 active:shadow-none"
+          className="btn-primary flex w-full items-center justify-center text-base active:translate-y-0.5"
         >
-          <MessageCircle className="w-5 h-5" />
-          Get Started
-        </a>
-
-        <a
-          href="tel:+918939036141"
-          id="phone"
-          onClick={() =>
-            trackCallNowClick({
-              location: "mobile_sticky_cta_phone_button",
-              pagePath: window.location.pathname,
-            })
-          }
-          className="flex items-center justify-center bg-brand-accent border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-gray-900 p-3 rounded-xl transition-colors duration-200 active:translate-y-1 active:shadow-none shrink-0"
-          aria-label="Call us"
-        >
-          <Phone className="w-6 h-6" />
-        </a>
+          Start a project
+        </Link>
       </div>
     </div>
   );

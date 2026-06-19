@@ -1,155 +1,146 @@
-import { Metadata } from "next";
-import { ExternalLink, ArrowRight, Star } from "lucide-react";
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { portfolioProjects } from "./projects";
-import Image from "next/image";
-
-export const metadata: Metadata = {
-  title: "Our Work | BizzGrow",
-  description: "Explore our latest projects. We build websites, brands, and digital experiences that don't suck.",
-};
+import { useRef } from "react";
 
 export default function PortfolioPage() {
-  const bgColors = [
-    "bg-[#FF3366]", // Vibrant Pink
-    "bg-[#00E5FF]", // Cyan
-    "bg-[#FFD500]", // Yellow
-    "bg-[#7000FF]", // Purple
-    "bg-[#FF9E80]", // Peach
-  ];
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 0.2], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
-    <main className="py-32 bg-background relative min-h-screen">
-      <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto text-center mb-24">
-          <div className="inline-flex items-center gap-2 bg-brand-primary px-6 py-2 rounded-full border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-8 transform -rotate-2">
-            <Star className="w-5 h-5 text-white" fill="currentColor" />
-            <span className="font-bold text-white uppercase tracking-widest text-sm">Case Studies</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl lg:text-8xl font-black text-gray-900 tracking-tight leading-[1] mb-8">
-            Stuff We're <br/> <span className="bg-brand-accent px-4 py-1 md:py-2 inline-block border-2 md:border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mt-4 rotate-1">Proud Of</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 font-bold max-w-3xl mx-auto leading-relaxed">
-            Real transformations, measurable results, and websites that actually look like they were built in this decade.
-          </p>
+    <main ref={containerRef} className="bg-background min-h-screen selection:bg-brand-mint selection:text-foreground">
+      
+      {/* CINEMATIC HERO */}
+      <section className="pt-32 md:pt-40 pb-20 md:pb-24 overflow-hidden relative border-b border-border/60">
+        <div className="absolute inset-0 z-0">
+           <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[120px] mix-blend-multiply pointer-events-none" />
+           <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-brand-peach/10 rounded-full blur-[100px] mix-blend-multiply pointer-events-none" />
         </div>
-
-        <div className="space-y-16 lg:space-y-32 mb-32 max-w-7xl mx-auto">
-          {portfolioProjects.map((project, index) => {
-            const isEven = index % 2 === 0;
-            const bgColor = bgColors[index % bgColors.length];
-            const isDarkText = bgColor === "bg-[#FFD500]" || bgColor === "bg-[#00E5FF]" || bgColor === "bg-[#FF9E80]";
-            const textColor = isDarkText ? "text-gray-900" : "text-white";
-
-            return (
-              <article
-                key={project.slug}
-                className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center group`}
-              >
-                {/* Project Visual side */}
-                <div className="w-full lg:w-1/2 relative">
-                  <div className={`${bgColor} rounded-[3rem] p-4 md:p-8 border-4 border-gray-900 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-2 group-hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 relative overflow-hidden aspect-[4/3]`}>
-                    <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
-                    <div 
-                      className="absolute inset-4 md:inset-8 rounded-[2rem] border-4 border-gray-900 overflow-hidden bg-gray-100 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:scale-105 transition-transform duration-500"
-                      style={{ background: project.image }}
-                    ></div>
-                    <div className="absolute bottom-10 left-10 z-20">
-                      <span className="bg-white text-gray-900 px-4 py-2 rounded-full border-2 border-gray-900 text-sm font-black uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Info side */}
-                <div className="w-full lg:w-1/2 space-y-8">
-                  <div>
-                    <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
-                      {project.title}
-                    </h2>
-                    <p className="text-xl font-bold text-gray-600 leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {project.results.map((result, resultIndex) => {
-                      const IconComponent = result.icon;
-                      return (
-                        <div key={resultIndex} className="bg-white p-6 rounded-2xl border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center">
-                          <div className={`w-12 h-12 mx-auto mb-4 rounded-full ${bgColor} border-2 border-gray-900 flex items-center justify-center`}>
-                            <IconComponent className={`w-6 h-6 ${textColor}`} />
-                          </div>
-                          <div className="text-xl font-black text-gray-900 mb-1">
-                            {result.value}
-                          </div>
-                          <div className="text-sm font-bold text-gray-500 uppercase tracking-wider">
-                            {result.label}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-black text-gray-900 uppercase tracking-widest">
-                      Tech Stack
-                    </h3>
-                    <div className="flex flex-wrap gap-3">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="bg-gray-100 border-2 border-gray-900 text-gray-900 px-4 py-2 rounded-full text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-8 border-t-4 border-gray-900">
-                    <div className="flex flex-wrap items-center gap-6">
-                      <Link
-                        href={`/project/${project.slug}`}
-                        className="btn-primary text-lg px-8 py-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
-                      >
-                        Read Case Study
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </Link>
-
-                      <Link
-                        href={`/contact?project=${encodeURIComponent(project.title)}`}
-                        className="text-lg font-black text-gray-900 hover:text-brand-primary transition-colors underline decoration-4 underline-offset-4"
-                      >
-                        I want something like this
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="max-w-5xl mx-auto bg-brand-mint rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 lg:p-20 text-center border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-          <div className="absolute inset-0 bg-pattern opacity-30"></div>
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-gray-900 mb-6 md:mb-8 leading-tight">
-              Ready to be our next <br className="hidden md:block"/> success story?
-            </h2>
-            <p className="text-lg md:text-2xl font-bold text-gray-800 mb-8 md:mb-12 max-w-2xl mx-auto">
-              Stop settling for average. Let's build something that actually makes your competitors jealous.
+        
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div style={{ y: heroY, opacity: heroOpacity }}>
+            <p className="text-xs font-mono text-muted mb-6 md:mb-8 uppercase tracking-widest flex items-center gap-4">
+              <span className="w-8 h-px bg-muted" /> Case Studies
             </p>
-            <Link href="/contact" className="inline-block bg-white text-gray-900 font-black text-xl md:text-2xl px-8 py-4 md:px-12 md:py-6 rounded-full border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all">
-              Start Your Project
-            </Link>
+            <h1 className="text-[clamp(3.5rem,8vw,9rem)] font-medium tracking-tighter text-foreground leading-[0.9]">
+              Work that makes <br />
+              competitors <span className="italic text-brand-peach font-serif pr-4">nervous</span>.
+            </h1>
+            <p className="mt-8 md:mt-12 text-xl md:text-2xl text-muted max-w-2xl leading-relaxed">
+              Real transformations, measurable results, and digital ecosystems that actually look like they were built in this decade.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ASYMMETRICAL GALLERY */}
+      <section className="py-32 md:py-48">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-32 md:gap-48">
+            {portfolioProjects.map((project, index) => {
+               // We alternate alignment for a dynamic editorial look
+               const isEven = index % 2 === 0;
+               return <ProjectCard key={index} project={project} index={index} isEven={isEven} />
+            })}
           </div>
+        </div>
+      </section>
+      
+      {/* FOOTER CTA */}
+      <section className="py-32 md:py-48 border-t border-border/60 relative overflow-hidden bg-surface/30">
+        <div className="absolute inset-0 z-0 flex items-center justify-center">
+           <div className="w-[800px] h-[800px] bg-brand-mint/10 blur-[120px] rounded-full pointer-events-none" />
+        </div>
+        <div className="mx-auto max-w-5xl px-4 relative z-10 text-center">
+           <h2 className="text-[clamp(3rem,6vw,6rem)] font-medium tracking-tight mb-12 leading-[1.1]">
+             Ready to <span className="italic text-brand-primary font-serif">scale</span>?
+           </h2>
+           <Link href="/contact" className="btn-primary">
+             Start a Project <ArrowRight className="w-4 h-4 ml-2" />
+           </Link>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+type ProjectType = typeof portfolioProjects[number];
+
+function ProjectCard({ project, index, isEven }: { project: ProjectType, index: number, isEven: boolean }) {
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "center center"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  return (
+    <motion.article 
+      ref={cardRef}
+      style={{ y, opacity }}
+      className={`grid lg:grid-cols-12 gap-12 lg:gap-24 items-center group`}
+    >
+      <div className={`lg:col-span-7 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+        <Link href={`/project/${project.slug}`} className="block relative rounded-[2rem] md:rounded-[3rem] overflow-hidden aspect-[4/3] bg-surface border border-border/60 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] transform transition-transform duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.02]">
+          {/* Using the gradient as the massive background */}
+          <div className="absolute inset-0 opacity-80 mix-blend-multiply transition-opacity duration-700 group-hover:opacity-100" style={{ background: project.image }} />
+          
+          {/* Elegant noise overlay for texture */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+          
+          <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 flex justify-between items-end">
+            <span className="bg-surface/90 backdrop-blur-md text-foreground px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest shadow-lg">
+              {project.category}
+            </span>
+            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-surface/90 backdrop-blur-md text-foreground flex items-center justify-center shadow-lg transform -rotate-45 group-hover:rotate-0 group-hover:bg-brand-primary group-hover:text-surface transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
+              <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      <div className={`lg:col-span-5 ${isEven ? 'lg:order-2' : 'lg:order-1'} flex flex-col justify-center`}>
+        <span className="text-xs font-mono text-muted uppercase tracking-widest mb-6 block">0{index + 1} &mdash; Case Study</span>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.05] text-foreground group-hover:text-brand-primary transition-colors duration-500">
+          <Link href={`/project/${project.slug}`}>{project.title}</Link>
+        </h2>
+        <p className="text-lg md:text-xl text-muted leading-relaxed mb-12">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-x-12 gap-y-8 w-full">
+          {project.results.slice(0,2).map((result: {value: string; label: string}, i: number) => (
+            <div key={i} className="flex flex-col flex-1 min-w-[140px]">
+              <div className="text-2xl lg:text-3xl font-medium tracking-tight text-foreground mb-2 break-words leading-tight">{result.value}</div>
+              <div className="text-xs font-mono text-muted uppercase tracking-widest">{result.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 pt-12 border-t border-border/60 flex flex-wrap gap-3">
+           {project.technologies.slice(0,3).map((tech: string, i: number) => (
+             <span key={i} className="text-xs font-mono border border-border/50 rounded-full px-4 py-2 text-muted">
+               {tech}
+             </span>
+           ))}
+           {project.technologies.length > 3 && (
+             <span className="text-xs font-mono border border-border/50 rounded-full px-4 py-2 text-muted">
+               +{project.technologies.length - 3}
+             </span>
+           )}
         </div>
       </div>
-    </main>
+    </motion.article>
   );
 }

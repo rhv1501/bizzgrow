@@ -41,7 +41,7 @@ const useCountAnimation = (targetNumber: number, duration: number = 2000) => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const element = document.getElementById(`stat-${targetNumber}`);
@@ -82,18 +82,16 @@ const StatCard = ({ number, suffix, label, icon, color }: StatCardProps) => {
 
       {/* Animated Number */}
       <div className="mb-2">
-        <span className="text-4xl lg:text-5xl font-bold text-white">
+        <span className="text-4xl lg:text-5xl font-bold text-foreground">
           {animatedNumber}
         </span>
-        <span className="text-4xl lg:text-5xl font-bold text-white/80">
+        <span className="text-4xl lg:text-5xl font-bold text-foreground/80">
           {suffix}
         </span>
       </div>
 
       {/* Label */}
-      <div className="text-white/70 font-medium text-sm lg:text-base">
-        {label}
-      </div>
+      <div className="text-muted font-medium text-sm lg:text-base">{label}</div>
 
       {/* Decorative line */}
       <div

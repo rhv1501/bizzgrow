@@ -1,0 +1,35 @@
+
+/mnt/data/bizzgrow/src/app/about/page.tsx
+  154:50  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/mnt/data/bizzgrow/src/app/careers/page.tsx
+  49:93  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  90:21  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/mnt/data/bizzgrow/src/app/components/Clients.tsx
+  135:24  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/mnt/data/bizzgrow/src/app/components/Cta.tsx
+  24:137  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/mnt/data/bizzgrow/src/app/components/Hero.tsx
+   52:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/mnt/data/bizzgrow/src/app/components/Hero.tsx:52:5
+  50 |
+  51 |   useEffect(() => {
+> 52 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  53 |     const handleMouseMove = (e: MouseEvent) => {
+  54 |       mouseX.set(e.clientX);
+  55 |       mouseY.set(e.clientY);  react-hooks/set-state-in-effect
+  134:16  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react/no-unescaped-entities
+
+✖ 7 problems (7 errors, 0 warnings)
+

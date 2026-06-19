@@ -1,142 +1,98 @@
 "use client";
-import Image from "next/image";
 
-import { Monitor, TrendingUp, Palette, MousePointerClick, Search, Zap, ArrowRight } from "lucide-react";
+import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { services } from "../services/catalog";
+import { ArrowRight } from "lucide-react";
 
-const Services = () => {
-  const router = useRouter();
-
-  const iconsBySlug = {
-    website: Monitor,
-    marketing: TrendingUp,
-    branding: Palette,
-    performance: MousePointerClick,
-    seo: Search,
-    automation: Zap,
-  } as const;
-
-  const bgColors = [
-    "bg-brand-primary",
-    "bg-brand-secondary",
-    "bg-brand-mint",
-    "bg-brand-accent",
-    "bg-[#FF9E80]", // Peach
-    "bg-[#00E5FF]"  // Cyan
-  ];
-
-  const textColors = [
-    "text-white",
-    "text-white",
-    "text-gray-900",
-    "text-gray-900",
-    "text-gray-900",
-    "text-gray-900"
-  ];
-
+export default function Services() {
   return (
-    <section id="services" className="py-16 md:py-32 relative bg-white border-y-2 border-gray-900 overflow-hidden">
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-pattern opacity-50 pointer-events-none"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-gray-900 bg-brand-accent shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-8"
-          >
-            <Zap className="w-5 h-5 text-gray-900" />
-            <span className="font-bold text-gray-900 uppercase tracking-widest text-sm">Our Superpowers</span>
-          </motion.div>
-
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-black mb-6 md:mb-8 text-gray-900 tracking-tight leading-[1.1]"
-          >
-            Stuff We're <span className="text-white px-4 py-1 bg-brand-secondary rounded-2xl rotate-2 inline-block">Unreasonably Good</span> At
-          </motion.h2>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl font-medium text-gray-600 max-w-2xl mx-auto"
-          >
-            We don't just build websites. We build digital ecosystems that make your competitors nervously sweat.
-          </motion.p>
+    <section id="services" className="bg-background relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 md:pt-48 pb-12 md:pb-24">
+        
+        {/* Header for homepage context (hidden if needed, but good to keep) */}
+        <div className="mb-24 md:mb-32 max-w-3xl">
+           <p className="text-xs font-mono text-muted mb-6 uppercase tracking-widest flex items-center gap-4">
+             <span className="w-8 h-px bg-muted" /> Capabilities
+           </p>
+           <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium text-foreground leading-[1.05] tracking-tight">
+             End-to-End <span className="italic font-serif text-brand-primary">Ecosystems</span>.
+           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {services.map((service, idx) => {
-            const IconComponent = iconsBySlug[service.slug as keyof typeof iconsBySlug] ?? Zap;
-            const bgColor = bgColors[idx % bgColors.length];
-            const textColor = textColors[idx % textColors.length];
-
-            return (
-              <motion.div
-                key={service.slug}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => router.push(`/services/${service.slug}`)}
-                className={`group relative ${bgColor} p-6 md:p-8 rounded-[2rem] cursor-pointer border-2 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 flex flex-col h-full`}
-              >
-                <div className="w-full aspect-[4/3] rounded-[1.5rem] border-2 border-gray-900 overflow-hidden relative mb-6 md:mb-8 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1 transition-transform">
-                  <Image 
-                    src={`/services/${service.slug}.png`}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    unoptimized
-                  />
-                  <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10 group-hover:rotate-12 transition-transform">
-                    <IconComponent className="w-6 h-6 text-gray-900" />
-                  </div>
-                </div>
-
-                <div className="flex-1 flex flex-col">
-                  <h3 className={`text-2xl md:text-3xl font-black mb-3 md:mb-4 ${textColor} leading-tight`}>
-                    {service.title}
-                  </h3>
-
-                  <p className={`font-semibold text-base md:text-lg opacity-90 mb-8 ${textColor}`}>
-                    {service.headline}
-                  </p>
-
-                  <div className={`mt-auto flex items-center gap-2 font-bold ${textColor} text-lg group-hover:underline underline-offset-4`}>
-                    Let's dive in
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* The sticky scroll layout */}
+        <div className="relative pb-16 md:pb-24">
+          {services.map((service, index) => (
+            <ServiceCard key={index} service={service} index={index} total={services.length} />
+          ))}
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-20"
-        >
-          <Link href="/services" className="btn-secondary bg-white text-xl px-10 py-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-            Explore All The Cool Stuff We Do
-            <ArrowRight className="w-6 h-6 ml-2" />
-          </Link>
-        </motion.div>
       </div>
     </section>
   );
-};
+}
 
-export default Services;
+interface ServiceData {
+  title: string;
+  description: string;
+  slug: string;
+  outcomes: string[];
+  features: string[];
+}
+
+function ServiceCard({ service, index, total }: { service: ServiceData, index: number, total: number }) {
+  // Using calc to dynamically stack the cards based on their index.
+  // Each card sticks slightly lower than the previous one, creating a deck effect.
+  const topOffset = `calc(6rem + ${index * 1.5}rem)`;
+  
+  return (
+    <div className="sticky pt-8 md:pt-16 w-full" style={{ top: topOffset, zIndex: index }}>
+      <div className="bg-surface/95 backdrop-blur-xl border border-border/60 rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-[0_-10px_40px_rgba(33,48,58,0.03)] relative group origin-top overflow-hidden">
+        
+        {/* subtle background blob that reacts on hover */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-peach/20 rounded-full blur-[100px] pointer-events-none transition-all duration-1000 group-hover:bg-brand-mint/30 group-hover:scale-150" />
+
+        <div className="relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+          <div className="lg:col-span-5">
+            <span className="text-xs font-mono text-muted uppercase tracking-widest mb-8 block">0{index + 1} &mdash; 0{total}</span>
+            <h3 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 leading-[1.05]">{service.title}</h3>
+            <p className="text-lg md:text-xl text-muted leading-relaxed mb-12">{service.description}</p>
+            
+            <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-4 text-sm font-mono uppercase tracking-widest text-foreground hover:text-brand-primary transition-colors group/btn">
+              Explore Service 
+              <span className="w-10 h-10 rounded-full border border-border/80 flex items-center justify-center group-hover/btn:bg-brand-primary group-hover/btn:border-brand-primary group-hover/btn:text-surface transition-all duration-300">
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </Link>
+          </div>
+          
+          <div className="lg:col-span-7 flex flex-col justify-center mt-8 lg:mt-0">
+            <div className="grid sm:grid-cols-2 gap-8 md:gap-12">
+               <div>
+                 <h4 className="text-xs font-mono uppercase tracking-widest text-foreground mb-6 border-b border-border/60 pb-4">Outcomes</h4>
+                 <ul className="space-y-4">
+                   {service.outcomes.slice(0,3).map((outcome: string, i: number) => (
+                     <li key={i} className="text-muted leading-relaxed flex items-start gap-3 text-sm md:text-base">
+                       <span className="w-1.5 h-1.5 rounded-full bg-brand-primary shrink-0 mt-2" />
+                       {outcome}
+                     </li>
+                   ))}
+                 </ul>
+               </div>
+               <div>
+                 <h4 className="text-xs font-mono uppercase tracking-widest text-foreground mb-6 border-b border-border/60 pb-4">Features</h4>
+                 <ul className="space-y-4">
+                   {service.features.map((feature: string, i: number) => (
+                     <li key={i} className="text-muted leading-relaxed flex items-start gap-3 text-sm md:text-base">
+                       <span className="w-1.5 h-1.5 rounded-full bg-brand-mint shrink-0 mt-2" />
+                       {feature}
+                     </li>
+                   ))}
+                 </ul>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

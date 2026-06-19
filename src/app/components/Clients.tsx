@@ -1,114 +1,147 @@
 "use client";
+
+import { useRef, useEffect } from "react";
 import { portfolioProjects } from "../portfolio/projects";
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 
 const Clients = () => {
-  // Dynamically pull client names from portfolio projects
-  const allClients = portfolioProjects.map(p => p.title);
-  
-  // Split into two rows
-  const midPoint = Math.ceil(allClients.length / 2);
-  const row1 = allClients.slice(0, midPoint);
-  const row2 = allClients.slice(midPoint);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // We repeat the arrays many times to ensure they exceed the screen width
-  // This is required for a seamless infinite loop
-  const repeatedRow1 = Array(10).fill(row1).flat();
-  const repeatedRow2 = Array(10).fill(row2).flat();
+  useEffect(() => {
+    // Set initial position to center of container so it looks good on initial load
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
+    }
 
-  // A custom brutalist star separator
-  const StarSeparator = () => (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-6 md:mx-12 lg:mx-16 animate-[spin_6s_linear_infinite] flex-shrink-0">
-      <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#FF3366" stroke="#111827" strokeWidth="2"/>
-    </svg>
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      
+      requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        mouseX.set(e.clientX - rect.left);
+        mouseY.set(e.clientY - rect.top);
+      });
+    };
+
+    const current = containerRef.current;
+    if (current) current.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      if (current) current.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [mouseX, mouseY]);
+
+  // Extract titles and duplicate to ensure the marquee never ends
+  const itemsArray = portfolioProjects.map((p) => p.title);
+  const items = [...itemsArray, ...itemsArray, ...itemsArray, ...itemsArray];
+
+  // The GPU-accelerated mask that follows the cursor (Desktop only)
+  const maskImage = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`;
+
+  const MarqueeRow = ({ direction = 1, speed = 40 }: { direction?: number; speed?: number }) => (
+    <div
+      className="flex w-max items-center gap-12 whitespace-nowrap"
+      style={{
+        animation: direction === 1 
+          ? `marquee-left ${speed}s linear infinite` 
+          : `marquee-right ${speed}s linear infinite`
+      }}
+    >
+      {items.map((item, i) => (
+        <span 
+          key={i} 
+          className="text-6xl sm:text-7xl md:text-[8vw] lg:text-[7vw] font-black uppercase leading-[0.8] tracking-[-0.04em] drop-shadow-lg"
+        >
+          {item}
+          <span className="mx-8 md:mx-12 text-foreground/20">✦</span>
+        </span>
+      ))}
+    </div>
   );
 
   return (
-    <section className="py-20 md:py-32 bg-brand-secondary relative border-y-2 border-gray-900 overflow-hidden">
-      <div className="absolute inset-0 bg-pattern opacity-10 pointer-events-none"></div>
-
-      <div className="container mx-auto px-6 relative z-20 mb-16 md:mb-20">
-        <div className="max-w-4xl">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
-            Trusted by brands that <br/>
-            <span className="bg-[#FFD500] text-gray-900 px-4 py-1 rotate-2 inline-block border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mt-2">
-              refuse to be boring
-            </span>
-          </h2>
-        </div>
-      </div>
-
-      {/* Marquee Container */}
-      <div className="relative z-10 flex flex-col gap-8 md:gap-16 rotate-[-3deg] scale-[1.15] md:scale-110 pb-10">
-        
-        {/* Top Row - Moving Left */}
-        {/* We use double standard width max to allow 50% translation without running out of content */}
-        <div className="w-full overflow-hidden bg-white border-y-4 border-gray-900 py-3 md:py-4 shadow-[0_10px_0_0_rgba(0,0,0,1)]">
-          <div className="flex w-max animate-[marqueeLeft_40s_linear_infinite]">
-            {/* Half 1 */}
-            <div className="flex items-center">
-              {repeatedRow1.map((client, idx) => (
-                <div key={`h1-${idx}`} className="flex items-center group cursor-crosshair">
-                  <span className="text-5xl md:text-7xl lg:text-9xl font-black text-transparent [-webkit-text-stroke:1px_#111827] md:[-webkit-text-stroke:2px_#111827] hover:text-brand-mint hover:[-webkit-text-stroke:0px] transition-all duration-300 uppercase tracking-tighter whitespace-nowrap">
-                    {client}
-                  </span>
-                  <StarSeparator />
-                </div>
-              ))}
-            </div>
-            {/* Half 2 (Exact Duplicate) */}
-            <div className="flex items-center">
-              {repeatedRow1.map((client, idx) => (
-                <div key={`h2-${idx}`} className="flex items-center group cursor-crosshair">
-                  <span className="text-5xl md:text-7xl lg:text-9xl font-black text-transparent [-webkit-text-stroke:1px_#111827] md:[-webkit-text-stroke:2px_#111827] hover:text-brand-mint hover:[-webkit-text-stroke:0px] transition-all duration-300 uppercase tracking-tighter whitespace-nowrap">
-                    {client}
-                  </span>
-                  <StarSeparator />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Row - Moving Right */}
-        <div className="w-full overflow-hidden bg-brand-primary border-y-4 border-gray-900 py-3 md:py-4 shadow-[0_10px_0_0_rgba(0,0,0,1)]">
-          <div className="flex w-max animate-[marqueeRight_45s_linear_infinite]">
-            {/* Half 1 */}
-            <div className="flex items-center">
-              {repeatedRow2.map((client, idx) => (
-                <div key={`h1-${idx}`} className="flex items-center group cursor-crosshair">
-                  <span className="text-5xl md:text-7xl lg:text-9xl font-black text-transparent [-webkit-text-stroke:1px_#111827] md:[-webkit-text-stroke:2px_#111827] hover:text-[#FFD500] hover:[-webkit-text-stroke:0px] transition-all duration-300 uppercase tracking-tighter whitespace-nowrap">
-                    {client}
-                  </span>
-                  <StarSeparator />
-                </div>
-              ))}
-            </div>
-            {/* Half 2 (Exact Duplicate) */}
-            <div className="flex items-center">
-              {repeatedRow2.map((client, idx) => (
-                <div key={`h2-${idx}`} className="flex items-center group cursor-crosshair">
-                  <span className="text-5xl md:text-7xl lg:text-9xl font-black text-transparent [-webkit-text-stroke:1px_#111827] md:[-webkit-text-stroke:2px_#111827] hover:text-[#FFD500] hover:[-webkit-text-stroke:0px] transition-all duration-300 uppercase tracking-tighter whitespace-nowrap">
-                    {client}
-                  </span>
-                  <StarSeparator />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <style jsx global>{`
-        @keyframes marqueeLeft {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+    <section 
+      ref={containerRef} 
+      className="relative flex h-[80dvh] min-h-[600px] w-full flex-col justify-center overflow-hidden bg-background py-16 lg:py-20"
+    >
+      {/* INJECTED CSS FOR PURE HARDWARE MARQUEES */}
+      <style>{`
+        @keyframes marquee-left {
+          0% { transform: translate3d(0%, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
-        @keyframes marqueeRight {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
+        @keyframes marquee-right {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0%, 0, 0); }
         }
       `}</style>
+      
+      {/* BACKGROUND LAYER: Dim, almost invisible text */}
+      <div className="absolute inset-0 flex flex-col justify-between py-16 lg:py-24 opacity-[0.03]">
+        <MarqueeRow direction={1} speed={120} />
+        <MarqueeRow direction={-1} speed={100} />
+        <MarqueeRow direction={1} speed={130} />
+      </div>
+
+      {/* DESKTOP FOREGROUND LAYER: Dynamic cursor tracking */}
+      <motion.div 
+        className="pointer-events-none absolute inset-0 hidden md:flex flex-col justify-between py-16 lg:py-24 text-foreground opacity-80"
+        style={{
+          WebkitMaskImage: maskImage,
+          maskImage: maskImage,
+        }}
+      >
+        <MarqueeRow direction={1} speed={120} />
+        <MarqueeRow direction={-1} speed={100} />
+        <MarqueeRow direction={1} speed={130} />
+      </motion.div>
+
+      {/* MOBILE FOREGROUND LAYER: Static top/bottom visibility */}
+      <div 
+        className="pointer-events-none absolute inset-0 flex md:hidden flex-col justify-between py-16 text-foreground opacity-40"
+        style={{
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+        }}
+      >
+        <MarqueeRow direction={1} speed={120} />
+        <MarqueeRow direction={-1} speed={100} />
+        <MarqueeRow direction={1} speed={130} />
+      </div>
+
+      {/* FLOATING CENTER CARD (Glassmorphism Double-Bezel) */}
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 pointer-events-none">
+        <div className="pointer-events-auto rounded-[2.5rem] bg-foreground/5 p-2 shadow-2xl ring-1 ring-border/50 backdrop-blur-2xl transition-transform duration-700 hover:scale-[1.02] md:rounded-[3rem]">
+          <div className="relative overflow-hidden rounded-[calc(2.5rem-8px)] bg-surface px-6 py-12 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] md:rounded-[calc(3rem-8px)] md:px-16 md:py-20 text-center">
+            
+            {/* Physical Paper Noise Overlay */}
+            <div 
+              className="pointer-events-none absolute inset-0 opacity-[0.04]" 
+              style={{ 
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+              }} 
+            />
+
+            <div className="relative z-10 inline-flex items-center gap-2 rounded-full border border-border/40 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground mb-8">
+              <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
+              Our Impact
+            </div>
+
+            <h2 className="relative z-10 text-4xl font-black tracking-tight text-foreground md:text-5xl lg:text-7xl drop-shadow-sm">
+              Brands we&apos;ve transformed.
+            </h2>
+            
+            <p className="relative z-10 mt-6 text-base leading-relaxed text-muted md:text-lg lg:text-xl max-w-2xl mx-auto">
+              We partner with ambitious teams to rebuild their digital infrastructure, scale their marketing, and automate their operations.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 };

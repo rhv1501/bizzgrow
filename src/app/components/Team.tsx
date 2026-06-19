@@ -1,75 +1,127 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const Team = () => {
-  const people = [
-    { name: "Rudresh H Vyas", role: "Founder & CEO" },
-  ];
-
   return (
-    <section className="py-16 md:py-32 bg-brand-primary relative overflow-hidden border-y-4 border-gray-900">
-      <div className="absolute inset-0 bg-pattern opacity-20 pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+    <section className="py-24 md:py-32 bg-background">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Top Header Section */}
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 border-2 border-gray-900 bg-white rounded-full px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-bold text-gray-900 mb-4 md:mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase tracking-widest"
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="text-sm font-mono text-muted mb-6 uppercase tracking-widest"
           >
-            Leadership
+            Founder-led
           </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground leading-[1.1]"
           >
-            The Mind Behind the <br className="hidden md:block" /><span className="bg-brand-accent text-gray-900 px-3 py-1 md:px-4 md:py-1 rotate-2 inline-block border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-2">Mission</span>
+            Led by humans, powered by logic, driven by results.
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+          
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-900 font-bold text-lg md:text-2xl mt-4 md:mt-6 max-w-2xl mx-auto px-2"
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 text-lg md:text-xl text-muted max-w-2xl leading-relaxed"
           >
-            Every great company begins with a bold vision. We combine technical expertise and creative chaos to build solutions that actually work.
+            No bloated agency layers or endless &quot;let me check with my manager&quot; loops. Just sharp strategy, high-end execution, and complete accountability.
           </motion.p>
         </div>
 
-        <div className="flex justify-center px-2 md:px-0">
+        {/* Minimalist Grid Section */}
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+          
+          {/* Portrait Column */}
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="md:col-span-4"
+          >
+            <div className="relative aspect-[3/4] w-full overflow-hidden border border-border/40 bg-surface/50">
+              <Image
+                src="/rudresh.jpeg"
+                alt="Rudresh H Vyas"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                unoptimized
+              />
+            </div>
+            <div className="mt-5 flex flex-col">
+              <span className="text-base font-semibold text-foreground">Rudresh H Vyas</span>
+              <span className="text-xs text-muted uppercase tracking-[0.15em] mt-1">Founder and CEO</span>
+              <span className="text-xs text-brand-primary mt-1">Creative direction</span>
+            </div>
+          </motion.div>
+
+          {/* Details Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border-4 border-gray-900 flex flex-col items-center text-center w-full max-w-lg shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] md:hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] transition-all"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="md:col-span-8 flex flex-col h-full md:pt-4"
           >
-            <div className="w-32 h-32 md:w-48 md:h-48 rounded-[2rem] mb-6 md:mb-8 flex items-center justify-center text-gray-900 text-4xl md:text-5xl font-black bg-brand-accent border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] group-hover:rotate-0 transition-transform overflow-hidden relative">
-              {/* Fallback initials if image fails or isn't uploaded yet */}
-              <span className="absolute z-0">RV</span>
-              <img
-                src="/rudresh.jpeg"
-                alt="Rudresh H Vyas"
-                className="w-full h-full object-cover relative z-10"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
+            <div className="border-t border-border/80 pt-8">
+              <p className="text-xs font-mono uppercase tracking-widest text-muted mb-6">The Goal</p>
+              <h3 className="text-2xl md:text-3xl font-medium leading-snug text-foreground max-w-2xl">
+                &quot;Make you look so good your competitors get nervous, and build systems so tight your operations run on autopilot.&quot;
+              </h3>
             </div>
-            <h4 className="text-3xl md:text-4xl font-black text-gray-900 mb-1 md:mb-2">Rudresh H Vyas</h4>
-            <p className="text-brand-primary text-sm md:text-lg font-black uppercase tracking-widest mb-6">Founder & CEO</p>
-            <p className="text-gray-700 font-bold text-lg md:text-xl leading-relaxed max-w-sm">
-              Obsessed with building digital experiences that don't just look pretty, but actually drive measurable growth. I lead the charge in combining creative design with hard-hitting technical strategy.
-            </p>
+
+            <div className="border-t border-border/80 mt-12 pt-8 grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-widest text-muted mb-6">Execution</p>
+                <ul className="space-y-4">
+                  {["Surgical strategy", "Elite execution", "Zero fluff"].map((item, idx) => (
+                    <li key={item} className="flex items-center gap-4 text-base text-foreground font-medium">
+                      <span className="text-xs font-mono text-muted">0{idx + 1}</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-col justify-between">
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-widest text-muted mb-6">Work Style</p>
+                  <p className="text-lg font-medium text-foreground">
+                    Strategy first, then we build.
+                  </p>
+                </div>
+                
+                <div className="mt-12 sm:mt-auto">
+                  <Link href="/about" className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-muted transition-colors border-b border-foreground hover:border-muted pb-1">
+                    Read the full story
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
           </motion.div>
         </div>
+
       </div>
     </section>
   );
 };
 
 export default Team;
+

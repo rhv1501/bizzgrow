@@ -2,16 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  X,
-  Home,
-  User,
-  Briefcase,
-  FileText,
-  BookOpen,
-  Mail,
-  Rocket,
-} from "lucide-react";
+import { X, Home, User, Briefcase, FileText, Mail } from "lucide-react";
 import { trackCallNowClick } from "../utils/gtm";
 
 interface MobileNavigationProps {
@@ -22,11 +13,9 @@ interface MobileNavigationProps {
 const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
   const navigationItems = [
     { href: "/", label: "Home", icon: Home },
-    { href: "/about", label: "About", icon: User },
     { href: "/services", label: "Services", icon: Briefcase },
     { href: "/portfolio", label: "Portfolio", icon: FileText },
-    { href: "/careers", label: "Careers", icon: Rocket },
-    { href: "/blog", label: "Blog", icon: BookOpen },
+    { href: "/about", label: "About", icon: User },
     { href: "/contact", label: "Contact", icon: Mail },
   ];
 
@@ -69,41 +58,37 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
 
   return (
     <>
-      {/* Backdrop */}
       <motion.div
         variants={backdropVariants}
         initial="closed"
         animate="open"
         exit="closed"
-        className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-40"
+        className="fixed inset-0 z-40 bg-foreground/25 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      {/* Sidebar */}
       <motion.nav
         variants={sidebarVariants}
         initial="closed"
         animate="open"
         exit="closed"
-        className="fixed top-0 left-0 h-full w-[85vw] max-w-sm z-50 bg-[#FFD500] border-r-4 border-gray-900 shadow-[12px_0px_0px_0px_rgba(0,0,0,1)] overflow-y-auto"
+        className="fixed left-0 top-0 z-50 h-full w-[85vw] max-w-sm overflow-y-auto border-r border-border bg-surface shadow-[0_30px_80px_-45px_rgba(33,48,58,0.5)]"
       >
-        <div className="flex flex-col h-full bg-pattern">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b-4 border-gray-900 bg-white">
-            <h2 className="text-3xl font-black text-gray-900 tracking-tight">BizzGrow</h2>
+        <div className="flex h-full flex-col bg-pattern">
+          <div className="flex items-center justify-between border-b border-border px-6 py-5">
+            <h2 className="text-2xl font-black tracking-tight">BizzGrow</h2>
 
             <button
               onClick={onClose}
-              className="w-12 h-12 rounded-full border-4 border-gray-900 bg-brand-primary flex items-center justify-center text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-none transition-all duration-200"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-brand-mint text-foreground shadow-[0_18px_40px_-30px_rgba(33,48,58,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-none"
               aria-label="Close navigation"
             >
               <X className="w-6 h-6" strokeWidth={3} />
             </button>
           </div>
 
-          {/* Navigation Items */}
           <div className="flex-1 px-6 py-8">
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {navigationItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
@@ -118,10 +103,15 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                     <Link
                       href={item.href}
                       onClick={onClose}
-                      className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:bg-[#00E5FF] transition-colors duration-200 group"
+                      className="group flex items-center gap-4 rounded-2xl border border-border bg-[#fbfaf7] px-5 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-primary hover:bg-brand-mint/60"
                     >
-                      <IconComponent className="w-6 h-6 text-gray-900" strokeWidth={2.5} />
-                      <span className="font-black text-gray-900 text-xl tracking-wide uppercase">{item.label}</span>
+                      <IconComponent
+                        className="w-5 h-5 text-foreground"
+                        strokeWidth={2.5}
+                      />
+                      <span className="text-lg font-semibold text-foreground">
+                        {item.label}
+                      </span>
                     </Link>
                   </motion.li>
                 );
@@ -129,25 +119,24 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
             </ul>
           </div>
 
-          {/* CTA Section */}
-          <div className="p-6 border-t-4 border-gray-900 bg-white">
+          <div className="border-t border-border p-6">
             <motion.div
               custom={navigationItems.length}
               variants={itemVariants}
               initial="closed"
               animate="open"
               exit="closed"
-              className="space-y-6 text-center"
+              className="space-y-5 text-center"
             >
               <Link
                 href="/contact"
                 onClick={onClose}
-                className="block w-full bg-[#FF3366] text-white font-black text-xl uppercase tracking-widest py-4 px-4 rounded-full border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-none transition-all duration-200"
+                className="btn-primary block w-full text-center text-base"
               >
-                Get Started
+                Start a project
               </Link>
 
-              <div className="text-center pt-2">
+              <div className="pt-1 text-center">
                 <a
                   href="tel:+918939036141"
                   onClick={() =>
@@ -156,7 +145,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                       pagePath: window.location.pathname,
                     })
                   }
-                  className="text-gray-900 font-black text-lg underline decoration-4 underline-offset-4 hover:text-[#FF3366] transition-colors duration-200"
+                  className="font-semibold text-foreground underline decoration-2 underline-offset-4 transition-colors duration-200 hover:text-brand-primary"
                 >
                   +91 8939036141
                 </a>

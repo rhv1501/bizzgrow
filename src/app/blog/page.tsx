@@ -1,159 +1,260 @@
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Blog | BizzGrow",
-  description:
-    "Expert insights on digital transformation, web development, marketing strategies, and business growth.",
-};
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const posts = [
+  {
+    title: "10 SEO Mistakes Small Businesses Make",
+    excerpt: "Common SEO pitfalls that hurt your search rankings and practical solutions to improve your online visibility.",
+    date: "2024-10-15",
+    category: "SEO",
+    readTime: "8 min read",
+    color: "bg-brand-primary",
+  },
+  {
+    title: "The Complete Guide to Website Performance",
+    excerpt: "Speed up your website and improve user experience with these proven performance optimization techniques.",
+    date: "2024-10-08",
+    category: "Development",
+    readTime: "12 min read",
+    color: "bg-brand-mint",
+  },
+  {
+    title: "Digital Marketing ROI: Measure What Matters",
+    excerpt: "Track the metrics that actually impact your bottom line and optimize your marketing spend.",
+    date: "2024-09-28",
+    category: "Marketing",
+    readTime: "6 min read",
+    color: "bg-brand-secondary",
+  },
+  {
+    title: "Branding vs Marketing: What's The Difference?",
+    excerpt: "Learn why both branding and marketing are essential for business growth and how they work together.",
+    date: "2024-09-22",
+    category: "Branding",
+    readTime: "5 min read",
+    color: "bg-brand-peach",
+  },
+  {
+    title: "E-commerce Conversion Optimization Strategies",
+    excerpt: "Increase your online sales with these tested conversion rate optimization techniques for e-commerce stores.",
+    date: "2024-09-15",
+    category: "E-commerce",
+    readTime: "10 min read",
+    color: "bg-brand-accent",
+  },
+  {
+    title: "The Future of Web Design: 2024 Trends",
+    excerpt: "Stay ahead of the curve with these emerging web design trends that will shape user experiences.",
+    date: "2024-09-08",
+    category: "Design",
+    readTime: "7 min read",
+    color: "bg-foreground",
+  },
+];
 
 export default function BlogPage() {
-  const posts = [
-    {
-      title: "10 SEO Mistakes Small Businesses Make",
-      excerpt: "Common SEO pitfalls that hurt your search rankings and practical solutions to improve your online visibility.",
-      date: "2024-10-15",
-      category: "SEO",
-      readTime: "8 min read",
-      color: "bg-brand-primary",
-      textColor: "text-white"
-    },
-    {
-      title: "The Complete Guide to Website Performance",
-      excerpt: "Speed up your website and improve user experience with these proven performance optimization techniques.",
-      date: "2024-10-08",
-      category: "Development",
-      readTime: "12 min read",
-      color: "bg-brand-mint",
-      textColor: "text-gray-900"
-    },
-    {
-      title: "Digital Marketing ROI: Measure What Matters",
-      excerpt: "Track the metrics that actually impact your bottom line and optimize your marketing spend for better results.",
-      date: "2024-09-28",
-      category: "Marketing",
-      readTime: "6 min read",
-      color: "bg-brand-accent",
-      textColor: "text-gray-900"
-    },
-    {
-      title: "Branding vs Marketing: What's The Difference?",
-      excerpt: "Learn why both branding and marketing are essential for business growth and how they work together.",
-      date: "2024-09-22",
-      category: "Branding",
-      readTime: "5 min read",
-      color: "bg-brand-secondary",
-      textColor: "text-white"
-    },
-    {
-      title: "E-commerce Conversion Optimization Strategies",
-      excerpt: "Increase your online sales with these tested conversion rate optimization techniques for e-commerce stores.",
-      date: "2024-09-15",
-      category: "E-commerce",
-      readTime: "10 min read",
-      color: "bg-white",
-      textColor: "text-gray-900"
-    },
-    {
-      title: "The Future of Web Design: 2024 Trends",
-      excerpt: "Stay ahead of the curve with these emerging web design trends that will shape user experiences.",
-      date: "2024-09-08",
-      category: "Design",
-      readTime: "7 min read",
-      color: "bg-[#FF9E80]",
-      textColor: "text-gray-900"
-    },
-  ];
+  const heroRef = useRef(null);
 
-  const categories = [
-    "All", "SEO", "Development", "Marketing", "Branding", "E-commerce", "Design",
-  ];
+  // Hero Scroll Effects
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  
+  const titleY = useTransform(heroScroll, [0, 1], [0, 300]);
+  const titleOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
+  const asteriskRotate = useTransform(heroScroll, [0, 1], [0, 360]);
+
+  // GSAP Horizontal Scroll with Pinning
+  const sectionRef = useRef<HTMLElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (!sectionRef.current || !galleryRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const getScrollAmount = () => {
+        const galleryWidth = galleryRef.current?.scrollWidth || 0;
+        return -(galleryWidth - window.innerWidth);
+      };
+
+      const tween = gsap.to(galleryRef.current, {
+        x: getScrollAmount,
+        ease: "none"
+      });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: () => `+=${(getScrollAmount() * -1) || window.innerWidth}`,
+        pin: true,
+        animation: tween,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <main className="py-32 bg-background relative min-h-screen">
-      <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
+    <main className="bg-background min-h-screen selection:bg-brand-mint selection:text-foreground">
       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto text-center mb-24">
-          <div className="inline-block bg-white px-6 py-2 rounded-full border-2 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-8 transform -rotate-2">
-            <span className="font-bold text-gray-900 uppercase tracking-widest text-sm">Our Brain Dump</span>
-          </div>
-          
-          <h1 className="text-6xl md:text-8xl font-black text-gray-900 tracking-tight leading-[1] mb-8">
-            Expert Insights & <br/> <span className="bg-brand-accent px-4 py-1 inline-block border-2 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mt-4 rotate-1">Hot Takes</span>
+      {/* MASSIVE HERO */}
+      <section ref={heroRef} className="h-screen relative flex flex-col items-center justify-center overflow-hidden">
+        {/* Abstract background blobs */}
+        <motion.div 
+          style={{ y: useTransform(heroScroll, [0, 1], [0, -200]) }}
+          className="absolute top-[20%] left-[10%] w-[40vw] h-[40vw] bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" 
+        />
+        <motion.div 
+          style={{ y: useTransform(heroScroll, [0, 1], [0, 200]) }}
+          className="absolute bottom-[10%] right-[10%] w-[30vw] h-[30vw] bg-brand-peach/20 rounded-full blur-[100px] pointer-events-none" 
+        />
+        
+        <div className="absolute top-32 left-8 md:left-16 flex items-center gap-4 z-10">
+          <span className="w-12 h-px bg-foreground" />
+          <span className="font-mono text-xs uppercase tracking-[0.3em] font-bold">The Brain Dump</span>
+        </div>
+
+        <motion.div style={{ y: titleY, opacity: titleOpacity }} className="relative z-10 w-full px-4 text-center">
+          <h1 className="text-[clamp(4rem,12vw,15rem)] font-medium tracking-tighter leading-[0.8] text-foreground flex flex-col items-center justify-center">
+            <span className="flex items-center">
+              THINK
+              <motion.span style={{ rotate: asteriskRotate }} className="text-brand-primary mx-4 font-serif italic text-[clamp(5rem,14vw,18rem)] leading-none inline-block origin-center mt-4">
+                *
+              </motion.span>
+            </span>
+            <span className="italic font-serif opacity-80 pl-[10vw]">ALOUD.</span>
           </h1>
-          <p className="text-2xl text-gray-600 font-bold max-w-3xl mx-auto leading-relaxed">
-            Actionable advice on digital transformation, growth strategies, and why your current website is probably losing you money.
-          </p>
+        </motion.div>
+
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted">Scroll to explore</span>
+          <motion.div 
+            animate={{ y: [0, 10, 0] }} 
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-16 bg-gradient-to-b from-foreground to-transparent"
+          />
+        </div>
+      </section>
+
+      {/* HORIZONTAL SCROLL GALLERY (GSAP) */}
+      <section ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-surface flex items-center border-y border-border/60">
+        
+        {/* A giant background text that stays fixed while cards scroll over it */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+          <h2 className="text-[30vw] font-black tracking-tighter whitespace-nowrap">ARTICLES</h2>
         </div>
 
-        <div className="mb-16">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((cat, i) => (
-              <button
-                key={i}
-                className={`px-6 py-3 rounded-full text-lg font-bold border-2 border-gray-900 transition-transform hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${
-                  i === 0 ? "bg-brand-primary text-white" : "bg-white text-gray-900"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* w-max is CRITICAL: it allows the flex container to grow as wide as its content dictates */}
+        <div 
+          ref={galleryRef}
+          className="flex gap-8 md:gap-16 px-4 md:px-[10vw] items-center relative z-10 w-max"
+        >
+            {posts.map((post, i) => {
+              // Creating alternating physical heights and alignments for a dynamic "scattered" editorial feel
+              const isEven = i % 2 === 0;
+              const isDark = post.color === "bg-foreground" || post.color === "bg-brand-primary" || post.color === "bg-brand-secondary";
+              const textClass = isDark ? "text-background" : "text-foreground";
+              const mutedClass = isDark ? "text-background/60" : "text-foreground/60";
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-24">
-          {posts.map((post, i) => (
-            <article
-              key={i}
-              className={`${post.color} rounded-[2rem] p-8 border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all duration-300 flex flex-col`}
-            >
-              <div className="mb-8">
-                <span className="bg-white border-2 border-gray-900 text-gray-900 px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                  {post.category}
-                </span>
-              </div>
+              return (
+                <Link 
+                  href={`/blog/${post.title.toLowerCase().replace(/ /g, '-')}`}
+                  key={i} 
+                  className={`group relative flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] h-[60vh] md:h-[70vh] rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col justify-between overflow-hidden shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-4 ${post.color} ${isEven ? 'mt-12' : '-mt-12'}`}
+                >
+                  {/* Texture overlay */}
+                  <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
-              <h2 className={`text-3xl font-black mb-4 leading-tight ${post.textColor}`}>
-                {post.title}
-              </h2>
-              <p className={`font-semibold opacity-90 mb-8 flex-1 ${post.textColor}`}>
-                {post.excerpt}
-              </p>
+                  {/* Card Content */}
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-12">
+                      <span className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest border ${isDark ? 'border-background/20 bg-background/10' : 'border-foreground/20 bg-foreground/5'} backdrop-blur-md ${textClass}`}>
+                        {post.category}
+                      </span>
+                      <span className={`font-mono text-sm font-bold ${textClass}`}>
+                        0{i + 1}
+                      </span>
+                    </div>
 
-              <div className={`flex justify-between items-center text-sm font-bold border-t-2 ${post.textColor === 'text-white' ? 'border-white/20' : 'border-gray-900/20'} pt-6`}>
-                <span className={post.textColor}>{new Date(post.date).toLocaleDateString()}</span>
-                <span className={post.textColor}>{post.readTime}</span>
-              </div>
-            </article>
-          ))}
-        </div>
+                    <h3 className={`text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.05] ${textClass}`}>
+                      {post.title}
+                    </h3>
+                  </div>
 
-        <div className="text-center mb-32">
-          <button className="btn-secondary bg-white text-xl">Load More Posts</button>
-        </div>
+                  <div className="relative z-10 flex flex-col gap-8">
+                    <p className={`text-lg md:text-xl leading-relaxed ${mutedClass}`}>
+                      {post.excerpt}
+                    </p>
 
-        <div className="max-w-4xl mx-auto bg-brand-secondary rounded-[3rem] p-12 lg:p-20 border-4 border-gray-900 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-pattern opacity-20"></div>
-          <div className="relative z-10">
-            <h2 className="text-5xl font-black text-white mb-6">
-              Get Insights Delivered
-            </h2>
-            <p className="text-xl font-bold text-white/90 mb-10 max-w-xl mx-auto">
-              Subscribe to our newsletter for weekly tips on digital growth. We promise not to spam you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 bg-white p-2 rounded-full border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-2xl mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-transparent text-gray-900 font-bold text-lg placeholder-gray-500 focus:outline-none"
-              />
-              <button className="bg-brand-accent text-gray-900 font-black text-lg px-8 py-4 rounded-full border-2 border-gray-900 hover:bg-brand-primary hover:text-white transition-colors">
-                Subscribe
-              </button>
+                    <div className={`flex items-center justify-between border-t pt-6 ${isDark ? 'border-background/20' : 'border-foreground/20'}`}>
+                      <div className={`flex items-center gap-4 text-xs font-mono uppercase tracking-widest ${mutedClass}`}>
+                        <span>{post.date}</span>
+                        <span className={`w-1 h-1 rounded-full ${isDark ? 'bg-background/40' : 'bg-foreground/40'}`} />
+                        <span>{post.readTime}</span>
+                      </div>
+                      <div className={`w-12 h-12 rounded-full border flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 ${isDark ? 'border-background/20 text-background group-hover:bg-background group-hover:text-foreground' : 'border-foreground/20 text-foreground group-hover:bg-foreground group-hover:text-background'}`}>
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+
+            {/* End of Gallery CTA Card */}
+            <div className="relative flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] h-[60vh] md:h-[70vh] rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 flex flex-col items-center justify-center text-center border-2 border-dashed border-border/60">
+               <h3 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground mb-8">
+                 Craving <br/><span className="italic font-serif">more?</span>
+               </h3>
+               <button className="btn-primary">
+                 View the Archive
+               </button>
             </div>
           </div>
+      </section>
+
+      {/* MINIMALIST NEWSLETTER (Remains at bottom) */}
+      <section className="py-32 md:py-48 relative overflow-hidden bg-background">
+        <div className="mx-auto max-w-4xl px-4 relative z-10 text-center">
+           <p className="text-xs font-mono text-muted mb-8 uppercase tracking-widest">
+             Join the inner circle
+           </p>
+           <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-medium tracking-tight mb-12 leading-[1.1]">
+             Zero fluff. Just <br className="hidden md:block" />
+             <span className="italic font-serif text-brand-primary">pure signal.</span>
+           </h2>
+           
+           <form className="max-w-xl mx-auto relative group">
+             <input 
+               type="email" 
+               placeholder="Enter your email address" 
+               className="w-full bg-surface border border-border/60 rounded-full px-8 py-5 md:py-6 text-lg placeholder:text-muted focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10 transition-all"
+               required
+             />
+             <button 
+               type="submit"
+               className="absolute right-2 top-2 bottom-2 bg-foreground text-background px-6 md:px-8 rounded-full font-bold hover:scale-[0.98] transition-transform flex items-center gap-2"
+             >
+               Subscribe
+             </button>
+           </form>
+           
+           <p className="text-sm text-muted mt-6">
+             One high-value email per week. Unsubscribe anytime.
+           </p>
         </div>
-      </div>
+      </section>
     </main>
   );
 }

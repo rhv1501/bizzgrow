@@ -94,40 +94,40 @@ export default function ContactForm() {
   }
 
   return (
-    <main className="py-20 md:py-32 bg-background relative selection:bg-brand-primary selection:text-white">
+    <main className="py-20 md:py-32 bg-background relative selection:bg-brand-primary selection:text-foreground">
       <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight leading-[1] mb-6">
-            Let's Talk <span className="text-brand-primary">Business</span>
+          <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-[1] mb-6">
+            Let&apos;s Talk <span className="text-brand-primary">Business</span>
           </h1>
-          <p className="text-xl md:text-2xl font-bold text-gray-600 max-w-2xl mx-auto">
-            Have a project or question? Send us a message and we'll get back to you faster than your current agency.
+          <p className="text-xl md:text-2xl font-bold text-muted max-w-2xl mx-auto">
+            Have a project or question? Send us a message and we&apos;ll get back to you faster than your current agency.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 lg:p-16 border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]">
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-surface rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 lg:p-16 border border-border shadow-md md:shadow-md">
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Name</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Name</span>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all"
                 required
                 placeholder="John Doe"
               />
             </label>
 
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Email</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Email</span>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all"
                 required
                 placeholder="john@company.com"
               />
@@ -136,24 +136,24 @@ export default function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Phone</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Phone</span>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all"
                 required
                 placeholder="+1 234 567 8900"
               />
             </label>
 
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Company</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Company</span>
               <input
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all"
+                className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all"
                 required
                 placeholder="Acme Corp"
               />
@@ -161,11 +161,11 @@ export default function ContactForm() {
           </div>
 
           <label className="block mb-10">
-            <span className="text-sm font-black uppercase tracking-widest text-gray-900 mb-2 block">Message</span>
+            <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Message</span>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full bg-gray-50 border-4 border-gray-900 rounded-2xl px-5 py-4 text-lg font-bold text-gray-900 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all resize-y min-h-[200px]"
+              className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all resize-y min-h-[200px]"
               required
               placeholder="Tell us about your project..."
             />
@@ -177,11 +177,11 @@ export default function ContactForm() {
               disabled={isDisabled}
               className={`w-full md:w-auto md:mx-auto ${
                 status === "sent"
-                  ? "bg-[#00E5FF] text-gray-900"
+                  ? "bg-brand-primary text-foreground"
                   : status === "error"
-                    ? "bg-[#FF3366] text-white"
-                    : "bg-[#FFD500] text-gray-900 hover:bg-brand-primary hover:text-white"
-              } border-4 border-gray-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 font-black text-xl px-12 py-5 rounded-full flex items-center justify-center gap-3 uppercase tracking-wider ${isDisabled && status !== "sent" ? "opacity-50 hover:translate-y-0 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] cursor-not-allowed bg-gray-200 text-gray-500" : ""}`}
+                    ? "bg-brand-primary text-white"
+                    : "bg-brand-secondary text-foreground hover:bg-brand-primary hover:text-white"
+              } border border-border shadow-md hover:-translate-y-2 hover:shadow-md transition-all duration-300 font-black text-xl px-12 py-5 rounded-full flex items-center justify-center gap-3 uppercase tracking-wider ${isDisabled && status !== "sent" ? "opacity-50 hover:translate-y-0 hover:shadow-md cursor-not-allowed bg-surface text-muted" : ""}`}
             >
               {status === "sending" && (
                 <svg
@@ -242,12 +242,12 @@ export default function ContactForm() {
             </button>
 
             {status === "sent" && (
-              <p className="text-lg font-bold text-gray-900 text-center bg-brand-mint border-2 border-gray-900 p-4 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                Thank you! We'll get back to you soon.
+              <p className="text-lg font-bold text-foreground text-center bg-brand-mint border border-border p-4 rounded-xl shadow-md">
+                Thank you! We&apos;ll get back to you soon.
               </p>
             )}
             {status === "error" && (
-              <p className="text-lg font-bold text-white text-center bg-[#FF3366] border-2 border-gray-900 p-4 rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <p className="text-lg font-bold text-foreground text-center bg-brand-primary border border-border p-4 rounded-xl shadow-md">
                 Something went wrong. Please check your information and try again.
               </p>
             )}

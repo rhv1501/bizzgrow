@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import MobileNavigation from "./MobileNavigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -19,67 +19,67 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-white border-b-4 border-gray-900 shadow-[0px_4px_0px_0px_rgba(0,0,0,1)] py-4" 
-          : "bg-transparent py-6"
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "py-3" : "py-5"}`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-3 group relative z-10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link
+          href="/"
+          className={`group relative z-10 flex items-center gap-3 rounded-full border px-3 py-2 transition-all duration-300 ${
+            scrolled
+              ? "border-border bg-surface/90 shadow-[0_18px_40px_-34px_rgba(33,48,58,0.45)] backdrop-blur"
+              : "border-transparent bg-transparent"
+          }`}
+        >
           <Image
             src="/logo.png"
             alt="BizzGrow Logo"
-            width={40}
-            height={40}
+            width={38}
+            height={38}
             priority
-            className="group-hover:rotate-12 transition-transform duration-300"
+            className="transition-transform duration-300 group-hover:-rotate-6"
             unoptimized
           />
-          <span className="text-2xl font-black text-gray-900 tracking-tight">BizzGrow</span>
+          <span className="text-xl font-black tracking-tight md:text-2xl">
+            BizzGrow
+          </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 bg-white border-4 border-gray-900 px-8 py-3 rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          {["About", "Services", "Portfolio", "Careers", "Blog"].map((item) => (
+        <nav className="hidden items-center gap-1 rounded-full border border-border bg-surface/90 px-2 py-2 shadow-[0_24px_60px_-45px_rgba(33,48,58,0.5)] backdrop-blur lg:flex">
+          {["About", "Services", "Portfolio", "Blog"].map((item) => (
             <Link
               key={item}
               href={`/${item.toLowerCase()}`}
-              className="text-sm font-black text-gray-900 hover:text-brand-primary transition-colors relative group uppercase tracking-widest"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-brand-mint/70 hover:text-foreground"
             >
               {item}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4 relative z-10">
-          <Link
-            href="/contact"
-            className="btn-primary text-sm px-6 py-3"
-          >
-            Let's Talk
+        <div className="hidden items-center gap-4 lg:flex relative z-10">
+          <Link href="/contact" className="btn-primary text-sm">
+            Start a project
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className="lg:hidden relative w-12 h-12 bg-[#FFD500] rounded-xl flex flex-col justify-center items-center group z-10 border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all"
+          className="group relative z-10 flex h-12 w-12 flex-col items-center justify-center rounded-full border border-border bg-surface shadow-[0_18px_40px_-32px_rgba(33,48,58,0.45)] transition-all active:translate-y-1 active:shadow-none lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
           <span
-            className={`w-5 h-0.5 bg-gray-900 transition-all duration-300 ${
+            className={`h-0.5 w-5 bg-foreground transition-all duration-300 ${
               open ? "rotate-45 translate-y-1" : "-translate-y-1"
             }`}
           ></span>
           <span
-            className={`w-5 h-0.5 bg-gray-900 transition-all duration-300 ${
+            className={`h-0.5 w-5 bg-foreground transition-all duration-300 ${
               open ? "opacity-0" : "opacity-100"
             }`}
           ></span>
           <span
-            className={`w-5 h-0.5 bg-gray-900 transition-all duration-300 ${
+            className={`h-0.5 w-5 bg-foreground transition-all duration-300 ${
               open ? "-rotate-45 -translate-y-1" : "translate-y-1"
             }`}
           ></span>

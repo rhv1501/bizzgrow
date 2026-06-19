@@ -1,80 +1,122 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const items = [
+  {
+    q: "How long does a digital transformation project typically take?",
+    a: "A comprehensive project—including brand strategy, web design, and initial automation setups—typically takes 6 to 10 weeks. For single services like performance marketing campaigns or smaller web redesigns, timelines range from 2 to 4 weeks.",
+    brandColor: "bg-brand-mint/40",
+    borderColor: "border-brand-mint/60",
+  },
+  {
+    q: "Do you handle both strategy and execution?",
+    a: "Yes. We don't just hand you a blueprint and leave. From initial discovery and brand positioning to writing the code, running the ad campaigns, and setting up the CRM automations—we execute end-to-end.",
+    brandColor: "bg-brand-peach/40",
+    borderColor: "border-brand-peach/60",
+  },
+  {
+    q: "Can you integrate with our existing software stack?",
+    a: "Absolutely. We specialize in connecting modern platforms. Whether you use HubSpot, Salesforce, Shopify, or custom APIs, our automation team ensures data flows seamlessly across your entire business ecosystem.",
+    brandColor: "bg-brand-primary/20",
+    borderColor: "border-brand-primary/40",
+  },
+  {
+    q: "How do you measure the success of a marketing campaign?",
+    a: "We align all our reporting to your actual business outcomes—booked calls, qualified leads, and direct revenue. We set up advanced analytics (GA4, custom tracking pixels) so you know exactly what every dollar is generating.",
+    brandColor: "bg-[#f3cfd8]/40", // brand-secondary
+    borderColor: "border-[#f3cfd8]/60",
+  },
+];
 
 const Faq = () => {
-  const items = [
-    {
-      q: "How long does a website project take?",
-      a: "Typically 4–8 weeks depending on complexity and how quickly you reply to our emails. We move fast, but we can't read minds (yet).",
-    },
-    {
-      q: "Do you provide ongoing marketing?",
-      a: "Yes. We offer retainer packages because a launch is just the beginning. We like sticking around to see the numbers go up.",
-    },
-    {
-      q: "Can you work with our existing stack?",
-      a: "Absolutely. We integrate with popular CMS, ecommerce, and analytics tools. Unless you're using something built in 1998, in which case we might need to have a serious talk.",
-    },
-    {
-      q: "Why should we hire you instead of my cousin's friend?",
-      a: "Does your cousin's friend build scalable architectures, craft conversion-optimized UX, and stay awake at night thinking about your SEO? If yes, hire them. If not, hire us.",
-    }
-  ];
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-16 md:py-32 bg-white relative z-10 border-y-2 border-gray-900">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 border-2 border-gray-900 bg-brand-peach rounded-full px-5 py-2.5 text-sm font-bold text-gray-900 mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase tracking-widest"
-          >
-            FAQ
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.1]"
-          >
-            Questions You're <br/><span className="bg-brand-primary text-white px-4 py-1 rotate-[-2deg] inline-block shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-gray-900 mt-2">Probably Thinking</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-600 mt-6 text-2xl font-bold max-w-2xl mx-auto"
-          >
-            We know you have them. We have answers.
-          </motion.p>
-        </div>
-        
-        <div className="max-w-4xl mx-auto space-y-6">
-          {items.map((it, i) => (
-            <motion.details 
-              key={i} 
-              initial={{ opacity: 0, y: 20 }}
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      {/* Soft floating background element to reinforce Calm Studio vibe */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-peach/10 rounded-full blur-[120px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
+      
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+          
+          {/* Left Sticky Header */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-[2rem] border-4 border-gray-900 overflow-hidden group shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-shadow"
+              transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+              className="text-[clamp(3.5rem,6vw,5.5rem)] font-black tracking-tight text-foreground leading-[1]"
             >
-              <summary className="font-black text-2xl text-gray-900 p-8 cursor-pointer list-none flex justify-between items-center hover:bg-gray-50 transition-colors">
-                {it.q}
-                <span className="text-gray-900 group-open:rotate-180 transition-transform duration-300 bg-brand-mint w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                  ↓
-                </span>
-              </summary>
-              <div className="p-8 pt-0 text-gray-700 text-xl font-medium leading-relaxed bg-gray-50 border-t-2 border-gray-200">
-                <div className="mt-6">{it.a}</div>
-              </div>
-            </motion.details>
-          ))}
+              FAQ.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+              className="text-muted mt-6 text-xl font-medium max-w-md"
+            >
+              Frequent inquiries.<br/>
+              Clarity is essential before any engagement. Here is how we operate.
+            </motion.p>
+          </div>
+
+          {/* Right Accordion */}
+          <div className="lg:col-span-8 flex flex-col w-full gap-4 mt-12 lg:mt-0">
+            {items.map((item, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <motion.div 
+                  key={i} 
+                  initial={false}
+                  animate={{ 
+                    backgroundColor: isOpen ? "var(--tw-bg-opacity, 1)" : "rgba(255, 253, 249, 0)", // transparent or filled
+                  }}
+                  className={`rounded-3xl border transition-colors duration-500 overflow-hidden ${isOpen ? item.brandColor + ' ' + item.borderColor : 'border-border/60 bg-transparent'}`}
+                >
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="w-full text-left p-6 md:p-8 flex items-center justify-between group"
+                  >
+                    <span className="text-xl md:text-2xl font-semibold tracking-tight pr-8 text-foreground">
+                      {item.q}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${isOpen ? 'bg-foreground text-surface' : 'bg-surface border border-border text-foreground group-hover:bg-foreground group-hover:text-surface'}`}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                      >
+                        <div className="px-6 md:px-8 pb-8 pt-2">
+                          <p className="text-lg text-foreground/80 leading-relaxed max-w-3xl">
+                            {item.a}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+          
         </div>
       </div>
     </section>

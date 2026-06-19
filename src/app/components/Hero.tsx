@@ -1,116 +1,274 @@
 "use client";
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
-import Image from "next/image";
+
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { ArrowRight, Sparkles, Target, Zap } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState, useRef } from "react";
 
-const Hero = () => {
-  // A premium, weighty spring configuration for that "agency" feel
-  const springConfig = { type: "spring" as const, bounce: 0.2, duration: 1.2 };
-  
-  // Staggering container
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      }
-    }
-  };
+const WordRotate = ({ words }: { words: string[] }) => {
+  const [index, setIndex] = useState(0);
 
-  // Blur & fade up item
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)",
-      transition: springConfig
-    }
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [words]);
 
   return (
-    <section className="relative min-h-[100vh] flex flex-col justify-center overflow-hidden pt-32 pb-20 bg-pattern">
-      {/* Colorful Animated Blobs - Fade in softly */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="blob-shape bg-brand-primary/20 w-[400px] h-[400px] top-0 left-[-100px]"></motion.div>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.2 }} className="blob-shape bg-brand-secondary/20 w-[500px] h-[500px] bottom-[-100px] right-[-100px]" style={{ animationDelay: '2s' }}></motion.div>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.4 }} className="blob-shape bg-brand-accent/30 w-[300px] h-[300px] top-[20%] right-[10%]" style={{ animationDelay: '4s' }}></motion.div>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.6 }} className="blob-shape bg-brand-mint/30 w-[350px] h-[350px] bottom-[20%] left-[20%]" style={{ animationDelay: '1s' }}></motion.div>
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div 
-          className="max-w-5xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
+    <span className="inline-block text-brand-secondary">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={words[index]}
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)", rotateX: 90 }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)", rotateX: 0 }}
+          exit={{ opacity: 0, y: -20, filter: "blur(4px)", rotateX: -90 }}
+          transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+          className="inline-block origin-center"
         >
-          
-          <motion.div variants={itemVariants} className="flex justify-center mb-4 md:mb-8">
-            <div className="inline-flex items-center gap-2 bg-white px-4 md:px-5 py-2 md:py-2.5 rounded-full border-2 border-gray-900 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] hover:rotate-0 transition-transform cursor-crosshair">
-              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-brand-primary" />
-              <span className="font-bold text-gray-900 tracking-wider uppercase text-xs md:text-sm">Say goodbye to boring</span>
-            </div>
-          </motion.div>
-
-          <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl md:text-8xl lg:text-[7.5rem] font-black leading-[0.95] tracking-tighter text-gray-900 mb-4 md:mb-8">
-            We Make Brands <br/>
-            <span className="relative inline-block mt-2 md:mt-4">
-              <span className="relative z-10 text-white px-3 md:px-4 py-1 md:py-2 bg-gray-900 rounded-2xl md:rounded-[2rem] rotate-[-2deg] inline-block">Unignorable.</span>
-              <span className="absolute inset-0 bg-brand-primary rounded-2xl md:rounded-[2rem] rotate-[2deg] z-0 translate-y-1 translate-x-1 md:translate-y-2 md:translate-x-2"></span>
-            </span>
-          </motion.h1>
-          
-          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-bold mb-6 md:mb-12 px-2 md:px-0">
-            We're a creative studio that builds eye-catching websites, scroll-stopping brands, and digital experiences that actually make people want to buy your stuff.
-          </motion.p>
-
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center">
-            <Link href="/contact" className="btn-primary text-base md:text-lg w-full sm:w-auto hover:-translate-y-1 transition-transform py-3 md:py-4 flex items-center justify-center gap-2">
-              Start A Project
-              <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
-            </Link>
-            <Link href="/portfolio" className="btn-secondary text-base md:text-lg w-full sm:w-auto bg-white hover:-translate-y-1 transition-transform py-3 md:py-4 flex items-center justify-center">
-              See Our Magic
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Visual Showcase Grid */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ ...springConfig, delay: 0.6 }}
-          className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto"
-        >
-          <div className="col-span-2 row-span-2 rounded-[2rem] overflow-hidden border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative aspect-square md:aspect-auto group">
-            <div className="absolute inset-0 bg-brand-primary/20 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-            <Image src="/hero1.png" alt="Creative Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
-            <div className="absolute bottom-6 left-6 z-20">
-              <span className="bg-white text-gray-900 font-black px-6 py-3 rounded-full border-2 border-gray-900 text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase tracking-widest">Bold Design</span>
-            </div>
-          </div>
-          
-          <div className="rounded-[2rem] bg-brand-accent p-6 border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between aspect-square hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-            <h3 className="text-4xl md:text-6xl font-black text-gray-900">99%</h3>
-            <p className="font-bold text-gray-900 text-sm md:text-base leading-snug">Less boring than your current site.</p>
-          </div>
-
-          <div className="rounded-[2rem] overflow-hidden border-4 border-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative aspect-square group">
-            <Image src="/hero2.png" alt="Modern Technology" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
-          </div>
-
-          <div className="col-span-2 rounded-[2rem] bg-brand-mint p-8 border-4 border-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMGgyMHYyMEgwem0xMCAxMGE1IDUgMCAxIDAgMC0xMCA1IDUgMCAwIDAgMCAxMHoiIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iLjEiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-30 group-hover:opacity-10 transition-opacity duration-500"></div>
-            <h3 className="text-3xl md:text-5xl font-black text-center text-gray-900 relative z-10 leading-tight">
-              We make <br/> <span className="text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">awesome</span> happen.
-            </h3>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   );
 };
 
-export default Hero;
+// Physics-driven Magnetic Component
+function Magnetic({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  // Snap back spring physics
+  const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
+  const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
+
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+    // Pull the element 30% of the distance towards the mouse
+    x.set((clientX - centerX) * 0.3);
+    y.set((clientY - centerY) * 0.3);
+  };
+
+  const reset = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      style={{ x: springX, y: springY }}
+      className="inline-block w-full sm:w-auto"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Custom Cursor & Physics
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  const cursorScale = useMotionValue(1);
+
+  // Normalized mouse values for 3D tilt (-1 to 1)
+  const normX = useMotionValue(0);
+  const normY = useMotionValue(0);
+
+  // Smooth springs for the custom cursor
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+  const smoothScale = useSpring(cursorScale, { damping: 20, stiffness: 300 });
+
+  // Extremely smooth, heavy physics for the 3D tilt
+  const smoothNormX = useSpring(normX, { damping: 40, stiffness: 150, mass: 1 });
+  const smoothNormY = useSpring(normY, { damping: 40, stiffness: 150, mass: 1 });
+
+  // Map normalized mouse position to rotation degrees
+  const rotateX = useTransform(smoothNormY, [-1, 1], [15, -15]);
+  const rotateY = useTransform(smoothNormX, [-1, 1], [-15, 15]);
+
+  useEffect(() => {
+    const handleMount = requestAnimationFrame(() => setMounted(true));
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      // Screen space for cursor
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      
+      // Normalized space for 3D tilt
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = (e.clientY / window.innerHeight) * 2 - 1;
+      normX.set(x);
+      normY.set(y);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      cancelAnimationFrame(handleMount);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [mouseX, mouseY, normX, normY]);
+
+  return (
+    <section 
+      ref={containerRef}
+      className="relative min-h-[100dvh] w-full overflow-hidden bg-background flex flex-col items-center justify-center pt-24 pb-16 md:cursor-none"
+      style={{ perspective: 1200 }} // Gives depth to the 3D transforms
+    >
+      
+      {/* 1. INTERACTIVE CUSTOM CURSOR */}
+      {mounted && (
+        <>
+          <motion.div
+            className="pointer-events-none fixed left-0 top-0 z-[100] flex items-center justify-center rounded-full mix-blend-difference hidden md:flex"
+            style={{
+              x: smoothMouseX,
+              y: smoothMouseY,
+              scale: smoothScale,
+              width: 32,
+              height: 32,
+              translateX: "-50%",
+              translateY: "-50%",
+              backgroundColor: "#fff"
+            }}
+          />
+          {/* Cursor trailing glow */}
+          <motion.div
+            className="pointer-events-none fixed left-0 top-0 z-[90] rounded-full blur-[40px] opacity-40 bg-brand-primary hidden md:block"
+            style={{
+              x: smoothMouseX,
+              y: smoothMouseY,
+              width: 150,
+              height: 150,
+              translateX: "-50%",
+              translateY: "-50%",
+              transition: "width 0.2s, height 0.2s"
+            }}
+          />
+        </>
+      )}
+
+      {/* 2. CREATIVE REACTIVE BACKGROUND */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] mix-blend-overlay"></div>
+        {/* Animated grid lines that give a structural, engineered feel */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+      </div>
+
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
+        
+        {/* 3. EYEBROW */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2 text-sm font-bold shadow-sm">
+            <span className="flex h-2 w-2 rounded-full bg-brand-primary animate-pulse"></span>
+            End-to-End Digital Transformation
+          </div>
+        </motion.div>
+
+        {/* 4. MASSIVE TYPOGRAPHY WITH 3D TILT */}
+        <div 
+          className="relative w-full flex justify-center"
+          onMouseEnter={() => cursorScale.set(4)}
+          onMouseLeave={() => cursorScale.set(1)}
+        >
+          <motion.div
+            style={{ 
+              rotateX, 
+              rotateY,
+              transformStyle: "preserve-3d"
+            }}
+            className="will-change-transform"
+          >
+            <motion.h1 
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-[0.9] tracking-tighter text-foreground uppercase"
+              style={{ z: 50 }} // Pushes text out in 3D space
+            >
+              Don&apos;t Just Build A <br/>
+              <WordRotate words={["Website.", "Brand.", "Campaign.", "SEO Strategy.", "Social Presence.", "Workflow.", "System."]} />
+              <span className="block mt-4 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-mint bg-clip-text text-transparent transform-gpu drop-shadow-2xl">
+                Build An Empire.
+              </span>
+            </motion.h1>
+          </motion.div>
+        </div>
+
+        {/* 5. SUBHEAD */}
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="mt-8 max-w-3xl text-[clamp(1.125rem,2vw,1.375rem)] font-bold leading-relaxed text-muted"
+        >
+          Stop piecing together your growth. We combine high-end web design, SEO, social media, performance marketing, and business automation into a single, unstoppable growth engine.
+        </motion.p>
+
+        {/* 6. MAGNETIC CONVERSION BUTTON */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-12 w-full max-w-md mx-auto"
+          onMouseEnter={() => cursorScale.set(0.5)}
+          onMouseLeave={() => cursorScale.set(1)}
+        >
+          <Magnetic>
+            <div className="relative group flex justify-center w-full sm:w-auto cursor-pointer">
+              {/* Ambient glow behind the button */}
+              <div className="absolute -inset-1.5 rounded-[2rem] bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-mint opacity-40 blur-xl transition-opacity duration-500 group-hover:opacity-70 animate-pulse"></div>
+              
+              <Link 
+                href="/contact"
+                className="group/btn relative overflow-hidden flex w-full sm:w-auto items-center justify-center gap-3 rounded-[2rem] bg-surface ring-1 ring-border/50 px-10 py-5 shadow-2xl transition-transform active:scale-[0.97]"
+              >
+                <span className="relative z-10 flex items-center gap-2 text-base font-black text-foreground">
+                  Start Your Transformation <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
+                </span>
+                {/* Hover fill effect inside button */}
+                <div className="absolute inset-0 bg-brand-primary translate-y-[100%] transition-transform duration-300 ease-out group-hover/btn:translate-y-0 z-0"></div>
+              </Link>
+            </div>
+          </Magnetic>
+        </motion.div>
+
+        {/* 7. MICRO-CONVERSIONS (Trust) */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="mt-14 flex flex-wrap justify-center items-center gap-8 text-sm font-bold text-muted uppercase tracking-widest"
+        >
+          <div className="flex items-center gap-2">
+            <Zap className="w-4 h-4 text-brand-primary" /> End-to-End Execution
+          </div>
+          <div className="flex items-center gap-2">
+            <Target className="w-4 h-4 text-brand-secondary" /> Conversion Driven
+          </div>
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-brand-mint" /> Unapologetic Design
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
