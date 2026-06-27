@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     default: "BizzGrowLabs - Digital Transformation for Small & Medium Businesses",
     template: "%s | BizzGrowLabs",
   },
+
   description:
     "End-to-end digital transformation services for SMBs. Web design, development, digital marketing, branding & automation. Helping businesses scale sustainably with modern technology.",
   keywords: [
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     title: "BizzGrowLabs - Digital Transformation for SMBs",
     description:
       "End-to-end digital transformation services. Web design, development, digital marketing, branding & automation.",
-    creator: "@bizzgrow",
+    creator: "@bizzgrowlabs",
   },
   robots: {
     index: true,
@@ -109,20 +110,15 @@ gtag('config', 'AW-18058135486');
               logo: "/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+918939036141",
+                telephone: "+919150302455",
                 contactType: "customer service",
-                email: "bizzgrowlabs@gmail.com",
+                email: "info@bizzgrowlabs.com",
               },
               sameAs: [
-                "https://linkedin.com/company/bizzgrow",
-                "https://twitter.com/bizzgrow",
+                "https://linkedin.com/company/bizzgrowlabs",
+                "https://instagram.com/bizzgrowlabs",
+                "https://twitter.com/bizzgrowlabs",
               ],
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "106, A Proad, Choolai",
-                addressLocality: "Chennai-112",
-                addressCountry: "IN",
-              },
               foundingDate: "2024",
               numberOfEmployees: "2-10",
             }),

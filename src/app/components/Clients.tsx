@@ -3,6 +3,8 @@
 import { useRef, useEffect } from "react";
 import { portfolioProjects } from "../portfolio/projects";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const Clients = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -138,6 +140,18 @@ const Clients = () => {
             <p className="relative z-10 mt-6 text-base leading-relaxed text-muted md:text-lg lg:text-xl max-w-2xl mx-auto">
               We partner with ambitious teams to rebuild their digital infrastructure, scale their marketing, and automate their operations.
             </p>
+
+            <div className="relative z-10 mt-10 md:mt-12 flex justify-center">
+              <Link 
+                href="/portfolio" 
+                className="group relative overflow-hidden flex items-center justify-center gap-3 rounded-full bg-foreground px-8 py-4 md:px-10 md:py-5 transition-transform active:scale-95 shadow-2xl"
+              >
+                <span className="relative z-10 text-xs md:text-sm font-bold tracking-widest uppercase text-background">
+                  View Our Portfolio
+                </span>
+                <ArrowRight className="h-4 w-4 text-background relative z-10 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

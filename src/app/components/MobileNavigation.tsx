@@ -139,7 +139,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
 
               <div className="pt-1 text-center">
                 <a
-                  href="tel:+918939036141"
+                  href="tel:+919150302455"
                   onClick={() =>
                     trackCallNowClick({
                       location: "mobile_navigation_phone_link",
@@ -148,7 +148,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                   }
                   className="font-semibold text-foreground underline decoration-2 underline-offset-4 transition-colors duration-200 hover:text-brand-primary"
                 >
-                  +91 8939036141
+                  +91 9150302455
                 </a>
               </div>
             </motion.div>

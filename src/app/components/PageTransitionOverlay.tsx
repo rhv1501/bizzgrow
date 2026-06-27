@@ -46,6 +46,7 @@ export default function PageTransitionOverlay() {
   useEffect(() => {
     // When pathname changes (navigation complete), trigger reveal animation
     if (isAnimating) {
+      window.scrollTo(0, 0);
       requestAnimationFrame(() => setIsAnimating(false));
     }
   }, [pathname, isAnimating]);

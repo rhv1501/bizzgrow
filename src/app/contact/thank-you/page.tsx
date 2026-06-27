@@ -68,14 +68,14 @@ const ThankYouPage = () => {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a 
-                href="tel:+918939036141" 
+                href="tel:+919150302455" 
                 className="bg-surface text-foreground hover:bg-brand-secondary border border-border rounded-xl px-8 py-4 text-xl font-black uppercase tracking-wider shadow-md hover:shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Call Us
               </a>
               <a 
-                href="https://wa.me/918939036141" 
+                href="https://wa.me/919150302455" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] text-foreground hover:bg-[#128C7E] hover:text-white border border-border rounded-xl px-8 py-4 text-xl font-black uppercase tracking-wider shadow-md hover:shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-3"

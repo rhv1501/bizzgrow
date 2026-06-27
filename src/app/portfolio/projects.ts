@@ -48,7 +48,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     technologies: ["Shopify", "Liquid", "Custom Theme Code", "On-page SEO"],
     gradient: "from-blue-500 to-purple-600",
-    image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    image: "/clients/virasvault.png",
     websiteUrl: "https://virasvault.com",
   },
   {
@@ -73,7 +73,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     technologies: ["Shopify", "Liquid", "On-page SEO", "Custom Theme Code"],
     gradient: "from-teal-500 to-green-600",
-    image: "linear-gradient(135deg, #13547a 0%, #80d0c7 100%)",
+    image: "/clients/nayagadgets.png",
     websiteUrl: "https://nayagadget.com",
   },
   {
@@ -223,7 +223,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     technologies: ["Shopify", "Liquid", "Custom Theme Code", "UI/UX", "On-page SEO"],
     gradient: "from-orange-500 to-red-600",
-    image: "linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%)",
+    image: "/clients/xposenutrition.png",
     websiteUrl: "https://xposenutri.com",
   },
   {
@@ -255,7 +255,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "Email Automation",
     ],
     gradient: "from-teal-500 to-green-600",
-    image: "linear-gradient(135deg, #13547a 0%, #80d0c7 100%)",
+    image: "/clients/thelayeredluxe.png",
     websiteUrl: "https://thelayeredluxe.com/",
   },
   {
@@ -279,7 +279,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     technologies: ["Next.js", "Google Sheets", "Lead Capture"],
     gradient: "from-blue-500 to-purple-600",
-    image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    image: "/clients/auremaison.png",
     websiteUrl: "https://www.auremaison.in/",
   },
 ];

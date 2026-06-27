@@ -17,15 +17,14 @@ const Portfolio = () => {
         
         {/* Header Block */}
         <div className="mb-12 max-w-3xl lg:mb-32">
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full border border-border/40 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-foreground"
+            className="text-xs font-mono text-muted mb-6 uppercase tracking-widest flex items-center gap-4"
           >
-            <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.5} />
-            <span>Selected work</span>
-          </motion.div>
+            <span className="w-8 h-px bg-muted" /> Selected work
+          </motion.p>
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -86,7 +85,11 @@ const Portfolio = () => {
                     className={`pointer-events-none absolute inset-0 scale-150 blur-[80px] transition-opacity duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:blur-[100px] ${
                       isActive ? "opacity-40 lg:opacity-50" : "opacity-10 lg:opacity-20"
                     }`}
-                    style={{ background: project.image }}
+                    style={
+                      project.image.startsWith("linear-gradient")
+                        ? { background: project.image }
+                        : { backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }
+                    }
                   />
 
                   {/* Physical Paper Noise Overlay */}

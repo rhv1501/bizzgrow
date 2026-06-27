@@ -89,7 +89,7 @@ export default function PrivacyPage() {
               <br />
               Email: bizzgrowlabs@gmail.com
               <br />
-              Phone: +91 8939036141
+              Phone: +91 9150302455
             </p>
           </section>
         </div>

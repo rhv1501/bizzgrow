@@ -46,17 +46,13 @@ const Navbar = () => {
           }`}
         >
           <Image
-            src="/logo.png"
+            src="/logo-cropped.png"
             alt="BizzGrow Logo"
-            width={38}
-            height={38}
-            priority
+            width={44}
+            height={44}
             className="transition-transform duration-300 group-hover:-rotate-6"
             unoptimized
           />
-          <span className="text-xl font-black tracking-tight md:text-2xl">
-            BizzGrow
-          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full border border-border bg-surface/90 px-2 py-2 shadow-[0_24px_60px_-45px_rgba(33,48,58,0.5)] backdrop-blur lg:flex">

@@ -2,8 +2,9 @@
 
 import {
   Phone,
-  MapPin,
+  Mail,
   Linkedin,
+  Instagram,
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
@@ -43,17 +44,16 @@ const Footer = () => {
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 mb-16">
           <div className="lg:col-span-5 space-y-6">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="rounded-2xl border border-border bg-surface p-2 shadow-[0_18px_40px_-30px_rgba(33,48,58,0.45)]">
+            <Link href="/" className="inline-flex group">
+              <div className="rounded-3xl border border-border bg-surface p-4 shadow-[0_18px_40px_-30px_rgba(33,48,58,0.45)] transition-transform duration-500 group-hover:-rotate-3 group-hover:scale-105">
                 <Image
-                  src="/logo.png"
+                  src="/main-cropped.png"
                   alt="BizzGrowLabs Logo"
-                  width={40}
-                  height={40}
+                  width={140}
+                  height={140}
                   unoptimized
                 />
               </div>
-              <h3 className="text-3xl font-black tracking-tight">BizzGrowLabs</h3>
             </Link>
 
             <p className="max-w-md text-lg font-medium text-foreground">
@@ -62,7 +62,8 @@ const Footer = () => {
 
             <div className="flex gap-4">
               {[
-                { icon: Linkedin, href: "https://linkedin.com/company/bizzgrow", label: "LinkedIn" },
+                { icon: Linkedin, href: "https://linkedin.com/company/bizzgrowlabs", label: "LinkedIn" },
+                { icon: Instagram, href: "https://instagram.com/bizzgrowlabs", label: "Instagram" },
               ].map((social, index) => {
                 const IconComponent = social.icon;
                 return (
@@ -110,7 +111,7 @@ const Footer = () => {
             </h4>
             <div className="space-y-5">
               <a
-                href="tel:+918939036141"
+                href="tel:+919150302455"
                 className="flex items-center gap-4 group"
                 onClick={() =>
                   trackCallNowClick({ location: "footer", pagePath: "/" })
@@ -120,17 +121,18 @@ const Footer = () => {
                   <Phone className="h-5 w-5 text-foreground" />
                 </div>
                 <span className="text-lg font-semibold text-foreground">
-                  +91 8939036141
+                  +91 9150302455
                 </span>
               </a>
 
               <div className="flex items-center gap-4">
                 <div className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-brand-mint">
-                  <MapPin className="h-5 w-5 text-foreground" />
+                  <Mail className="h-5 w-5 text-foreground" />
                 </div>
                 <div className="text-base font-medium text-foreground">
-                  <p>106, A Proad, Choolai</p>
-                  <p>Chennai-112, India</p>
+                  <a href="mailto:info@bizzgrowlabs.com" className="hover:text-brand-primary transition-colors">
+                    info@bizzgrowlabs.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -139,7 +141,7 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row mb-12">
           <p className="text-base font-medium text-muted">
-            &copy; {currentYear} BizzGrowLabs. Built to scale. Designed to dominate.
+            &copy; {currentYear} BizzGrowLabs. All rights reserved.
           </p>
 
           <div className="flex gap-8">

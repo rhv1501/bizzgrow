@@ -200,7 +200,7 @@ export default function ProjectPageClient({
               className="lg:col-span-7 order-1 lg:order-2"
             >
               <div 
-                className="relative w-full aspect-[4/3] lg:aspect-[16/11] rounded-[2.5rem] overflow-hidden bg-surface shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] border border-border/40 group cursor-crosshair"
+                className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden bg-surface shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] border border-border/40 group cursor-crosshair"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
               >
@@ -210,9 +210,14 @@ export default function ProjectPageClient({
                   style={{ 
                     x: smoothImgX, 
                     y: smoothImgY,
-                    backgroundImage: `url(${project.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    ...(project.image.startsWith("linear-gradient")
+                      ? { background: project.image }
+                      : { 
+                          backgroundImage: `url(${project.image})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }
+                    )
                   }}
                 />
                 {/* Subtle Inner Shadow overlay */}

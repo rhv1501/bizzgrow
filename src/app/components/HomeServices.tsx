@@ -44,8 +44,8 @@ export default function HomeServices() {
            <span className="w-8 h-px bg-muted" /> Area of Expertise
          </p>
          <h2 className="text-[clamp(3rem,6vw,5rem)] font-medium text-foreground leading-[1.05] tracking-tighter">
-           Capabilities that <br />
-           <span className="italic font-serif text-brand-primary">change the game.</span>
+           Everything you need to <br />
+           <span className="italic font-serif text-brand-primary">grow online.</span>
          </h2>
       </div>
 
@@ -93,7 +93,7 @@ export default function HomeServices() {
 
       {/* Floating Media Card (Desktop Only) */}
       <motion.div
-        className="fixed top-0 left-0 w-[450px] h-[550px] pointer-events-none z-50 hidden md:block rounded-[2.5rem] overflow-hidden bg-surface shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border border-border/60"
+        className="fixed top-0 left-0 w-[280px] h-[340px] pointer-events-none z-50 hidden md:block rounded-[1.5rem] overflow-hidden bg-surface shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border border-border/60"
         style={{
           x: cursorX,
           y: cursorY,
@@ -130,25 +130,17 @@ export default function HomeServices() {
               </div>
 
               {/* Card Content Top */}
-              <div className="relative z-10 p-10">
-                <span className={`px-5 py-2.5 rounded-full border border-foreground/10 text-xs font-mono uppercase tracking-widest bg-background/50 backdrop-blur-md`}>
+              <div className="relative z-10 p-6">
+                <span className={`px-3 py-1.5 rounded-full border border-foreground/10 text-[10px] font-mono uppercase tracking-widest bg-background/50 backdrop-blur-md`}>
                   {services[hoveredIndex].slug}
                 </span>
               </div>
 
               {/* Card Content Bottom */}
-              <div className="relative z-10 p-10 bg-gradient-to-t from-surface via-surface/90 to-transparent pt-32 mt-auto border-t border-foreground/5">
-                <h4 className="text-3xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
+              <div className="relative z-10 p-6 bg-gradient-to-t from-surface via-surface/90 to-transparent pt-20 mt-auto border-t border-foreground/5">
+                <h4 className="text-xl font-medium tracking-tight mb-0 leading-[1.2] text-foreground">
                   {services[hoveredIndex].headline}
                 </h4>
-                <ul className="flex flex-col gap-3">
-                  {services[hoveredIndex].outcomes.slice(0, 3).map((outcome, oIdx) => (
-                    <li key={oIdx} className="text-sm text-muted flex items-start gap-3">
-                      <span className="text-brand-primary mt-0.5">✦</span> 
-                      <span className="leading-snug">{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             </motion.div>
           )}
