@@ -67,7 +67,7 @@ export default function Process() {
   const Icon = current.icon;
 
   const springTransition = {
-    type: "spring",
+    type: "spring" as const,
     stiffness: 120,
     damping: 20,
     mass: 1,
