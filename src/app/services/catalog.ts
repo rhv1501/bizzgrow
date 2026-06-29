@@ -348,65 +348,107 @@ export const services: Service[] = [
   },
   {
     slug: "automation",
-    title: "Business Automation",
+    title: "Marketing Automation",
     description:
-      "Streamline your operations with automated workflows, reducing manual tasks and increasing productivity.",
-    features: ["Workflow Automation", "CRM Integration", "Process Optimization"],
-    headline: "Reduce busywork and keep your team focused on revenue.",
+      "Automate your lead generation, nurturing, and customer retention with smart marketing workflows that run on autopilot.",
+    features: ["Lead Generation Automation", "Email & SMS Marketing", "Lead Nurturing"],
+    headline: "Turn your leads into customers while you sleep.",
     outcomes: [
-      "Faster response times and follow-ups",
-      "More consistent customer experience",
-      "Less time wasted on repetitive admin work",
-      "Better visibility across pipeline and operations",
+      "Higher conversion rates through instant follow-ups",
+      "More qualified leads nurtured automatically over time",
+      "Personalized customer journeys across email and SMS",
+      "Reduced drop-offs in your sales and marketing funnel",
     ],
     alignment: [
-      "We align workflows to your real processes and approvals",
-      "We align automations to your CRM and source-of-truth data",
-      "We align notifications to the right people at the right time",
-      "We align reporting so you can see throughput and bottlenecks",
+      "We align automation logic to your customer buying journey",
+      "We align messaging to engage leads at the right time",
+      "We align tracking to ensure high deliverability and engagement",
+      "We align lead scoring to identify your warmest prospects",
     ],
     deliverables: [
-      "Workflow map + automation blueprint",
-      "Automations (forms → CRM → email/SMS → tasks)",
-      "Integrations and monitoring",
-      "Team training + documentation",
+      "Automation strategy and journey mapping",
+      "Email and push notification sequences",
+      "Lead capture and routing setup",
+      "Campaign tracking and performance dashboards",
     ],
     howItWorks: [
-      "Map: current process and pain points",
-      "Design: future workflow + rules",
-      "Implement: automations and integrations",
-      "Improve: iterate based on results",
+      "Audit: current lead flow and drop-off points",
+      "Map: customer journey and automation rules",
+      "Build: email, SMS, and push notification sequences",
+      "Optimize: A/B testing and performance tuning",
     ],
     subServices: [
       {
-        name: "CRM Workflow Automation",
+        name: "Lead Generation Automation",
         description:
-          "Automate lead routing, task creation, follow-ups, and pipeline stages so nothing slips through the cracks.",
-        keywords: ["CRM automation", "workflow", "pipeline"],
+          "Automate the capture and routing of new leads from your website, ads, and social media directly into your sales funnel.",
+        keywords: ["lead generation", "lead capture", "automated routing"],
       },
       {
-        name: "Lead Capture & Follow-Up Automation",
+        name: "Email Marketing Automation",
         description:
-          "Connect forms, chat, and ads to instant email/SMS follow-ups and booking flows to improve conversion speed.",
-        keywords: ["lead capture", "follow-up", "SMS automation"],
+          "Create personalized email sequences for onboarding, abandoned carts, and re-engagement to maximize customer lifetime value.",
+        keywords: ["email marketing", "drip campaigns", "autoresponders"],
       },
       {
-        name: "n8n Automations & Integrations",
+        name: "Lead Nurturing Workflows",
         description:
-          "Custom n8n workflows that connect your tools, move data reliably, and automate repetitive work across marketing and operations.",
-        keywords: ["n8n", "workflow automation", "integrations"],
+          "Keep your brand top-of-mind with automated educational and promotional content that moves prospects closer to a buying decision.",
+        keywords: ["lead nurturing", "sales funnel", "customer journey"],
       },
       {
-        name: "Client Onboarding Automation",
+        name: "Push Notification & SMS Automation",
         description:
-          "Automate onboarding steps like forms, contracts, welcome emails, and task checklists for a smoother customer experience.",
-        keywords: ["client onboarding", "automation", "workflows"],
+          "Reach your audience instantly with targeted SMS and push notifications for time-sensitive offers and important updates.",
+        keywords: ["SMS automation", "push notifications", "instant alerts"],
       },
       {
-        name: "Reporting & Dashboards",
+        name: "Multi-Channel Retargeting",
         description:
-          "Track pipeline, conversions, and operational throughput with dashboards that keep your team aligned.",
-        keywords: ["dashboards", "reporting", "KPIs"],
+          "Sync your marketing data to automatically retarget warm leads across multiple channels based on their behavior and interactions.",
+        keywords: ["retargeting", "behavioral automation", "multi-channel"],
+      },
+      {
+        name: "WhatsApp & Conversational Automation",
+        description:
+          "Deploy intelligent chatbots and automated broadcast campaigns on WhatsApp and Messenger to engage customers instantly where they spend the most time.",
+        keywords: ["WhatsApp automation", "conversational marketing", "chat sequences"],
+      },
+      {
+        name: "E-commerce & Cart Recovery Sequences",
+        description:
+          "Automatically win back lost sales with strategic, multi-step sequences targeting users who abandoned their carts or stopped midway through checkout.",
+        keywords: ["cart abandonment", "revenue recovery", "e-commerce automation"],
+      },
+      {
+        name: "Customer Onboarding & Retention",
+        description:
+          "Create seamless post-purchase experiences with automated onboarding flows that educate buyers, reduce churn, and drive natural upsells.",
+        keywords: ["post-purchase automation", "onboarding", "customer retention"],
+      },
+      {
+        name: "Review & Reputation Autopilot",
+        description:
+          "Systematically build your brand’s social proof by automatically requesting reviews and testimonials from your most satisfied customers at exactly the right moment.",
+        keywords: ["automated reviews", "reputation management", "feedback loops"],
+      },
+      {
+        name: "Lead Scoring & Sales Handoff",
+        description:
+          "Automatically track lead engagement and instantly alert your sales team the moment a prospect shows high buying intent.",
+        keywords: ["lead scoring", "sales enablement", "pipeline routing"],
+      },
+      {
+        name: "Webinar & Event Automation",
+        description:
+          "Maximize attendance and conversions with automated registration confirmations, timed reminders, and post-event follow-up sequences.",
+        keywords: ["webinar marketing", "event automation", "attendance rates"],
+      },
+      {
+        name: "Loyalty & VIP Engagement",
+        description:
+          "Put customer loyalty on autopilot by triggering personalized birthday offers, milestone rewards, and VIP discounts to your best buyers.",
+        keywords: ["customer loyalty", "VIP rewards", "lifecycle marketing"],
       },
     ],
   },
