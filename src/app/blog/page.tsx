@@ -7,56 +7,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const posts = [
-  {
-    title: "10 SEO Mistakes Small Businesses Make",
-    excerpt: "Common SEO pitfalls that hurt your search rankings and practical solutions to improve your online visibility.",
-    date: "2024-10-15",
-    category: "SEO",
-    readTime: "8 min read",
-    color: "bg-brand-primary",
-  },
-  {
-    title: "The Complete Guide to Website Performance",
-    excerpt: "Speed up your website and improve user experience with these proven performance optimization techniques.",
-    date: "2024-10-08",
-    category: "Development",
-    readTime: "12 min read",
-    color: "bg-brand-mint",
-  },
-  {
-    title: "Digital Marketing ROI: Measure What Matters",
-    excerpt: "Track the metrics that actually impact your bottom line and optimize your marketing spend.",
-    date: "2024-09-28",
-    category: "Marketing",
-    readTime: "6 min read",
-    color: "bg-brand-secondary",
-  },
-  {
-    title: "Branding vs Marketing: What's The Difference?",
-    excerpt: "Learn why both branding and marketing are essential for business growth and how they work together.",
-    date: "2024-09-22",
-    category: "Branding",
-    readTime: "5 min read",
-    color: "bg-brand-peach",
-  },
-  {
-    title: "E-commerce Conversion Optimization Strategies",
-    excerpt: "Increase your online sales with these tested conversion rate optimization techniques for e-commerce stores.",
-    date: "2024-09-15",
-    category: "E-commerce",
-    readTime: "10 min read",
-    color: "bg-brand-accent",
-  },
-  {
-    title: "The Future of Web Design: 2024 Trends",
-    excerpt: "Stay ahead of the curve with these emerging web design trends that will shape user experiences.",
-    date: "2024-09-08",
-    category: "Design",
-    readTime: "7 min read",
-    color: "bg-foreground",
-  },
-];
+import { posts } from "./data";
 
 export default function BlogPage() {
   const heroRef = useRef(null);

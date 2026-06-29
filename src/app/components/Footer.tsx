@@ -139,34 +139,73 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row mb-12">
-          <p className="text-base font-medium text-muted">
+        <div className="flex flex-col items-center justify-between gap-6 border-t border-border pt-8 md:flex-row mb-12 relative z-10">
+          
+          <div className="flex items-center gap-3 rounded-full border border-border bg-surface/50 px-4 py-2 backdrop-blur-sm">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+            </span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-foreground">
+              Accepting New Projects
+            </span>
+          </div>
+
+          <p className="text-sm font-medium text-muted">
             &copy; {currentYear} BizzGrowLabs. All rights reserved.
           </p>
 
-          <div className="flex gap-8">
+          <div className="flex gap-6">
             <Link
               href="/privacy"
-              className="text-base font-medium text-foreground underline decoration-2 underline-offset-4 transition-colors hover:text-brand-primary"
+              className="text-sm font-medium text-muted transition-colors hover:text-foreground"
             >
-              Privacy
+              Privacy Policy
             </Link>
             <Link
               href="/terms"
-              className="text-base font-medium text-foreground underline decoration-2 underline-offset-4 transition-colors hover:text-brand-primary"
+              className="text-sm font-medium text-muted transition-colors hover:text-foreground"
             >
-              Terms
+              Terms of Service
             </Link>
           </div>
         </div>
       </div>
-      
-      {/* Massive Awwwards Typography Reveal */}
-      <div className="w-full flex justify-center items-center overflow-hidden pointer-events-none select-none border-t border-border/40 pt-8 mt-8 px-4">
-        <h2 className="text-[clamp(2rem,8vw,14rem)] font-black text-foreground/5 tracking-tighter leading-[0.75] uppercase text-center w-full whitespace-nowrap">
-          BizzGrowLabs
-        </h2>
+
+      {/* Infinite Marquee */}
+      <div className="relative flex w-full overflow-hidden border-t border-border/40 bg-transparent py-3">
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes infinite-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-infinite-scroll {
+            animation: infinite-scroll 35s linear infinite;
+            display: flex;
+            width: max-content;
+          }
+        `}} />
+        <div className="animate-infinite-scroll flex-nowrap gap-8 items-center">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex flex-nowrap gap-8 items-center shrink-0">
+              {[...Array(2)].map((_, k) => (
+                <div key={k} className="flex flex-nowrap gap-8 items-center shrink-0">
+                  {["DIGITAL TRANSFORMATION", "MARKETING AUTOMATION", "WEB ARCHITECTURE", "BRAND IDENTITY"].map((word, j) => (
+                    <div key={j} className="flex flex-nowrap items-center gap-8 shrink-0">
+                      <span className="whitespace-nowrap text-xs font-black tracking-[0.2em] uppercase text-muted/70">
+                        {word}
+                      </span>
+                      <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-brand-mint" />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
+      
+
     </footer>
   );
 };
