@@ -190,7 +190,7 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2 text-sm font-bold shadow-sm">
             <span className="flex h-2 w-2 rounded-full bg-brand-primary animate-pulse"></span>
-            Better Websites. More Leads.
+            BizzGrowLabs: Your Digital Growth Partner.
           </div>
         </motion.div>
 
