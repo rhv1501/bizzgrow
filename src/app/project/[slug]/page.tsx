@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { DollarSign, TrendingUp, Users } from "lucide-react";
 import { portfolioProjects } from "../../portfolio/projects";
 import { fetchOpenGraphMetadata } from "../../utils/linkMetadata";
+import { buildBreadcrumbSchema, toJsonLd } from "../../utils/seo";
 import ProjectPageClient, {
   type ProjectSerialized,
   type ProjectResultSerialized,
@@ -57,10 +58,13 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.title} | BizzGrow Portfolio`,
+    title: project.title,
     description: project.description,
+    alternates: {
+      canonical: `/project/${slug}`,
+    },
     openGraph: {
-      title: `${project.title} | BizzGrow Portfolio`,
+      title: project.title,
       description: project.description,
       url: `https://bizzgrowlabs.com/project/${slug}`,
       images: [
@@ -75,7 +79,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | BizzGrow Portfolio`,
+      title: project.title,
       description: project.description,
       images: [project.image],
     },
@@ -95,5 +99,42 @@ export default async function ProjectPage({
     ? await fetchOpenGraphMetadata(project.websiteUrl)
     : undefined;
 
-  return <ProjectPageClient project={serializeProject(project, linkMeta)} />;
+  const breadcrumbJsonLd = toJsonLd(
+    buildBreadcrumbSchema([
+      { name: "Home", url: "https://bizzgrowlabs.com" },
+      { name: "Portfolio", url: "https://bizzgrowlabs.com/portfolio" },
+      {
+        name: project.title,
+        url: `https://bizzgrowlabs.com/project/${project.slug}`,
+      },
+    ]),
+  );
+
+  const projectSchema = toJsonLd({
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.description,
+    url: `https://bizzgrowlabs.com/project/${project.slug}`,
+    image: project.image,
+    creator: {
+      "@type": "Organization",
+      name: "BizzGrowLabs",
+      url: "https://bizzgrowlabs.com",
+    },
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: projectSchema }}
+      />
+      <ProjectPageClient project={serializeProject(project, linkMeta)} />
+    </>
+  );
 }

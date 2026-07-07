@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { getServiceBySlug, services } from "../catalog";
 import ServicePageClient from "./ServicePageClient";
+import { buildBreadcrumbSchema, toJsonLd } from "../../utils/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -33,13 +34,13 @@ export async function generateMetadata({
   const description = `${service.headline} ${service.description} Services include: ${topSubServices}.`;
 
   return {
-    title: `${service.title} | BizzGrow`,
+    title: service.title,
     description,
     alternates: {
       canonical: `/services/${service.slug}`,
     },
     openGraph: {
-      title: `${service.title} | BizzGrow Services`,
+      title: service.title,
       description,
       url: `https://bizzgrowlabs.com/services/${service.slug}`,
       images: [
@@ -54,7 +55,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.title} | BizzGrow Services`,
+      title: service.title,
       description,
     },
   };
@@ -66,5 +67,54 @@ export default async function ServicePage({ params }: PageProps) {
 
   if (!service) notFound();
 
-  return <ServicePageClient service={service} />;
+  const breadcrumbJsonLd = toJsonLd(
+    buildBreadcrumbSchema([
+      { name: "Home", url: "https://bizzgrowlabs.com" },
+      { name: "Services", url: "https://bizzgrowlabs.com/services" },
+      {
+        name: service.title,
+        url: `https://bizzgrowlabs.com/services/${service.slug}`,
+      },
+    ]),
+  );
+
+  const serviceSchema = toJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    serviceType: service.title,
+    provider: {
+      "@type": "Organization",
+      name: "BizzGrowLabs",
+      url: "https://bizzgrowlabs.com",
+    },
+    areaServed: "Global",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${service.title} Offerings`,
+      itemListElement: service.subServices.map((subService) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: subService.name,
+          description: subService.description,
+        },
+      })),
+    },
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serviceSchema }}
+      />
+      <ServicePageClient service={service} />
+    </>
+  );
 }

@@ -1,9 +1,13 @@
 import { Metadata } from "next";
+import { siteConfig } from "../utils/site";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
+  title: "Terms of Service | BizzGrowLabs",
   description:
     "BizzGrow terms of service - the terms and conditions for using our services.",
+  alternates: {
+    canonical: `${siteConfig.url}/terms`,
+  },
 };
 
 export default function TermsPage() {
@@ -29,10 +33,9 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold mb-4">Services Description</h2>
             <p className="muted mb-4">
-              BizzGrow provides digital transformation services including web
-              design and development, digital marketing, branding, and creative
-              content services. We reserve the right to modify or discontinue
-              services at any time.
+              BizzGrow provides web design and development, digital marketing,
+              branding, and creative content services. We reserve the right to
+              modify or discontinue services at any time.
             </p>
           </section>
 

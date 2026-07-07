@@ -1,0 +1,58 @@
+# BizzGrowLabs
+
+> Digital transformation studio for small and medium businesses.
+
+## What this site is about
+
+BizzGrowLabs helps small businesses build better websites, get found online, and turn more visitors into customers.
+
+## Primary pages
+
+- https://bizzgrowlabs.com/
+- https://bizzgrowlabs.com/about
+- https://bizzgrowlabs.com/services
+- https://bizzgrowlabs.com/portfolio
+- https://bizzgrowlabs.com/blog
+- https://bizzgrowlabs.com/contact
+- https://bizzgrowlabs.com/careers
+- https://bizzgrowlabs.com/privacy
+- https://bizzgrowlabs.com/terms
+
+## Core services
+
+- Web design and development
+- Social media and content marketing
+- Branding and creative
+- Performance marketing
+- SEO
+- Automation
+
+## Content topics and entities
+
+- Search visibility and website performance
+- Better websites that support sales
+- Brand positioning and visual identity
+- Lead generation and paid media
+- E-commerce and landing pages
+- Automation and digital systems for small business growth
+
+## How to cite this site
+
+- Use the home page for the company overview and primary positioning.
+- Use the services pages for service definitions, outcomes, and terminology.
+- Use the portfolio and project pages for proof, case studies, and capabilities.
+- Use the blog for educational articles and supporting concepts.
+
+## Crawl guidance
+
+- Prefer the canonical pages listed above.
+- Use https://bizzgrowlabs.com/sitemap.xml for the full URL set.
+- Use https://bizzgrowlabs.com/robots.txt for crawl rules.
+- Do not invent services, metrics, or case study results that are not present on the site.
+
+## Contact
+
+- Email: info@bizzgrowlabs.com
+- Phone: +919150302455
+
+Last updated: 2026-07-07

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+// @ts-ignore Next.js handles this global stylesheet import at build time.
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,44 +10,49 @@ import SmoothScroll from "./components/SmoothScroll";
 import CustomCursor from "./components/CustomCursor";
 import PageTransitionOverlay from "./components/PageTransitionOverlay";
 import Script from "next/script";
+import { siteConfig } from "./utils/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bizzgrowlabs.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "BizzGrowLabs - Digital Transformation for Small & Medium Businesses",
+    default: "BizzGrowLabs | Digital Transformation & Web Design for SMBs",
     template: "%s | BizzGrowLabs",
   },
 
-  description:
-    "End-to-end digital transformation services for SMBs. Web design, development, digital marketing, branding & automation. Helping businesses scale sustainably with modern technology.",
+  description: "BizzGrowLabs helps small and medium businesses scale sustainably. We provide premium web design, digital marketing, and automation to build your digital identity.",
   keywords: [
-    "digital transformation",
+    "digital agency",
     "web design",
     "digital marketing",
     "branding",
-    "SMB",
-    "small business",
-    "automation",
-    "web development",
+    "business automation",
+    "SMB growth",
   ],
-  authors: [{ name: "BizzGrowLabs Team" }],
-  creator: "BizzGrowLabs",
-  publisher: "BizzGrowLabs",
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://bizzgrowlabs.com",
-    title: "BizzGrowLabs - Digital Transformation for Small & Medium Businesses",
-    description:
-      "End-to-end digital transformation services for SMBs. Web design, development, digital marketing, branding & automation.",
-    siteName: "BizzGrowLabs",
+    url: siteConfig.url,
+    title: "BizzGrowLabs | Digital Agency for Small Business Growth",
+    description: "BizzGrowLabs helps small and medium businesses scale sustainably. We provide premium web design, digital marketing, and automation to build your digital identity.",
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: `${siteConfig.url}/og-image.png`,
+        width: 1024,
+        height: 1024,
+        alt: "BizzGrowLabs - Digital Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BizzGrowLabs - Digital Transformation for SMBs",
-    description:
-      "End-to-end digital transformation services. Web design, development, digital marketing, branding & automation.",
+    title: "BizzGrowLabs | Digital Agency for Small Business Growth",
+    description: "BizzGrowLabs helps small and medium businesses scale sustainably. We provide premium web design, digital marketing, and automation to build your digital identity.",
     creator: "@bizzgrowlabs",
+    images: [`${siteConfig.url}/og-image.png`],
   },
   robots: {
     index: true,
@@ -58,9 +64,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    google: "your-google-verification-code",
   },
 };
 
@@ -102,25 +105,35 @@ gtag('config', 'AW-18058135486');
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "BizzGrowLabs",
-              description:
-                "Digital transformation services for small and medium businesses",
-              url: "https://bizzgrow.com",
-              logo: "/logo.png",
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+919150302455",
-                contactType: "customer service",
-                email: "info@bizzgrowlabs.com",
-              },
-              sameAs: [
-                "https://linkedin.com/company/bizzgrowlabs",
-                "https://instagram.com/bizzgrowlabs",
-                "https://twitter.com/bizzgrowlabs",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${siteConfig.url}/#organization`,
+                  name: siteConfig.name,
+                  description: siteConfig.description,
+                  url: siteConfig.url,
+                  logo: `${siteConfig.url}/logo.png`,
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    telephone: siteConfig.phone,
+                    contactType: "customer service",
+                    email: siteConfig.email,
+                  },
+                  sameAs: siteConfig.socialLinks,
+                  foundingDate: "2024",
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${siteConfig.url}/#website`,
+                  url: siteConfig.url,
+                  name: siteConfig.name,
+                  description: siteConfig.description,
+                  inLanguage: "en-US",
+                  publisher: {
+                    "@id": `${siteConfig.url}/#organization`,
+                  },
+                },
               ],
-              foundingDate: "2024",
-              numberOfEmployees: "2-10",
             }),
           }}
         />
@@ -156,9 +169,14 @@ _paq.push(['enableLinkTracking']);
         >
           Skip to main content
         </a>
-        
+
         {/* Cinematic Film Grain Overlay */}
-        <div className="fixed inset-0 pointer-events-none z-[9990] opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+        <div
+          className="fixed inset-0 pointer-events-none z-9990 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        ></div>
 
         <PageTransitionOverlay />
         <CustomCursor />
@@ -175,6 +193,5 @@ _paq.push(['enableLinkTracking']);
         </SmoothScroll>
       </body>
     </html>
-
   );
 }

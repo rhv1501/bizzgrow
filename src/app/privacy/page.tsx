@@ -1,9 +1,13 @@
 import { Metadata } from "next";
+import { siteConfig } from "../utils/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | BizzGrowLabs",
   description:
     "BizzGrow privacy policy - how we collect, use, and protect your personal information.",
+  alternates: {
+    canonical: `${siteConfig.url}/privacy`,
+  },
 };
 
 export default function PrivacyPage() {

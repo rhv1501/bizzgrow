@@ -46,12 +46,12 @@ export default function ContactForm() {
   };
 
   const isFormValid =
-    name.trim().length >= 2 && 
-    isValidEmail(email.trim()) && 
+    name.trim().length >= 2 &&
+    isValidEmail(email.trim()) &&
     isValidPhone(phone) &&
     company.trim().length >= 2 &&
     message.trim().length >= 10;
-    
+
   const isDisabled = !isFormValid || status === "sending";
 
   async function handleSubmit(e: React.FormEvent) {
@@ -99,19 +99,24 @@ export default function ContactForm() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-          <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-[1] mb-6">
+          <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-none mb-6">
             Let&apos;s Talk <span className="text-brand-primary">Business</span>
           </h1>
           <p className="text-xl md:text-2xl font-bold text-muted max-w-2xl mx-auto">
-            Have a project or question? Send us a message and we&apos;ll get back to you faster than your current agency.
+            Have a project or question? Send us a message and we&apos;ll get
+            back to you faster than your current agency.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-surface rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 lg:p-16 border border-border shadow-md md:shadow-md">
-          
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-3xl mx-auto bg-surface rounded-4xl md:rounded-[3rem] p-6 md:p-12 lg:p-16 border border-border shadow-md md:shadow-md"
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Name</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">
+                Name
+              </span>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -122,7 +127,9 @@ export default function ContactForm() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Email</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">
+                Email
+              </span>
               <input
                 type="email"
                 value={email}
@@ -136,7 +143,9 @@ export default function ContactForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Phone</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">
+                Phone
+              </span>
               <input
                 type="tel"
                 value={phone}
@@ -148,7 +157,9 @@ export default function ContactForm() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Company</span>
+              <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">
+                Company
+              </span>
               <input
                 type="text"
                 value={company}
@@ -161,11 +172,13 @@ export default function ContactForm() {
           </div>
 
           <label className="block mb-10">
-            <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">Message</span>
+            <span className="text-sm font-black uppercase tracking-widest text-foreground mb-2 block">
+              Message
+            </span>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all resize-y min-h-[200px]"
+              className="w-full bg-background border border-border rounded-2xl px-5 py-4 text-lg font-bold text-foreground focus:outline-none focus:bg-surface focus:shadow-md transition-all resize-y min-h-50"
               required
               placeholder="Tell us about your project..."
             />
@@ -248,7 +261,8 @@ export default function ContactForm() {
             )}
             {status === "error" && (
               <p className="text-lg font-bold text-foreground text-center bg-brand-primary border border-border p-4 rounded-xl shadow-md">
-                Something went wrong. Please check your information and try again.
+                Something went wrong. Please check your information and try
+                again.
               </p>
             )}
           </div>

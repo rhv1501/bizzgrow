@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { ArrowRight, Sparkles, Target, Zap } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
@@ -38,7 +44,7 @@ function Magnetic({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   // Snap back spring physics
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
   const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
@@ -75,7 +81,7 @@ function Magnetic({ children }: { children: React.ReactNode }) {
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Custom Cursor & Physics
   const mouseX = useMotionValue(-1000);
   const mouseY = useMotionValue(-1000);
@@ -92,8 +98,16 @@ export default function Hero() {
   const smoothScale = useSpring(cursorScale, { damping: 20, stiffness: 300 });
 
   // Extremely smooth, heavy physics for the 3D tilt
-  const smoothNormX = useSpring(normX, { damping: 40, stiffness: 150, mass: 1 });
-  const smoothNormY = useSpring(normY, { damping: 40, stiffness: 150, mass: 1 });
+  const smoothNormX = useSpring(normX, {
+    damping: 40,
+    stiffness: 150,
+    mass: 1,
+  });
+  const smoothNormY = useSpring(normY, {
+    damping: 40,
+    stiffness: 150,
+    mass: 1,
+  });
 
   // Map normalized mouse position to rotation degrees
   const rotateX = useTransform(smoothNormY, [-1, 1], [15, -15]);
@@ -101,12 +115,12 @@ export default function Hero() {
 
   useEffect(() => {
     const handleMount = requestAnimationFrame(() => setMounted(true));
-    
+
     const handleMouseMove = (e: MouseEvent) => {
       // Screen space for cursor
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      
+
       // Normalized space for 3D tilt
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
@@ -122,12 +136,11 @@ export default function Hero() {
   }, [mouseX, mouseY, normX, normY]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative min-h-[100dvh] w-full overflow-hidden bg-background flex flex-col items-center justify-center pt-24 pb-16 md:cursor-none"
       style={{ perspective: 1200 }} // Gives depth to the 3D transforms
     >
-      
       {/* 1. INTERACTIVE CUSTOM CURSOR */}
       {mounted && (
         <>
@@ -141,7 +154,7 @@ export default function Hero() {
               height: 32,
               translateX: "-50%",
               translateY: "-50%",
-              backgroundColor: "#fff"
+              backgroundColor: "#fff",
             }}
           />
           {/* Cursor trailing glow */}
@@ -154,7 +167,7 @@ export default function Hero() {
               height: 150,
               translateX: "-50%",
               translateY: "-50%",
-              transition: "width 0.2s, height 0.2s"
+              transition: "width 0.2s, height 0.2s",
             }}
           />
         </>
@@ -168,9 +181,8 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-        
         {/* 3. EYEBROW */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -178,52 +190,67 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2 text-sm font-bold shadow-sm">
             <span className="flex h-2 w-2 rounded-full bg-brand-primary animate-pulse"></span>
-            End-to-End Digital Transformation
+            Better Websites. More Leads.
           </div>
         </motion.div>
 
         {/* 4. MASSIVE TYPOGRAPHY WITH 3D TILT */}
-        <div 
+        <div
           className="relative w-full flex justify-center"
           onMouseEnter={() => cursorScale.set(4)}
           onMouseLeave={() => cursorScale.set(1)}
         >
           <motion.div
-            style={{ 
-              rotateX, 
+            style={{
+              rotateX,
               rotateY,
-              transformStyle: "preserve-3d"
+              transformStyle: "preserve-3d",
             }}
             className="will-change-transform"
           >
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.9 }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              transition={{
+                duration: 1.2,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.1,
+              }}
               className="text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-[0.9] tracking-tighter text-foreground uppercase"
               style={{ z: 50 }} // Pushes text out in 3D space
             >
-              Don&apos;t Just Build A <br/>
-              <WordRotate words={["Website.", "Brand.", "Campaign.", "SEO Strategy.", "Social Presence.", "Workflow.", "System."]} />
+              Don&apos;t Just Build A <br />
+              <WordRotate
+                words={[
+                  "Website.",
+                  "Brand.",
+                  "Store.",
+                  "Campaign.",
+                  "Lead Flow.",
+                  "System.",
+                  "Presence.",
+                ]}
+              />
               <span className="block mt-4 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-mint bg-clip-text text-transparent transform-gpu drop-shadow-2xl">
-                Build An Empire.
+                Build Something Clear.
               </span>
             </motion.h1>
           </motion.div>
         </div>
 
         {/* 5. SUBHEAD */}
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.4 }}
           className="mt-8 max-w-3xl text-[clamp(1.125rem,2vw,1.375rem)] font-bold leading-relaxed text-muted"
         >
-          Stop piecing together your growth. We combine high-end web design, SEO, social media, performance marketing, and business automation into a single, unstoppable growth engine.
+          We design websites, branding, and marketing that help small businesses
+          get found, earn trust, and win more customers.
         </motion.p>
 
         {/* 6. MAGNETIC CONVERSION BUTTON */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -235,13 +262,14 @@ export default function Hero() {
             <div className="relative group flex justify-center w-full sm:w-auto cursor-pointer">
               {/* Ambient glow behind the button */}
               <div className="absolute -inset-1.5 rounded-[2rem] bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-mint opacity-40 blur-xl transition-opacity duration-500 group-hover:opacity-70 animate-pulse"></div>
-              
-              <Link 
+
+              <Link
                 href="/contact"
                 className="group/btn relative overflow-hidden flex w-full sm:w-auto items-center justify-center gap-3 rounded-[2rem] bg-surface ring-1 ring-border/50 px-10 py-5 shadow-2xl transition-transform active:scale-[0.97]"
               >
                 <span className="relative z-10 flex items-center gap-2 text-base font-black text-foreground">
-                  Start Your Transformation <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
+                  Start a Project{" "}
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
                 </span>
                 {/* Hover fill effect inside button */}
                 <div className="absolute inset-0 bg-brand-primary translate-y-[100%] transition-transform duration-300 ease-out group-hover/btn:translate-y-0 z-0"></div>
@@ -251,23 +279,22 @@ export default function Hero() {
         </motion.div>
 
         {/* 7. MICRO-CONVERSIONS (Trust) */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
           className="mt-14 flex flex-wrap justify-center items-center gap-8 text-sm font-bold text-muted uppercase tracking-widest"
         >
           <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-brand-primary" /> End-to-End Execution
+            <Zap className="w-4 h-4 text-brand-primary" /> Done Properly
           </div>
           <div className="flex items-center gap-2">
-            <Target className="w-4 h-4 text-brand-secondary" /> Conversion Driven
+            <Target className="w-4 h-4 text-brand-secondary" /> Built for Leads
           </div>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-brand-mint" /> Unapologetic Design
+            <Sparkles className="w-4 h-4 text-brand-mint" /> Clean Design
           </div>
         </motion.div>
-
       </div>
     </section>
   );

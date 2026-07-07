@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Phone,
-  Mail,
-  Linkedin,
-  Instagram,
-  ArrowRight,
-} from "lucide-react";
+import { Phone, Mail, Linkedin, Instagram, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { trackCallNowClick } from "../utils/gtm";
@@ -37,7 +31,8 @@ const Footer = () => {
               info@bizzgrowlabs.com
             </a>
             <p className="max-w-md text-base text-muted">
-              End-to-end digital transformation for ambitious founders who want systems that scale.
+              We help small businesses build better websites, clearer branding,
+              and marketing that brings in customers.
             </p>
           </div>
         </div>
@@ -57,13 +52,22 @@ const Footer = () => {
             </Link>
 
             <p className="max-w-md text-lg font-medium text-foreground">
-              We build unapologetically bold digital ecosystems that automate operations and scale revenue.
+              We build strong websites and marketing systems that make
+              businesses easier to trust and easier to buy from.
             </p>
 
             <div className="flex gap-4">
               {[
-                { icon: Linkedin, href: "https://linkedin.com/company/bizzgrowlabs", label: "LinkedIn" },
-                { icon: Instagram, href: "https://instagram.com/bizzgrowlabs", label: "Instagram" },
+                {
+                  icon: Linkedin,
+                  href: "https://linkedin.com/company/bizzgrowlabs",
+                  label: "LinkedIn",
+                },
+                {
+                  icon: Instagram,
+                  href: "https://instagram.com/bizzgrowlabs",
+                  label: "Instagram",
+                },
               ].map((social, index) => {
                 const IconComponent = social.icon;
                 return (
@@ -130,7 +134,10 @@ const Footer = () => {
                   <Mail className="h-5 w-5 text-foreground" />
                 </div>
                 <div className="text-base font-medium text-foreground">
-                  <a href="mailto:info@bizzgrowlabs.com" className="hover:text-brand-primary transition-colors">
+                  <a
+                    href="mailto:info@bizzgrowlabs.com"
+                    className="hover:text-brand-primary transition-colors"
+                  >
                     info@bizzgrowlabs.com
                   </a>
                 </div>
@@ -140,7 +147,6 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-6 border-t border-border pt-8 md:flex-row mb-12 relative z-10">
-          
           <div className="flex items-center gap-3 rounded-full border border-border bg-surface/50 px-4 py-2 backdrop-blur-sm">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
@@ -174,7 +180,9 @@ const Footer = () => {
 
       {/* Infinite Marquee */}
       <div className="relative flex w-full overflow-hidden border-t border-border/40 bg-transparent py-3">
-        <style dangerouslySetInnerHTML={{__html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           @keyframes infinite-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -184,14 +192,30 @@ const Footer = () => {
             display: flex;
             width: max-content;
           }
-        `}} />
+        `,
+          }}
+        />
         <div className="animate-infinite-scroll flex-nowrap gap-8 items-center">
           {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex flex-nowrap gap-8 items-center shrink-0">
+            <div
+              key={i}
+              className="flex flex-nowrap gap-8 items-center shrink-0"
+            >
               {[...Array(2)].map((_, k) => (
-                <div key={k} className="flex flex-nowrap gap-8 items-center shrink-0">
-                  {["DIGITAL TRANSFORMATION", "MARKETING AUTOMATION", "WEB ARCHITECTURE", "BRAND IDENTITY"].map((word, j) => (
-                    <div key={j} className="flex flex-nowrap items-center gap-8 shrink-0">
+                <div
+                  key={k}
+                  className="flex flex-nowrap gap-8 items-center shrink-0"
+                >
+                  {[
+                    "WEBSITES",
+                    "MARKETING",
+                    "WEB ARCHITECTURE",
+                    "BRAND IDENTITY",
+                  ].map((word, j) => (
+                    <div
+                      key={j}
+                      className="flex flex-nowrap items-center gap-8 shrink-0"
+                    >
                       <span className="whitespace-nowrap text-xs font-black tracking-[0.2em] uppercase text-muted/70">
                         {word}
                       </span>
@@ -204,8 +228,6 @@ const Footer = () => {
           ))}
         </div>
       </div>
-      
-
     </footer>
   );
 };

@@ -31,9 +31,9 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "VirasVault",
     category: "E-commerce (Shopify)",
     description:
-      "A premium Shopify fashion storefront brought to life with custom Liquid development, high-end visuals, and conversion-focused UX.",
+      "A premium Shopify fashion storefront built with custom Liquid development and a polished shopping experience.",
     overview:
-      "VirasVault is a fashion brand with a strong visual identity. Our goal was to translate their imagination into a polished e-commerce experience — combining clean UI/UX, custom-coded Shopify sections, and on-page SEO across collection, product, and core pages.",
+      "VirasVault is a fashion brand with a strong visual identity. Our goal was to turn that into a polished e-commerce experience — combining clean UI, custom Shopify sections, and better page structure across the site.",
     whatWeDid: [
       "Shopify theme customization with custom Liquid sections and tailored interactions",
       "High-end UI/UX to showcase products with a premium, fashion-forward feel",
@@ -56,9 +56,9 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Naya Gadgets",
     category: "E-commerce (Shopify)",
     description:
-      "A Shopify store built for a Chennai retail brand to go pan‑India — with strong on-page SEO, clean UX, and a credible online identity.",
+      "A Shopify store built for a Chennai retail brand to reach a wider audience with a cleaner shopping experience and stronger online presence.",
     overview:
-      "Naya Gadgets is a gadget store in Chennai (Express Avenue). They wanted to expand pan‑India, so we built a Shopify website that strengthens their identity online — balancing trust, usability, and search visibility through solid on‑page SEO and a streamlined shopping experience.",
+      "Naya Gadgets is a gadget store in Chennai (Express Avenue). They wanted to expand pan‑India, so we built a Shopify website that strengthens their presence online — balancing trust, usability, and a streamlined shopping experience.",
     whatWeDid: [
       "Shopify store setup and custom theme implementation",
       "UI/UX focused on clarity, trust, and easy product browsing",
@@ -175,9 +175,9 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "The Wrong Girls",
     category: "E-commerce (Shopify)",
     description:
-      "A premium, minimal, and aesthetic Shopify storefront for a fashion-led designer clothing brand — built for high-end perception and smooth shopping.",
+      "A premium, minimal Shopify storefront for a fashion-led clothing brand with a smooth shopping experience.",
     overview:
-      "The Wrong Girls is a fashion-led clothing brand selling designer-inspired pieces. We built a Shopify store with a restrained, premium vibe — clean layout, thoughtful spacing, and a frictionless browsing experience — supported by on-page SEO and optimized email notifications to improve conversions.",
+      "The Wrong Girls is a fashion-led clothing brand selling designer-inspired pieces. We built a Shopify store with a restrained, premium vibe — clean layout, thoughtful spacing, and an easy browsing experience.",
     whatWeDid: [
       "Shopify theme build/customization with premium-minimal design direction",
       "UI/UX polish for a smooth, aesthetic shopping experience",
@@ -206,7 +206,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Xpose Nutrition",
     category: "E-commerce (Shopify)",
     description:
-      "A custom Shopify store for a supplements dealer — built with an out-of-the-box layout, seamless browsing, and conversion-focused UI/UX.",
+      "A custom Shopify store for a supplements dealer — built with a fresh layout and a smooth browsing experience.",
     overview:
       "Xpose Nutrition is a nutrition supplements dealer selling products from multiple brands. We designed and developed a custom Shopify storefront that breaks common e-commerce stereotypes — a fresh concept with carefully structured categories and a smooth product discovery experience, backed by strong on-page SEO across key pages and product listings.",
     whatWeDid: [
