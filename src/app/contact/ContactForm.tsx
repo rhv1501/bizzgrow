@@ -3,8 +3,17 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { markContactSuccess, trackLeadFormSuccess } from "../utils/gtm";
+import { ShieldCheck } from "lucide-react";
 
-export default function ContactForm() {
+export default function ContactForm({
+  prefillService,
+  prefillSub,
+  embedded = false,
+}: {
+  prefillService?: string;
+  prefillSub?: string;
+  embedded?: boolean;
+} = {}) {
   const searchParams = useSearchParams();
 
   const [name, setName] = useState("");
@@ -17,8 +26,8 @@ export default function ContactForm() {
   );
 
   useEffect(() => {
-    const mainService = searchParams.get("service");
-    const subService = searchParams.get("sub");
+    const mainService = prefillService || searchParams.get("service");
+    const subService = prefillSub || searchParams.get("sub");
     const directMessage = searchParams.get("message");
 
     // Don't overwrite if the user already typed.
@@ -94,21 +103,27 @@ export default function ContactForm() {
   }
 
   return (
-    <main className="py-20 md:py-32 bg-background relative selection:bg-brand-primary selection:text-foreground">
-      <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
+    <div className={`${embedded ? "py-10" : "py-20 md:py-32 bg-background relative selection:bg-brand-primary selection:text-foreground"}`}>
+      {!embedded && <div className="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>}
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-          <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-none mb-6">
-            Let&apos;s Talk <span className="text-brand-primary">Business</span>
-          </h1>
-          <p className="text-xl md:text-2xl font-bold text-muted max-w-2xl mx-auto">
-            Have a project or question? Send us a message and we&apos;ll get
-            back to you faster than your current agency.
-          </p>
-        </div>
+      <div className={`container mx-auto ${embedded ? "px-0" : "px-4 md:px-6 relative z-10"}`}>
+        {!embedded && (
+          <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+            <h1 className="text-5xl md:text-7xl font-black text-foreground tracking-tight leading-none mb-6">
+              Let&apos;s Talk <span className="text-brand-primary">Business</span>
+            </h1>
+            <p className="text-xl md:text-2xl font-bold text-muted max-w-2xl mx-auto mb-6">
+              Have a project or question? Share your details below to get a custom quote and execution strategy.
+            </p>
+            <div className="inline-flex items-center gap-2 bg-brand-mint/50 text-foreground border border-border/60 px-5 py-2.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+              <ShieldCheck className="w-5 h-5 text-emerald-600" />
+              Your information is strictly confidential and 100% secure.
+            </div>
+          </div>
+        )}
 
         <form
+          id="leadform"
           onSubmit={handleSubmit}
           className="max-w-3xl mx-auto bg-surface rounded-4xl md:rounded-[3rem] p-6 md:p-12 lg:p-16 border border-border shadow-md md:shadow-md"
         >
@@ -268,6 +283,6 @@ export default function ContactForm() {
           </div>
         </form>
       </div>
-    </main>
+    </div>
   );
 }

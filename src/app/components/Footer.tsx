@@ -39,14 +39,15 @@ const Footer = () => {
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 mb-16">
           <div className="lg:col-span-5 space-y-6">
-            <Link href="/" className="inline-flex group">
-              <div className="rounded-3xl border border-border bg-surface p-4 shadow-[0_18px_40px_-30px_rgba(33,48,58,0.45)] transition-transform duration-500 group-hover:-rotate-3 group-hover:scale-105">
+            <Link href="/" className="inline-flex group transition-transform duration-500 hover:-rotate-3 hover:scale-105">
+              <div className="rounded-[2rem] border border-border/80 bg-[#f2ede4] p-2 shadow-sm">
                 <Image
-                  src="/main-cropped.png"
+                  src="/bizzanimated.gif"
                   alt="BizzGrowLabs Logo"
                   width={140}
                   height={140}
                   unoptimized
+                  className="mix-blend-multiply rounded-[1.5rem]"
                 />
               </div>
             </Link>

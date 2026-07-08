@@ -62,11 +62,11 @@ export default function ServicesPage() {
             <p className="text-xs font-mono text-muted mb-8 uppercase tracking-widest flex items-center gap-4">
               <span className="w-8 h-px bg-muted" /> Everything We Do
             </p>
-            <h1 className="max-w-4xl text-[clamp(3rem,9vw,5rem)] md:text-[clamp(3.5rem,8vw,9rem)] font-medium tracking-tighter text-foreground leading-none text-balance">
+            <h1 className="max-w-none text-[clamp(2.5rem,10vw,5rem)] md:text-[clamp(3.5rem,8vw,9rem)] font-medium tracking-tighter text-foreground leading-none break-words">
               Services built to <br />
               <span className="italic text-brand-primary font-serif pr-2 md:pr-4">
                 dominate
-              </span>
+              </span>{" "}
               markets.
             </h1>
             <p className="mt-12 text-xl md:text-2xl text-muted max-w-2xl leading-relaxed">

@@ -16,6 +16,11 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useRef, useState } from "react";
+import ContactForm from "../../contact/ContactForm";
+import Clients from "../../components/Clients";
+import Testimonials from "../../components/Testimonials";
+import Faq from "../../components/Faq";
+import MobileStickyCTA from "../../components/MobileStickyCTA";
 
 // Physics-driven Magnetic Component
 function Magnetic({ children }: { children: React.ReactNode }) {
@@ -120,7 +125,7 @@ export default function ServicePageClient({ service }: { service: Service }) {
                 </span>
               </div>
 
-              <h1 className="max-w-[11ch] text-[clamp(3rem,5.5vw,7rem)] font-black text-foreground tracking-tighter leading-none uppercase wrap-break-word text-balance">
+              <h1 className="text-[clamp(2.5rem,5vw,4rem)] lg:text-[clamp(3rem,4.5vw,4.5rem)] xl:text-[clamp(3rem,4vw,5.5rem)] font-black text-foreground tracking-tighter leading-[0.9] uppercase text-balance">
                 {service.title}
               </h1>
 
@@ -134,15 +139,19 @@ export default function ServicePageClient({ service }: { service: Service }) {
 
               <div className="flex flex-wrap items-center gap-6 pt-6">
                 <Magnetic>
-                  <Link
-                    href={`/contact?service=${encodeURIComponent(service.title)}`}
+                  <a
+                    href="#contact-form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+                    }}
                     className="relative group/btn flex items-center justify-center gap-3 rounded-full bg-foreground px-8 py-4 shadow-2xl transition-transform active:scale-95 overflow-hidden w-full sm:w-auto"
                   >
                     <span className="relative z-10 text-sm font-bold text-background tracking-wide">
                       Discuss Your Project
                     </span>
                     <ArrowRight className="w-4 h-4 text-background relative z-10 transition-transform group-hover/btn:translate-x-1" />
-                  </Link>
+                  </a>
                 </Magnetic>
               </div>
             </motion.div>
@@ -179,9 +188,16 @@ export default function ServicePageClient({ service }: { service: Service }) {
             </motion.div>
           </div>
         </section>
+      </div>
 
+      {/* Social Proof Banner - Full Width */}
+      <section className="mb-16 lg:mb-24 border-y border-border/40">
+        <Clients />
+      </section>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
         {/* Content Layout */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-24 lg:mb-40">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-16 lg:mb-24">
           {/* Main Content (Takes 7 columns) */}
           <div className="lg:col-span-7 space-y-24">
             {/* Boost Outcomes */}
@@ -194,9 +210,9 @@ export default function ServicePageClient({ service }: { service: Service }) {
               <h2 className="text-sm font-mono uppercase tracking-widest text-muted mb-10 flex items-center gap-4">
                 <span className="w-8 h-px bg-muted" /> Strategic Outcomes
               </h2>
-              <h3 className="text-3xl md:text-5xl font-black text-foreground mb-12 tracking-tighter uppercase leading-none">
-                How this transforms <br />{" "}
-                <span className="italic font-serif text-brand-primary">
+              <h3 className="text-4xl md:text-5xl font-black text-foreground mb-10 md:mb-12 tracking-tighter uppercase leading-[1.05]">
+                How this transforms{" "}
+                <span className="italic font-serif text-brand-primary block mt-1">
                   your business.
                 </span>
               </h3>
@@ -226,9 +242,9 @@ export default function ServicePageClient({ service }: { service: Service }) {
               <h2 className="text-sm font-mono uppercase tracking-widest text-muted mb-10 flex items-center gap-4">
                 <span className="w-8 h-px bg-muted" /> Quality Control
               </h2>
-              <h3 className="text-3xl md:text-5xl font-black text-foreground mb-12 tracking-tighter uppercase leading-none">
-                How we keep <br /> everything{" "}
-                <span className="italic font-serif text-brand-primary">
+              <h3 className="text-4xl md:text-5xl font-black text-foreground mb-10 md:mb-12 tracking-tighter uppercase leading-[1.05]">
+                How we keep everything{" "}
+                <span className="italic font-serif text-brand-primary block mt-1">
                   aligned.
                 </span>
               </h3>
@@ -323,13 +339,17 @@ export default function ServicePageClient({ service }: { service: Service }) {
                                         </span>
                                       ))}
                                     </div>
-                                    <Link
-                                      href={`/contact?service=${encodeURIComponent(service.title)}&sub=${encodeURIComponent(sub.name)}`}
-                                      className="group/cta flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-foreground hover:text-brand-primary transition-colors"
+                                    <a
+                                      href="#contact-form"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+                                      }}
+                                      className="group/cta flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-foreground hover:text-brand-primary transition-colors cursor-pointer"
                                     >
                                       Request Quote
                                       <span className="w-8 h-px bg-foreground group-hover/cta:bg-brand-primary transition-colors" />
-                                    </Link>
+                                    </a>
                                   </div>
                                 </div>
                               </div>
@@ -419,15 +439,26 @@ export default function ServicePageClient({ service }: { service: Service }) {
             </motion.div>
           </aside>
         </section>
+      </div>
 
-        {/* Dynamic CTA */}
-        <section className="mb-20">
+      {/* Trust & Objections - Full Width */}
+      <div className="w-full border-t border-border/40 bg-surface/30">
+        <Testimonials />
+      </div>
+
+      <div className="w-full border-t border-border/40">
+        <Faq />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl mt-24">
+        {/* Dynamic CTA & Embedded Form */}
+        <section id="contact-form" className="mb-20 scroll-mt-32">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="bg-brand-peach rounded-[2.5rem] p-12 md:p-24 text-center relative overflow-hidden border border-border/40 shadow-sm"
+            className="bg-brand-peach rounded-[2.5rem] p-6 sm:p-10 md:p-16 relative overflow-hidden border border-border/40 shadow-sm"
           >
             <div
               className="absolute inset-0 opacity-10 pointer-events-none"
@@ -436,32 +467,24 @@ export default function ServicePageClient({ service }: { service: Service }) {
               }}
             />
 
-            <div className="relative z-10 max-w-4xl mx-auto">
-              <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-black text-foreground mb-8 leading-[0.9] tracking-tighter uppercase">
-                Ready to <span className="italic font-serif">dominate?</span>
+            <div className="relative z-10 max-w-4xl mx-auto text-center mb-8">
+              <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-black text-foreground mb-6 leading-[0.9] tracking-tighter uppercase break-words">
+                Ready to <span className="italic font-serif">start?</span>
               </h2>
-              <p className="text-lg md:text-xl font-medium text-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-                Let&apos;s build an ecosystem that forces your market to pay
-                attention. No templates, no fluff.
+              <p className="text-lg md:text-xl font-medium text-foreground/80 max-w-2xl mx-auto leading-relaxed">
+                Request a custom quote for {service.title} directly below. We&apos;ll get back to you with a strategy tailored to your goals.
               </p>
+            </div>
 
-              <Magnetic>
-                <div className="flex justify-center w-full">
-                  <Link
-                    href={`/contact?service=${encodeURIComponent(service.title)}`}
-                    className="group relative overflow-hidden flex items-center justify-center gap-3 rounded-full bg-foreground px-10 py-5 transition-transform active:scale-95"
-                  >
-                    <span className="relative z-10 text-sm font-bold text-background uppercase tracking-widest">
-                      Start Your Project
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-background relative z-10 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </Magnetic>
+            <div className="relative z-10 max-w-4xl mx-auto">
+              <ContactForm prefillService={service.title} embedded={true} />
             </div>
           </motion.div>
         </section>
       </div>
+
+      {/* Render the mobile sticky CTA specifically linked to this form */}
+      <MobileStickyCTA href="#contact-form" text="Request a Quote" />
     </main>
   );
 }

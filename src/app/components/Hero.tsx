@@ -7,7 +7,7 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { ArrowRight, Sparkles, Target, Zap } from "lucide-react";
+import { ArrowRight, ShieldCheck, TrendingUp, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 
@@ -188,9 +188,9 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2 text-sm font-bold shadow-sm">
-            <span className="flex h-2 w-2 rounded-full bg-brand-primary animate-pulse"></span>
-            BizzGrowLabs: Your Digital Growth Partner.
+          <div className="inline-flex max-w-[95vw] flex-wrap items-center justify-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-[11px] sm:text-xs md:text-sm font-bold shadow-sm text-center">
+            <span className="flex h-2 w-2 shrink-0 rounded-full bg-brand-primary animate-pulse"></span>
+            <span>BizzGrowLabs: Your Digital Growth Partner.</span>
           </div>
         </motion.div>
 
@@ -216,7 +216,7 @@ export default function Hero() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: 0.1,
               }}
-              className="text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-[0.9] tracking-tighter text-foreground uppercase"
+              className="text-[clamp(2rem,8vw,6.5rem)] font-black leading-[0.9] tracking-tighter text-foreground uppercase break-words"
               style={{ z: 50 }} // Pushes text out in 3D space
             >
               Don&apos;t Just Build A <br />
@@ -232,7 +232,7 @@ export default function Hero() {
                 ]}
               />
               <span className="block mt-4 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-mint bg-clip-text text-transparent transform-gpu drop-shadow-2xl">
-                Build Something Clear.
+                Build An Empire.
               </span>
             </motion.h1>
           </motion.div>
@@ -286,13 +286,13 @@ export default function Hero() {
           className="mt-14 flex flex-wrap justify-center items-center gap-8 text-sm font-bold text-muted uppercase tracking-widest"
         >
           <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-brand-primary" /> Done Properly
+            <ShieldCheck className="w-4 h-4 text-brand-primary" /> Trusted Partner
           </div>
           <div className="flex items-center gap-2">
-            <Target className="w-4 h-4 text-brand-secondary" /> Built for Leads
+            <TrendingUp className="w-4 h-4 text-brand-secondary" /> Proven Results
           </div>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-brand-mint" /> Clean Design
+            <Star className="w-4 h-4 text-brand-mint" /> 5-Star Rated
           </div>
         </motion.div>
       </div>

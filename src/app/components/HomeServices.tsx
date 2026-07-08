@@ -43,7 +43,7 @@ export default function HomeServices() {
          <p className="text-xs font-mono text-muted mb-6 uppercase tracking-widest flex items-center gap-4">
            <span className="w-8 h-px bg-muted" /> Area of Expertise
          </p>
-         <h2 className="text-[clamp(3rem,6vw,5rem)] font-medium text-foreground leading-[1.05] tracking-tighter">
+         <h2 className="text-[clamp(2rem,8vw,5rem)] font-medium text-foreground leading-[1.05] tracking-tighter break-words">
            Everything you need to <br />
            <span className="italic font-serif text-brand-primary">grow online.</span>
          </h2>
@@ -61,7 +61,7 @@ export default function HomeServices() {
             <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-12 py-8 md:py-16 flex items-center justify-between">
               
               {/* Massive Title */}
-              <h3 className="text-[clamp(2.25rem,6.5vw,7rem)] font-medium tracking-tighter leading-[0.9] text-foreground uppercase block md:flex md:items-center gap-4 md:gap-12 min-w-0 w-full break-words">
+              <h3 className="text-[clamp(1.75rem,6.5vw,7rem)] font-medium tracking-tighter leading-[0.9] text-foreground uppercase block md:flex md:items-center gap-4 md:gap-12 min-w-0 w-full break-words">
                 {/* Number indicator slides in on hover */}
                 <span className="text-sm md:text-xl font-mono tracking-widest opacity-0 -translate-x-8 md:group-hover/item:opacity-100 md:group-hover/item:translate-x-0 transition-all duration-500 text-brand-primary hidden md:block shrink-0">
                   (0{i + 1})

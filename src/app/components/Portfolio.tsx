@@ -88,7 +88,7 @@ const Portfolio = () => {
                     style={
                       project.image.startsWith("linear-gradient")
                         ? { background: project.image }
-                        : { backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }
+                        : { backgroundImage: `url(${project.image})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }
                     }
                   />
 

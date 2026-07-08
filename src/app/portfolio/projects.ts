@@ -282,4 +282,33 @@ export const portfolioProjects: PortfolioProject[] = [
     image: "/clients/auremaison.png",
     websiteUrl: "https://www.auremaison.in/",
   },
+  {
+    slug: "monopoly-marketing",
+    title: "Monopoly Marketing",
+    category: "Landing Page + Digital Marketing",
+    description:
+      "A high-converting landing page, Google My Business profile optimization, and targeted Google Ads campaigns to drive leads.",
+    overview:
+      "Monopoly Marketing needed a strong digital foundation to capture local leads. We built a high-converting landing page paired with targeted Google Ads and an optimized Google My Business profile to drive immediate visibility and inquiries.",
+    whatWeDid: [
+      "Designed and developed a high-converting landing page",
+      "Optimized Google My Business profile for local search visibility",
+      "Set up and managed targeted Google Ads campaigns",
+      "Implemented conversion tracking and lead capture workflows",
+    ],
+    results: [
+      { label: "Leads", value: "Generated", icon: Users },
+      { label: "Visibility", value: "Local", icon: TrendingUp },
+      { label: "Ads ROI", value: "Optimized", icon: DollarSign },
+    ],
+    technologies: [
+      "Landing Page",
+      "Google Ads",
+      "GMB Optimization",
+      "Lead Capture",
+    ],
+    gradient: "from-blue-500 to-indigo-600",
+    image: "/clients/monopoly.png",
+    websiteUrl: "https://monopolymarketingchennai.in",
+  },
 ];

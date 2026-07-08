@@ -82,7 +82,7 @@ export default function Process() {
           <p className="text-xs font-mono text-muted mb-6 uppercase tracking-widest flex items-center gap-4">
             <span className="w-8 h-px bg-muted" /> The Methodology
           </p>
-          <h2 className="text-[clamp(3.5rem,6vw,7rem)] font-medium leading-[0.95] tracking-tighter text-foreground uppercase">
+          <h2 className="text-[clamp(2rem,8vw,7rem)] font-medium leading-[0.95] tracking-tighter text-foreground uppercase break-words">
             A methodology built for <br className="hidden md:block" />
             <span className="italic font-serif text-brand-primary">scalable growth.</span>
           </h2>

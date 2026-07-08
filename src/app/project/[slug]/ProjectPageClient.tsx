@@ -119,7 +119,6 @@ export default function ProjectPageClient({
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-screen-xl">
-        
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -214,8 +213,9 @@ export default function ProjectPageClient({
                       ? { background: project.image }
                       : { 
                           backgroundImage: `url(${project.image})`,
-                          backgroundSize: 'cover',
+                          backgroundSize: 'contain',
                           backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat',
                         }
                     )
                   }}

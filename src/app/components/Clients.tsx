@@ -42,7 +42,7 @@ const Clients = () => {
   const items = [...itemsArray, ...itemsArray, ...itemsArray, ...itemsArray];
 
   // The GPU-accelerated mask that follows the cursor (Desktop only)
-  const maskImage = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`;
+  const maskImage = useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.05) 70%, rgba(0,0,0,0.05) 100%)`;
 
   const MarqueeRow = ({ direction = 1, speed = 40 }: { direction?: number; speed?: number }) => (
     <div
@@ -68,7 +68,7 @@ const Clients = () => {
   return (
     <section 
       ref={containerRef} 
-      className="relative flex h-[80dvh] min-h-[600px] w-full flex-col justify-center overflow-hidden bg-background py-16 lg:py-20"
+      className="relative flex min-h-[700px] md:min-h-[800px] lg:h-[90dvh] w-full flex-col justify-center overflow-hidden bg-background py-16 lg:py-20"
     >
       {/* INJECTED CSS FOR PURE HARDWARE MARQUEES */}
       <style>{`
@@ -81,17 +81,16 @@ const Clients = () => {
           100% { transform: translate3d(0%, 0, 0); }
         }
       `}</style>
-      
-      {/* BACKGROUND LAYER: Dim, almost invisible text */}
-      <div className="absolute inset-0 flex flex-col justify-between py-16 lg:py-24 opacity-[0.03]">
+      {/* MOBILE ONLY LAYER: Uniform opacity */}
+      <div className="absolute inset-0 flex md:hidden flex-col justify-between py-8 lg:py-12 opacity-[0.15]">
         <MarqueeRow direction={1} speed={120} />
         <MarqueeRow direction={-1} speed={100} />
         <MarqueeRow direction={1} speed={130} />
       </div>
 
-      {/* DESKTOP FOREGROUND LAYER: Dynamic cursor tracking */}
+      {/* DESKTOP ONLY LAYER: Single layer using alpha-masking to prevent sub-pixel doubling */}
       <motion.div 
-        className="pointer-events-none absolute inset-0 hidden md:flex flex-col justify-between py-16 lg:py-24 text-foreground opacity-80"
+        className="pointer-events-none absolute inset-0 hidden md:flex flex-col justify-between py-8 lg:py-12 text-foreground"
         style={{
           WebkitMaskImage: maskImage,
           maskImage: maskImage,
@@ -102,18 +101,7 @@ const Clients = () => {
         <MarqueeRow direction={1} speed={130} />
       </motion.div>
 
-      {/* MOBILE FOREGROUND LAYER: Static top/bottom visibility */}
-      <div 
-        className="pointer-events-none absolute inset-0 flex md:hidden flex-col justify-between py-16 text-foreground opacity-40"
-        style={{
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-          maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-        }}
-      >
-        <MarqueeRow direction={1} speed={120} />
-        <MarqueeRow direction={-1} speed={100} />
-        <MarqueeRow direction={1} speed={130} />
-      </div>
+      {/* MOBILE FOREGROUND LAYER: Removed. Handled by the background layer's opacity on mobile. */}
 
       {/* FLOATING CENTER CARD (Glassmorphism Double-Bezel) */}
       <div className="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8 pointer-events-none">

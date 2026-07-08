@@ -158,8 +158,9 @@ function ProjectCard({
                 ? { background: project.image }
                 : {
                     backgroundImage: `url(${project.image})`,
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
                   }
             }
           />

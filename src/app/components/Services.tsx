@@ -15,7 +15,7 @@ export default function Services() {
            <p className="text-xs font-mono text-muted mb-6 uppercase tracking-widest flex items-center gap-4">
              <span className="w-8 h-px bg-muted" /> Capabilities
            </p>
-           <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium text-foreground leading-[1.05] tracking-tight">
+           <h2 className="text-[clamp(2rem,8vw,4.5rem)] font-medium text-foreground leading-[1.05] tracking-tight break-words">
              End-to-End <span className="italic font-serif text-brand-primary">Ecosystems</span>.
            </h2>
         </div>
