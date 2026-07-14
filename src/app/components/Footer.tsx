@@ -24,6 +24,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col justify-between gap-5 lg:items-end lg:text-right">
             <a
+              id="email"
               href="mailto:info@bizzgrowlabs.com"
               data-cursor="EMAIL US"
               className="inline-flex w-fit items-center justify-center rounded-full border border-border bg-brand-mint px-5 py-3 text-lg font-semibold text-foreground transition-transform hover:-translate-y-0.5"
@@ -116,6 +117,7 @@ const Footer = () => {
             </h4>
             <div className="space-y-5">
               <a
+                id="phone"
                 href="tel:+919150302455"
                 className="flex items-center gap-4 group"
                 onClick={() =>
@@ -136,6 +138,7 @@ const Footer = () => {
                 </div>
                 <div className="text-base font-medium text-foreground">
                   <a
+                    id="email-alt"
                     href="mailto:info@bizzgrowlabs.com"
                     className="hover:text-brand-primary transition-colors"
                   >
