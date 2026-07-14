@@ -80,6 +80,13 @@ export async function POST(request: Request) {
 
     // Check if Google Script URL is configured
     if (!GOOGLE_SCRIPT_URL) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn("MOCK MODE: Google Script URL not configured. Simulating successful form submission.");
+        return NextResponse.json({ 
+          ok: true, 
+          message: "Thank you for your message! (MOCK MODE)" 
+        });
+      }
       console.error("Google Script URL not configured");
       return NextResponse.json(
         { ok: false, message: "Server configuration error" },
