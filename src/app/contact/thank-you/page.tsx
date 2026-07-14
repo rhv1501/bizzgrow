@@ -11,7 +11,7 @@ import {
   Phone,
   MessageCircle,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const ThankYouPage = () => {
   const router = useRouter();
@@ -23,7 +23,7 @@ const ThankYouPage = () => {
     }
   }, [router]);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -34,12 +34,12 @@ const ThankYouPage = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
   };
 
-  const checkmarkVariants = {
+  const checkmarkVariants: Variants = {
     hidden: { scale: 0, opacity: 0 },
     show: { 
       scale: 1, 
