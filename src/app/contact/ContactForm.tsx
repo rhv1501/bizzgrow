@@ -184,7 +184,9 @@ export default function ContactForm({
     if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
       e.preventDefault();
       setTouched(p => ({ ...p, message: true }));
-      if (isFormValid) handleSubmit(e as unknown as React.FormEvent);
+      if (isFormValid) {
+        document.getElementById("contact")?.click();
+      }
     }
   };
 
