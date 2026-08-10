@@ -56,7 +56,7 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden items-center gap-1 rounded-full border border-border bg-surface/90 px-2 py-2 shadow-[0_24px_60px_-45px_rgba(33,48,58,0.5)] backdrop-blur lg:flex">
-          {["About", "Services", "Portfolio", "Blog"].map((item) => (
+          {["About", "Services", "Portfolio", "Blog", "Careers"].map((item) => (
             <Link
               key={item}
               href={`/${item.toLowerCase()}`}

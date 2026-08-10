@@ -44,7 +44,7 @@ const Team = () => {
         </div>
 
         {/* Minimalist Grid Section */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-start">
           
           {/* Portrait Column */}
           <motion.div
@@ -52,7 +52,7 @@ const Team = () => {
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="md:col-span-4"
+            className="md:col-span-6 lg:col-span-3"
           >
             <div className="relative aspect-[3/4] w-full overflow-hidden border border-border/40 bg-surface/50">
               <Image
@@ -70,15 +70,37 @@ const Team = () => {
             </div>
           </motion.div>
 
+          {/* "You?" Card Column */}
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="md:col-span-6 lg:col-span-3"
+          >
+            <Link href="/careers" className="block group h-full">
+              <div className="relative aspect-[3/4] w-full flex items-center justify-center overflow-hidden border-2 border-dashed border-border/50 bg-surface/20 group-hover:bg-brand-mint/10 group-hover:border-brand-mint/40 transition-all duration-500">
+                <span className="text-7xl font-light text-muted/30 group-hover:text-brand-mint/80 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-12">?</span>
+              </div>
+              <div className="mt-5 flex flex-col">
+                <span className="text-base font-semibold text-foreground group-hover:text-brand-mint transition-colors">You?</span>
+                <span className="text-xs text-muted uppercase tracking-[0.15em] mt-1">The Next Expert</span>
+                <span className="text-xs text-brand-primary mt-1 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Join the team <ArrowRight className="w-3 h-3" />
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+
           {/* Details Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="md:col-span-8 flex flex-col h-full md:pt-4"
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            className="md:col-span-12 lg:col-span-6 flex flex-col h-full lg:pt-4"
           >
-            <div className="border-t border-border/80 pt-8">
+            <div className="border-t border-border/80 pt-8 lg:mt-0 mt-8">
               <p className="text-xs font-mono uppercase tracking-widest text-muted mb-6">The Goal</p>
               <h3 className="text-2xl md:text-3xl font-medium leading-snug text-foreground max-w-2xl">
                 &quot;Make you look so good your competitors get nervous, and build systems so tight your operations run on autopilot.&quot;
