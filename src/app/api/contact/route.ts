@@ -56,8 +56,15 @@ async function sendToGoogleScript(data: ContactFormData) {
       throw new Error(`Google Script responded with status: ${response.status}. Response: ${errorText}`);
     }
 
-    const result = await response.json();
-    console.log("Google Script success response:", result);
+    const responseText = await response.text();
+    let result;
+    try {
+      result = JSON.parse(responseText);
+      console.log("Google Script success response:", result);
+    } catch (e) {
+      console.log("Google Script success response (not JSON):", responseText);
+      result = { success: true, data: responseText };
+    }
     return result;
   } catch (error) {
     console.error("Error sending to Google Script:", error);
